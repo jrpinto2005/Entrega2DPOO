@@ -1,4 +1,4 @@
-package Sistema;
+package Usuarios;
 
 public class Profesor {
 

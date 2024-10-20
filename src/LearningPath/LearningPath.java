@@ -6,10 +6,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 import Envio.EnvioExamen;
-import Sistema.Estudiante;
-import Sistema.Profesor;
 import exceptions.ActivdadNoEcontradaException;
 import LearningPath.Actividad;
+import Usuarios.Estudiante;
+import Usuarios.Profesor;
 
 public class LearningPath {
 		private String titulo;
@@ -229,7 +229,9 @@ public class LearningPath {
 			else
 			{
 				actividad.setLearningPath(destino);
+				actividad.setId(destino.getTitulo() + actividad.getId());
 				destino.agregarActividad(actividad);
+				
 				System.out.println("Actividad clonada y añadida con exito");
 			}
 				

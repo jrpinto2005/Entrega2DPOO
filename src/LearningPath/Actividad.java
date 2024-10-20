@@ -14,13 +14,14 @@ private double rating;
 private String tipoActividad;
 private boolean obligatoria;
 private LearningPath learningPath;
+private String nombre;
 
-public Actividad(String descripcion, String objetivo, String id, Date fechaInicio, Date fechaFin, int duracion,
+public Actividad(String descripcion, String objetivo, String nombre, Date fechaInicio, Date fechaFin, int duracion,
 		int dificultad, double rating, String tipoActividad, boolean obligatoria, LearningPath learningPath) {
 	super();
 	this.descripcion = descripcion;
 	this.objetivo = objetivo;
-	this.id = id;
+	this.id = learningPath.getTitulo()+"."+ nombre;
 	this.fechaInicio = fechaInicio;
 	this.fechaFin = fechaFin;
 	this.duracion = duracion;

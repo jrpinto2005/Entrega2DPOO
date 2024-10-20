@@ -4,6 +4,7 @@ public class ActivdadNoEcontradaException extends Exception {
 	
 	private String id;
 	private String learningPath;
+	
 	public ActivdadNoEcontradaException(String learningPath, String id) {
 		super();
 		this.id = id;
