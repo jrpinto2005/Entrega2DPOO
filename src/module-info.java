@@ -4,5 +4,5 @@
 /**
  * 
  */
-module Proyecto {
+module Entrega2DPOO {
 }
