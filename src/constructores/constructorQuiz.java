@@ -2,7 +2,6 @@ package constructores;
 
 import java.util.Date;
 
-import LearningPath.Actividad;
 import LearningPath.LearningPath;
 import LearningPath.Quiz;
 import Usuarios.Sistema;
