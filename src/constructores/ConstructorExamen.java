@@ -12,12 +12,12 @@ public class ConstructorExamen {
 	
 	
 	
-	public ConstructorExamen(Sistema sistema) {
+	public ConstructorExamen() {
 		super();
 		this.sistema = Sistema.getInstancia();
 	}
 	public Examen crearExamen(String descripcion, String objetivo, String id, Date fechaInicio, Date fechaFin, int duracion,
-		int dificultad, double rating, String tipoActividad, boolean obligatoria, LearningPath learningPath, int puntajeMaximo) {
+		int dificultad, double rating, String tipoActividad, boolean obligatoria, String learningPath, int puntajeMaximo) {
 		Examen examen= new Examen(descripcion, objetivo,id,fechaInicio,fechaFin,duracion,dificultad,rating,tipoActividad,obligatoria, learningPath,puntajeMaximo);
 		sistema.addActividad(examen);
 		return examen;
@@ -56,7 +56,7 @@ public class ConstructorExamen {
 		    } else {
 		        System.out.println("Examen no encontrado.");
 		    }
-		
+		sistema.addActividad(examen);
 	}
 	
 	

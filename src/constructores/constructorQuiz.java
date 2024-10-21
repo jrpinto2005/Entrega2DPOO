@@ -18,7 +18,7 @@ public class constructorQuiz {
 		this.sistema = Sistema.getInstancia();
 	}
 	public Quiz crearQuiz(String descripcion, String objetivo, String id, Date fechaInicio, Date fechaFin, int duracion,
-		int dificultad, double rating, String tipoActividad, boolean obligatoria, LearningPath learningPath, int puntajeMaximo) {
+		int dificultad, double rating, String tipoActividad, boolean obligatoria, String learningPath, int puntajeMaximo) {
 		Quiz quiz= new Quiz(descripcion, objetivo,id,fechaInicio,fechaFin,duracion,dificultad,rating,tipoActividad,obligatoria, learningPath,puntajeMaximo);
 		sistema.addActividad(quiz);
 		return quiz;
@@ -57,7 +57,7 @@ public class constructorQuiz {
 		    } else {
 		        System.out.println("Quiz no encontrado.");
 		    }
-		
+		sistema.addActividad(quiz);
 	}
 	
 	

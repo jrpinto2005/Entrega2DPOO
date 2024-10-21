@@ -6,7 +6,7 @@ public abstract class Envio
 {
 	private String idEstudiante;
 	private String tituloLp;
-	private boolean completado;
+	protected boolean completado;
 	private Actividad actividad;
 	
 	public Envio(Actividad actividad, String idEstudiante, String tituloLp, boolean completado) {
