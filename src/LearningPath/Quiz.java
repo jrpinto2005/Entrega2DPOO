@@ -1,5 +1,6 @@
 package LearningPath;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,9 +13,9 @@ public class Quiz extends Actividad {
 	
 
 	public Quiz(String descripcion, String objetivo, String id, Date fechaInicio, Date fechaFin, int duracion,
-			int dificultad, double rating, String tipoActividad, boolean obligatoria, LearningPath learningPath, int puntajeMaximo) {
+			int dificultad, double rating, String tipoActividad, boolean obligatoria, String idlearningPath, int puntajeMaximo) {
 		super(descripcion, objetivo, id, fechaInicio, fechaFin, duracion, dificultad, rating, tipoActividad, obligatoria,
-				learningPath);
+				idlearningPath);
 		this.puntajeMaximo=puntajeMaximo;
 		this.preguntas= new HashMap<String,PreguntaOpcionMultiple> ();
 		// TODO Auto-generated constructor stub
@@ -26,6 +27,12 @@ public class Quiz extends Actividad {
 	}
 	public int getPuntajeMaximo() {
 		return puntajeMaximo;
+	}
+
+
+	public Collection<PreguntaOpcionMultiple> getPreguntas() 
+	{
+		return preguntas.values();
 	}
 	
 }

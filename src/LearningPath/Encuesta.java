@@ -14,7 +14,7 @@ public class Encuesta extends Actividad
 	
 
 	public Encuesta(String descripcion, String objetivo, String nombre, Date fechaInicio, Date fechaFin, int duracion,
-			int dificultad, double rating, String tipoActividad, boolean obligatoria, LearningPath learningPath, int puntajeMaximo) {
+			int dificultad, double rating, String tipoActividad, boolean obligatoria, String learningPath, int puntajeMaximo) {
 		super(descripcion, objetivo, nombre, fechaInicio, fechaFin, duracion, dificultad, rating, tipoActividad, obligatoria,
 				learningPath);
 		this.puntajeMaximo=puntajeMaximo;
