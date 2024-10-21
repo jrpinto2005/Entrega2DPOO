@@ -107,10 +107,17 @@ public class CentralPersistencia {
 	            Map<String,LearningPath> lps = sistema.getLearningPaths();
 	            for (String lp : lps.keySet()) {
 	            	LearningPath temp=lps.get(lp);
-	                String lpLine = String.format("lp,%s,%d,%d,%d,%s,%s,%d,%s,%s,%s,%.2f",
-	                    lp, temp.getDescripcionGeneral(), temp.getNivelDificutad(), temp.getDuracion(), temp.getRating(), formato.format(temp.getFechaDuracion()),formato.format(temp.getFechaModificacion()), temp.getVersion(),
-	                    temp.getIdCreador(), temp.getObjetivos(),temp.getPromedioActividadesCompletadas());
-	                bw.write(lpLine);
+	                bw.write("lp,");
+	                bw.write(temp.getDescripcionGeneral()+",");
+	                bw.write(String.valueOf(temp.getNivelDificutad())+",");
+	                bw.write(String.valueOf(temp.getDuracion())+",");
+	                bw.write(String.valueOf(temp.getRating())+",");
+	                bw.write(formato.format(temp.getFechaDuracion())+",");
+	                bw.write(formato.format(temp.getFechaModificacion())+",");
+	                bw.write(String.valueOf(temp.getVersion())+",");
+	                bw.write(temp.getIdCreador()+",");
+	                bw.write(temp.getObjetivos()+",");
+	                bw.write(String.valueOf(temp.getPromedioActividadesCompletadas()));
 	                bw.newLine();
 	            }
 
@@ -119,42 +126,86 @@ public class CentralPersistencia {
 	            for (String act : actividades.keySet()) {
 	            	Actividad acttemp=actividades.get(act);
 	                if (acttemp instanceof Quiz) {
-	                    
-	                    String quizLine = String.format("quiz,%s,%s,%s,%s,%s,%d,%d,%.2f,%b,%s,%d",
-	                        "quiz" , acttemp.getDescripcion(), acttemp.getObjetivo(), act, formato.format(acttemp.getFechaInicio()),formato.format(acttemp.getFechaFin()),
-	                        		acttemp.getDuracion(), acttemp.getDificultad(), acttemp.getRating(), acttemp.isObligatoria(), acttemp.getLearningPath().getTitulo(),((Quiz) acttemp).getPuntajeMaximo());
-	                    bw.write(quizLine);
+	                    bw.write("quiz,");
+	                    bw.write(acttemp.getDescripcion()+",");
+	                    bw.write(acttemp.getObjetivo()+",");
+	                    bw.write(act+",");
+	                    bw.write(formato.format(acttemp.getFechaInicio())+",");
+	                    bw.write(formato.format(acttemp.getFechaFin())+",");
+	                    bw.write(String.valueOf(acttemp.getDuracion())+",");
+	                    bw.write(String.valueOf(acttemp.getDificultad())+",");
+	                    bw.write(String.valueOf(acttemp.getRating())+",");
+	                    bw.write(String.valueOf(acttemp.isObligatoria())+",");
+	                    bw.write(acttemp.getLearningPath().getIdCreador()+",");
+	                    bw.write(String.valueOf(((Quiz) acttemp).getPuntajeMaximo()));
 	                    bw.newLine();
 	                } else if (acttemp instanceof Examen) {
-	                    String examenLine = String.format("examen,%s,%s,%s,%s,%s,%d,%d,%.2f,%b,%s,%d",
-		                        "examen" , acttemp.getDescripcion(), acttemp.getObjetivo(), act, formato.format(acttemp.getFechaInicio()),formato.format(acttemp.getFechaFin()),
-                        		acttemp.getDuracion(), acttemp.getDificultad(), acttemp.getRating(), acttemp.isObligatoria(), acttemp.getLearningPath().getTitulo(),((Examen) acttemp).getPuntajeMaximo());
-                    bw.write(examenLine);
-	                    bw.write(examenLine);
+	                	bw.write("examen,");
+	                    bw.write(acttemp.getDescripcion()+",");
+	                    bw.write(acttemp.getObjetivo()+",");
+	                    bw.write(act+",");
+	                    bw.write(formato.format(acttemp.getFechaInicio())+",");
+	                    bw.write(formato.format(acttemp.getFechaFin())+",");
+	                    bw.write(String.valueOf(acttemp.getDuracion())+",");
+	                    bw.write(String.valueOf(acttemp.getDificultad())+",");
+	                    bw.write(String.valueOf(acttemp.getRating())+",");
+	                    bw.write(String.valueOf(acttemp.isObligatoria())+",");
+	                    bw.write(acttemp.getLearningPath().getIdCreador()+",");
+	                    bw.write(String.valueOf(((Examen) acttemp).getPuntajeMaximo()));
 	                    bw.newLine();
 	                } else if (acttemp instanceof Encuesta) {
-	                    String encuestaLine = String.format("encuesta,%s,%s,%s,%s,%s,%d,%d,%.2f,%b,%s",
-		                        "encuesta" , acttemp.getDescripcion(), acttemp.getObjetivo(), act, formato.format(acttemp.getFechaInicio()),formato.format(acttemp.getFechaFin()),
-                        		acttemp.getDuracion(), acttemp.getDificultad(), acttemp.getRating(), acttemp.isObligatoria());
-	                    bw.write(encuestaLine);
+	                    bw.write("encuesta,");
+	                    bw.write(acttemp.getDescripcion()+",");
+	                    bw.write(acttemp.getObjetivo()+",");
+	                    bw.write(act+",");
+	                    bw.write(formato.format(acttemp.getFechaInicio())+",");
+	                    bw.write(formato.format(acttemp.getFechaFin())+",");
+	                    bw.write(String.valueOf(acttemp.getDuracion())+",");
+	                    bw.write(String.valueOf(acttemp.getDificultad())+",");
+	                    bw.write(String.valueOf(acttemp.getRating())+",");
+	                    bw.write(String.valueOf(acttemp.isObligatoria())+",");
+	                    bw.write(acttemp.getLearningPath().getIdCreador()+",");
 	                    bw.newLine();
 	                } else if (acttemp instanceof SitioWeb) {
-	                    String webLine  = String.format("web,%s,%s,%s,%s,%s,%d,%d,%.2f,%b,%s,%s",
-		                        "web" , acttemp.getDescripcion(), acttemp.getObjetivo(), act, formato.format(acttemp.getFechaInicio()),formato.format(acttemp.getFechaFin()),
-                        		acttemp.getDuracion(), acttemp.getDificultad(), acttemp.getRating(), acttemp.isObligatoria(),((SitioWeb) acttemp).getUrl());
-	                    bw.write(webLine);
+	                	bw.write("web,");
+	                    bw.write(acttemp.getDescripcion()+",");
+	                    bw.write(acttemp.getObjetivo()+",");
+	                    bw.write(act+",");
+	                    bw.write(formato.format(acttemp.getFechaInicio())+",");
+	                    bw.write(formato.format(acttemp.getFechaFin())+",");
+	                    bw.write(String.valueOf(acttemp.getDuracion())+",");
+	                    bw.write(String.valueOf(acttemp.getDificultad())+",");
+	                    bw.write(String.valueOf(acttemp.getRating())+",");
+	                    bw.write(String.valueOf(acttemp.isObligatoria())+",");
+	                    bw.write(acttemp.getLearningPath().getIdCreador()+",");
+	                    bw.write(((SitioWeb) acttemp).getUrl());
 	                    bw.newLine();
 	                } else if (acttemp instanceof Video) {
-	                    String videoLine = String.format("video,%s,%s,%s,%s,%s,%d,%d,%.2f,%b,%s,%d",
-		                        "video" , acttemp.getDescripcion(), acttemp.getObjetivo(), act, formato.format(acttemp.getFechaInicio()),formato.format(acttemp.getFechaFin()),
-                        		acttemp.getDuracion(), acttemp.getDificultad(), acttemp.getRating(), acttemp.isObligatoria(), ((Video) acttemp).getDuracionV());
-	                    bw.write(videoLine);
+	                	bw.write("video,");
+	                    bw.write(acttemp.getDescripcion()+",");
+	                    bw.write(acttemp.getObjetivo()+",");
+	                    bw.write(act+",");
+	                    bw.write(formato.format(acttemp.getFechaInicio())+",");
+	                    bw.write(formato.format(acttemp.getFechaFin())+",");
+	                    bw.write(String.valueOf(acttemp.getDuracion())+",");
+	                    bw.write(String.valueOf(acttemp.getDificultad())+",");
+	                    bw.write(String.valueOf(acttemp.getRating())+",");
+	                    bw.write(String.valueOf(acttemp.isObligatoria())+",");
+	                    bw.write(acttemp.getLearningPath().getIdCreador()+",");
+	                    bw.write(String.valueOf(((Video) acttemp).getDuracionV()));
 	                    bw.newLine();
 	                } else if (acttemp instanceof Lectura) {
-	                    String lecturaLine = String.format("Encuesta,%s,%s,%s,%s,%s,%d,%d,%.2f,%b,%s",
-		                        "Encuesta" , acttemp.getDescripcion(), acttemp.getObjetivo(), act, formato.format(acttemp.getFechaInicio()),formato.format(acttemp.getFechaFin()),
-                        		acttemp.getDuracion(), acttemp.getDificultad(), acttemp.getRating(), acttemp.isObligatoria());
-	                    bw.write(lecturaLine);
+	                	bw.write("lectura,");
+	                    bw.write(acttemp.getDescripcion()+",");
+	                    bw.write(acttemp.getObjetivo()+",");
+	                    bw.write(act+",");
+	                    bw.write(formato.format(acttemp.getFechaInicio())+",");
+	                    bw.write(formato.format(acttemp.getFechaFin())+",");
+	                    bw.write(String.valueOf(acttemp.getDuracion())+",");
+	                    bw.write(String.valueOf(acttemp.getDificultad())+",");
+	                    bw.write(String.valueOf(acttemp.getRating())+",");
+	                    bw.write(String.valueOf(acttemp.isObligatoria())+",");
+	                    bw.write(acttemp.getLearningPath().getIdCreador()+",");
 	                    bw.newLine();
 	                }
 	                bw.close();
