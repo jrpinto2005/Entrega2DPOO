@@ -10,6 +10,7 @@ import exceptions.ActivdadNoEcontradaException;
 import LearningPath.Actividad;
 import Usuarios.Estudiante;
 import Usuarios.Profesor;
+import Usuarios.Sistema;
 
 public class LearningPath {
 		private String titulo;
@@ -27,13 +28,12 @@ public class LearningPath {
 		private List<EnvioExamen>enviosPorCalificar;
 		private List<EnvioExamen>examenesCalificados;
 		private ArrayList<Actividad>actividadesOrdenadas;
+		private Sistema sistema;
 		
 		
 		public LearningPath(String titulo, String descripcionGeneral, int nivelDificutad, int duracion, int rating,
 				Date fechaDuracion, Date fechaModificacion, int version, String idCreador, String objetivos,
-				double promedioActividadesCompletadas, List<Estudiante> estudiante,
-				List<EnvioExamen> enviosPorCalificar, List<EnvioExamen> examenesCalificados,
-				ArrayList<Actividad> actividadesOrdenadas) {
+				double promedioActividadesCompletadas) {
 			super();
 			this.titulo = titulo;
 			this.descripcionGeneral = descripcionGeneral;
@@ -50,6 +50,7 @@ public class LearningPath {
 			this.enviosPorCalificar = new LinkedList<EnvioExamen>();
 			this.examenesCalificados = new LinkedList<EnvioExamen>();
 			this.actividadesOrdenadas = new ArrayList<Actividad>();
+			this.sistema = Sistema.getInstancia();
 		}
 
 
@@ -231,7 +232,7 @@ public class LearningPath {
 				actividad.setLearningPath(destino);
 				actividad.setId(destino.getTitulo() + actividad.getId());
 				destino.agregarActividad(actividad);
-				
+				sistema.addActividad(actividad);
 				System.out.println("Actividad clonada y añadida con exito");
 			}
 				

@@ -24,4 +24,7 @@ public class Encuesta extends Actividad
 	public void setPuntajeMaximo(int puntajeMaximo) {
 		this.puntajeMaximo = puntajeMaximo;
 	}
+	public int getPuntajeMaximo() {
+		return puntajeMaximo;
+	}
 }

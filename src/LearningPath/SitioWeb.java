@@ -6,10 +6,9 @@ public class SitioWeb extends RecursoEducativo
 {
 private String url;
 	public SitioWeb(String descripcion, String objetivo, String nombre, Date fechaInicio, Date fechaFin, int duracion,
-			int dificultad, double rating, String tipoActividad, boolean obligatoria, LearningPath learningPath,
-			String titulo, String url) {
+			int dificultad, double rating, String tipoActividad, boolean obligatoria, LearningPath learningPath, String url) {
 		super(descripcion, objetivo, nombre, fechaInicio, fechaFin, duracion, dificultad, rating, tipoActividad, obligatoria,
-				learningPath, titulo);
+				learningPath);
 		this.setUrl(url);
 		// TODO Auto-generated constructor stub
 	}
