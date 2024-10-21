@@ -1,5 +1,6 @@
 package LearningPath;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,5 +27,8 @@ public class Encuesta extends Actividad
 	}
 	public int getPuntajeMaximo() {
 		return puntajeMaximo;
+	}
+	public Collection<PreguntaEncuesta> getPreguntas() {
+		return preguntas.values();
 	}
 }

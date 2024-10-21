@@ -17,7 +17,7 @@ private Sistema sistema;
 		this.sistema = Sistema.getInstancia();
 	}
 	public Tarea crearTarea(String descripcion, String objetivo, String id, Date fechaInicio, Date fechaFin, int duracion,
-			int dificultad, double rating, String tipoActividad, boolean obligatoria, LearningPath learningPath) {
+			int dificultad, double rating, String tipoActividad, boolean obligatoria, String learningPath) {
 			Tarea tarea= new Tarea(descripcion, objetivo,id,fechaInicio,fechaFin,duracion,dificultad,rating,tipoActividad,obligatoria, learningPath);
 			sistema.addActividad(tarea);
 			return tarea;
@@ -55,7 +55,7 @@ private Sistema sistema;
 			    } else {
 			        System.out.println("Tarea no encontrada.");
 			    }
-			
+			sistema.addActividad(tarea);
 		}
 		
 		

@@ -5,11 +5,24 @@ import java.util.Collection;
 import java.util.List;
 
 import Envio.Envio;
+import Envio.EnvioEncuesta;
 import Envio.EnvioExamen;
+import Envio.EnvioQuiz;
+import Envio.EnvioRecurso;
+import Envio.EnvioTarea;
+import Envio.Opcion;
 import Envio.PreguntaAbierta;
+import Envio.PreguntaEncuesta;
+import Envio.PreguntaOpcionMultiple;
 import Envio.RespuestaAbierta;
+import Envio.RespuestaEncuesta;
+import Envio.RespuestaMultiple;
+import LearningPath.Encuesta;
 import LearningPath.Examen;
 import LearningPath.LearningPath;
+import LearningPath.Quiz;
+import LearningPath.RecursoEducativo;
+import LearningPath.Tarea;
 
 public class Estudiante extends Usuario {
 	private List<LearningPath> learningPaths;
@@ -36,9 +49,17 @@ public class Estudiante extends Usuario {
 		return learningPaths;
 	}
 
-	public String verProgreso() {
-		// Implementar lógica para calcular el progreso
-		return "Progreso actual: X%";
+	public double verProgreso() {
+		int cantidadTotal=envios.size();
+		int cantidad=0;
+		for (Envio envio: this.envios)
+		{
+			if (envio.isCompletado()==true)
+			{
+				cantidad+=1;
+			}
+		}
+		return cantidad/cantidadTotal;
 	}
 	
 	public EnvioExamen hacerExamen(String idExamen)
@@ -49,10 +70,63 @@ public class Estudiante extends Usuario {
 		for (PreguntaAbierta pregunta:preguntas)
 		{
 			//estudiante digita respuesta 
-			RespuestaAbierta respuesta=new RespuestaAbierta(0, "", pregunta.getValorPregunta());
+			RespuestaAbierta respuesta=new RespuestaAbierta(0, "", pregunta.getValorPregunta(), pregunta);
 			respuestas.add(respuesta);
 		}
-		EnvioExamen envio=new EnvioExamen(this.id, examen.getLearningPath().getTitulo(), false, 0, examen.getPuntajeMaximo(),0, respuestas);
-		return envio
+		EnvioExamen envio=new EnvioExamen(examen,this.id, examen.getLearningPath().getTitulo(), false, 0, examen.getPuntajeMaximo(),0, respuestas);
+		return envio;
 	}
+	public EnvioQuiz hacerQuiz(String idQuiz)
+	{
+		Quiz quiz=(Quiz) sistema.encontrarActividad(idQuiz);
+		Collection<PreguntaOpcionMultiple> preguntas = quiz.getPreguntas();
+		List<RespuestaMultiple> respuestas=new ArrayList<RespuestaMultiple>();
+		for (PreguntaOpcionMultiple pregunta:preguntas)
+		{
+			for (Opcion opcion:pregunta.getOpciones())
+			{
+			//se muestran las opciones al usuario
+			}
+			//estudiante digita respuesta 
+			int x=1; // esto va a ser lo que digite elk estudiante lo vamos a poner en 1 mientras hacemos la consola
+			RespuestaMultiple respuesta=new RespuestaMultiple(0,x, pregunta);
+			respuestas.add(respuesta);
+		}
+		EnvioQuiz envio=new EnvioQuiz(quiz,this.id, quiz.getLearningPath().getTitulo(), false, 0, quiz.getPuntajeMaximo(),0, respuestas);
+		return envio;
+	}
+	public EnvioEncuesta hacerEncuesta(String idEncuesta)
+	{
+		Encuesta encuesta=(Encuesta) sistema.encontrarActividad(idEncuesta);
+		Collection<PreguntaEncuesta> preguntas = encuesta.getPreguntas();
+		List<RespuestaEncuesta> respuestas=new ArrayList<RespuestaEncuesta>();
+		for (PreguntaEncuesta pregunta:preguntas)
+		{
+			//estudiante digita respuesta que es un número de uno a 5
+			int x=1; // esto va a ser lo que digite el estudiante lo vamos a poner en 1 mientras hacemos la consola
+			RespuestaEncuesta respuesta=new RespuestaEncuesta(x, pregunta);
+			respuestas.add(respuesta);
+		}
+		EnvioEncuesta envio=new EnvioEncuesta(encuesta,this.id, encuesta.getLearningPath().getTitulo(), true, 0, encuesta.getPuntajeMaximo(),0, respuestas);
+		return envio;
+	}
+	
+	public EnvioTarea hacerTarea(String idTarea)
+	{
+		Tarea tarea=(Tarea) sistema.encontrarActividad(idTarea);
+		EnvioTarea envio=new EnvioTarea(tarea,this.id, tarea.getLearningPath().getTitulo(), true);
+		return envio;
+	}
+	
+	public EnvioRecurso hacerRecurso(String idRecurso)
+	{
+		RecursoEducativo recurso=(RecursoEducativo) sistema.encontrarActividad(idRecurso);
+		EnvioRecurso envio=new EnvioRecurso(recurso,this.id, recurso.getLearningPath().getTitulo(), true);
+		return envio;
+	}
+
+	public List<Envio> getEnvios() {
+		return envios;
+	}
+	
 }

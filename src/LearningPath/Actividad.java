@@ -1,7 +1,13 @@
 package LearningPath;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import Envio.Envio;
+import Envio.Reseña;
+import Usuarios.ControladorUsuarios;
+import Usuarios.Estudiante;
 import Usuarios.Sistema;
 
 public class Actividad {
@@ -18,6 +24,9 @@ private boolean obligatoria;
 private LearningPath learningPath;
 private String nombre;
 private Sistema sistema;
+private ControladorUsuarios cu;
+private List<Reseña> reseñas;
+private List<Actividad> actividadesRecomendadas;
 
 public Actividad(String descripcion, String objetivo, String nombre, Date fechaInicio, Date fechaFin, int duracion,
 		int dificultad, double rating, String tipoActividad, boolean obligatoria, String idLearningPath) {
@@ -35,6 +44,10 @@ public Actividad(String descripcion, String objetivo, String nombre, Date fechaI
 	this.obligatoria = obligatoria;
 	this.learningPath = LP;
 	this.sistema=Sistema.getInstancia();
+	this.cu=ControladorUsuarios.getInstancia();
+	this.reseñas=new ArrayList<Reseña>();
+	this.actividadesRecomendadas=new ArrayList<Actividad>();
+	
 }
 
 
@@ -146,10 +159,39 @@ public LearningPath getLearningPath() {
 public void setLearningPath(LearningPath learningPath) {
 	this.learningPath = learningPath;
 }
-
-public boolean sePuedeEmpezar() {
-	
-	this.learningPath.
+public void agregarReseña(Reseña r)
+{
+	this.reseñas.add(r);
+}
+public void agregarActividadRecomendada(Actividad a)
+{
+	this.actividadesRecomendadas.add(a);
+}
+public boolean esBuenaIdeaHacerActividad(String idEstudiante) {
+	Estudiante estudiante=this.cu.encontrarEstudiante(idEstudiante);
+	List<Envio> envios=estudiante.getEnvios();
+	int contador=this.actividadesRecomendadas.size();
+	int cantidad=0;
+	for (Actividad actividad: this.actividadesRecomendadas)
+	{
+		for (Envio envio: envios)
+		{
+			Actividad act=envio.getActividad();
+			if (actividad.getId().equals(act.getId()) && envio.isCompletado())
+			{
+				cantidad+=1;
+			}
+		}
+	}
+	if (cantidad!=contador)
+	{
+		System.out.println("No es recomendasble hacer la actividad debido a que hay catividades previas recomendadas que no has hecho");
+		return false;
+	}
+	else
+	{
+		return true;
+	}
 	
 }
 
