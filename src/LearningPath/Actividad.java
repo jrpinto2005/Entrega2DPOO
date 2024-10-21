@@ -2,6 +2,8 @@ package LearningPath;
 
 import java.util.Date;
 
+import Usuarios.Sistema;
+
 public class Actividad {
 private String descripcion;
 private String objetivo;
@@ -15,13 +17,15 @@ private String tipoActividad;
 private boolean obligatoria;
 private LearningPath learningPath;
 private String nombre;
+private Sistema sistema;
 
 public Actividad(String descripcion, String objetivo, String nombre, Date fechaInicio, Date fechaFin, int duracion,
-		int dificultad, double rating, String tipoActividad, boolean obligatoria, LearningPath learningPath) {
+		int dificultad, double rating, String tipoActividad, boolean obligatoria, String idLearningPath) {
 	super();
+	LearningPath LP=sistema.encontrarLP(idLearningPath);
 	this.descripcion = descripcion;
 	this.objetivo = objetivo;
-	this.id = learningPath.getTitulo()+"."+ nombre;
+	this.id = LP.getTitulo()+"."+ nombre;
 	this.fechaInicio = fechaInicio;
 	this.fechaFin = fechaFin;
 	this.duracion = duracion;
@@ -29,7 +33,8 @@ public Actividad(String descripcion, String objetivo, String nombre, Date fechaI
 	this.rating = rating;
 	this.tipoActividad = tipoActividad;
 	this.obligatoria = obligatoria;
-	this.learningPath = learningPath;
+	this.learningPath = LP;
+	this.sistema=Sistema.getInstancia();
 }
 
 
