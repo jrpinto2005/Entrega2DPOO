@@ -3,6 +3,7 @@ package Envio;
 import java.util.List;
 
 import LearningPath.Actividad;
+import Envio.CalificadorRespuestaMultiple;
 
 public class EnvioQuiz extends Envio
 {
@@ -31,6 +32,23 @@ public class EnvioQuiz extends Envio
 		this.notaPorcentaje=nota;
 	}
 	
+	public void calificarQuiz()
+	{
+		int puntaje=0;
+		CalificadorRespuestaMultiple calificador = new CalificadorRespuestaMultiple();
+		for (RespuestaMultiple respuesta: this.respuestas)
+		{
+			int valor=0;
+			valor=calificador.esCorrecta(respuesta);
+			puntaje+=valor;
+		}
+		this.puntaje=puntaje;
+		this.notaPorcentaje=puntaje/this.puntajeMaximo;
+		if (this.notaPorcentaje>=3.0)
+		{
+			this.completado=true;
+		}
+	}
 	
 
 }
