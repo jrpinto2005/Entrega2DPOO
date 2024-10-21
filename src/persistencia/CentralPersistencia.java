@@ -9,8 +9,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import LearningPath.Encuesta;
+import LearningPath.SitioWeb;
+import LearningPath.Video;
 import LearningPath.Examen;
 import LearningPath.LearningPath;
+import LearningPath.Lectura;
 import LearningPath.Quiz;
 import Usuarios.Sistema;
 
@@ -40,26 +43,43 @@ public class CentralPersistencia {
 			}
 			else if (partes[0].equals("quiz"))
 			{
-				Quiz quiztemp=new Quiz(partes[1], partes[2], partes[3], formato.parse(partes[4]), formato.parse(partes[5]), Integer.parseInt(partes[6]), Integer.parseInt(partes[7]), Double.parseDouble(partes[8]), partes[9], Boolean.parseBoolean(partes[10]), partes[11], Integer.parseInt(partes[12]));
+				Quiz quiztemp=new Quiz(partes[1], partes[2], partes[3], formato.parse(partes[4]), formato.parse(partes[5]), Integer.parseInt(partes[6]), Integer.parseInt(partes[7]), Double.parseDouble(partes[8]), "Quiz", Boolean.parseBoolean(partes[9]), partes[10], Integer.parseInt(partes[11]));
 				sistema.addActividad(quiztemp);
 			}
 			else if (partes[0].equals("examen"))
 			{
-				Examen examentemp=new Examen(partes[1], partes[2], partes[3], formato.parse(partes[4]), formato.parse(partes[5]), Integer.parseInt(partes[6]), Integer.parseInt(partes[7]), Double.parseDouble(partes[8]), partes[9], Boolean.parseBoolean(partes[10]), partes[11], Integer.parseInt(partes[12]));
+				Examen examentemp=new Examen(partes[1], partes[2], partes[3], formato.parse(partes[4]), formato.parse(partes[5]), Integer.parseInt(partes[6]), Integer.parseInt(partes[7]), Double.parseDouble(partes[8]), "Examen", Boolean.parseBoolean(partes[9]), partes[10], Integer.parseInt(partes[11]));
 			    sistema.addActividad(examentemp);
 			}
 			else if (partes[0].equals("encuesta"))
 			{
-				Encuesta encuestatemp = new Encuesta(partes[1], partes[2], partes[3], formato.parse(partes[4]), formato.parse(partes[5]), Integer.parseInt(partes[6]), Integer.parseInt(partes[7]), Double.parseDouble(partes[8]), partes[9], Boolean.parseBoolean(partes[10]), partes[11], Integer.parseInt(partes[12]));
+				Encuesta encuestatemp = new Encuesta(partes[1], partes[2], partes[3], formato.parse(partes[4]), formato.parse(partes[5]), Integer.parseInt(partes[6]), Integer.parseInt(partes[7]), Double.parseDouble(partes[8]), "Encuesta", Boolean.parseBoolean(partes[9]), partes[10], Integer.parseInt(partes[11]));
 			    sistema.addActividad(encuestatemp);
 			
 		}
-			else if (partes[0].equals("examen"))
+			else if (partes[0].equals("web"))
 			{
-				Examen examentemp=new Examen(partes[1], partes[2], partes[3], formato.parse(partes[4]), formato.parse(partes[5]), Integer.parseInt(partes[6]), Integer.parseInt(partes[7]), Double.parseDouble(partes[8]), partes[9], Boolean.parseBoolean(partes[10]), partes[11], Integer.parseInt(partes[12]));
-			    sistema.addActividad(examentemp);
+				SitioWeb webtemp=new SitioWeb(partes[1], partes[2], partes[3], formato.parse(partes[4]), formato.parse(partes[5]), Integer.parseInt(partes[6]), Integer.parseInt(partes[7]), Double.parseDouble(partes[8]), "SitioWeb", Boolean.parseBoolean(partes[9]), partes[10], partes[11]);
+			    sistema.addActividad(webtemp);
 		
 	}
+			else if (partes[0].equals("video"))
+			{
+				Video vidtemp=new Video(partes[1], partes[2], partes[3], formato.parse(partes[4]), formato.parse(partes[5]), Integer.parseInt(partes[6]), Integer.parseInt(partes[7]), Double.parseDouble(partes[8]), "Video", Boolean.parseBoolean(partes[9]), partes[10], Integer.parseInt(partes[11]));
+			    sistema.addActividad(vidtemp);
+			
+		
+	}
+			else if (partes[0].equals("lectura"))
+			{
+				Lectura lecttemp=new Lectura(partes[1], partes[2], partes[3], formato.parse(partes[4]), formato.parse(partes[5]), Integer.parseInt(partes[6]), Integer.parseInt(partes[7]), Double.parseDouble(partes[8]), "Lectura", Boolean.parseBoolean(partes[9]), partes[10]);
+			    sistema.addActividad(lecttemp);
+			
+		
+	}
+			line= br.readLine();
+		}
+		br.close();
 	
 
-}
+}}
