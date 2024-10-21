@@ -6,7 +6,7 @@ quiz,descripcion,objetivo,nombre,fechaini,fechafin,durqcion,dificultad,rating,ob
 
 examen,descripcion,objetivo,nombre,fechaini,fechafin,durqcion,dificultad,rating,obligatoria,lp,puntajemaximo
 
-encuesta,descripcion,objetivo,nombre,fechaini,fechafin,durqcion,dificultad,rating,obligatoria,lp,puntajemaximo
+encuesta,descripcion,objetivo,nombre,fechaini,fechafin,durqcion,dificultad,rating,obligatoria,lp,
 
 web,descripcion,objetivo,nombre,fechaini,fechafin,durqcion,dificultad,rating,obligatoria,lp,url
 
