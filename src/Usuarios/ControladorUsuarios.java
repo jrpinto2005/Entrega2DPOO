@@ -6,12 +6,20 @@ import java.util.Map;
 
 public class ControladorUsuarios {
     private Map<String, Estudiante> estudiantes;  
-    private Map<String, Profesor> profesores;    
+    private Map<String, Profesor> profesores;   
+	private static ControladorUsuarios instancia;
     public ControladorUsuarios() {
         estudiantes = new HashMap<>();
         profesores = new HashMap<>();
     }
-
+    
+    public static ControladorUsuarios getInstancia() {
+		if (instancia == null) {
+			instancia = new ControladorUsuarios();
+		}
+		return instancia;
+	}
+    
     public void agregarEstudiante(Estudiante estudiante) {
         estudiantes.put(estudiante.getId(), estudiante);
     }

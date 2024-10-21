@@ -203,8 +203,8 @@ public class LearningPath {
 			this.actividadesOrdenadas = actividadesOrdenadas;
 		}
 		
-		public boolean esElDueño() {
-		    if (Profesor.getId().equals(this.idCreador)) {
+		public boolean esElDueño(String idProfesor) {
+		    if (idProfesor.equals(this.idCreador)) {
 		        return true;
 		    }
 		    return false;

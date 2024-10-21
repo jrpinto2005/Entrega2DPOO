@@ -17,8 +17,8 @@ private Sistema sistema;
 		this.sistema = Sistema.getInstancia();
 	}
 	public RecursoEducativo crearRecursoEducativo(String descripcion, String objetivo, String id, Date fechaInicio, Date fechaFin, int duracion,
-			int dificultad, double rating, String tipoActividad, boolean obligatoria, LearningPath learningPath, String titulo) {
-			RecursoEducativo recurso= new RecursoEducativo(descripcion, objetivo,id,fechaInicio,fechaFin,duracion,dificultad,rating,tipoActividad,obligatoria, learningPath,titulo);
+			int dificultad, double rating, String tipoActividad, boolean obligatoria, String learningPath) {
+			RecursoEducativo recurso= new RecursoEducativo(descripcion, objetivo,id,fechaInicio,fechaFin,duracion,dificultad,rating,tipoActividad,obligatoria, learningPath);
 			sistema.addActividad(recurso);
 			return recurso;
 		}
@@ -48,18 +48,14 @@ private Sistema sistema;
 			        	recurso.setObligatoria((Boolean) atributoNuevo);
 			        } else if (atributo.equals("learningPath")) {
 			        	recurso.setLearningPath((LearningPath) atributoNuevo);
-			        } else if (atributo.equals("titulo")) {
-			        	recurso.setTitulo((String) atributoNuevo);
-			        }
-			        
-			        
+			        } 
 			        else {
 			            System.out.println("Atributo no reconocido.");
 			        }
 			    } else {
 			        System.out.println("Tarea no encontrada.");
 			    }
-			
+			sistema.addActividad(recurso);
 		}
 		
 		

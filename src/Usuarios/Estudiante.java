@@ -49,9 +49,17 @@ public class Estudiante extends Usuario {
 		return learningPaths;
 	}
 
-	public String verProgreso() {
-		// Implementar lógica para calcular el progreso
-		return "Progreso actual: X%";
+	public double verProgreso() {
+		int cantidadTotal=envios.size();
+		int cantidad=0;
+		for (Envio envio: this.envios)
+		{
+			if (envio.isCompletado()==true)
+			{
+				cantidad+=1;
+			}
+		}
+		return cantidad/cantidadTotal;
 	}
 	
 	public EnvioExamen hacerExamen(String idExamen)
@@ -116,4 +124,9 @@ public class Estudiante extends Usuario {
 		EnvioRecurso envio=new EnvioRecurso(recurso,this.id, recurso.getLearningPath().getTitulo(), true);
 		return envio;
 	}
+
+	public List<Envio> getEnvios() {
+		return envios;
+	}
+	
 }
