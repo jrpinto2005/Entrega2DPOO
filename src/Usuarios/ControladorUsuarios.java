@@ -89,5 +89,13 @@ public class ControladorUsuarios {
         System.out.println("Usuario no encontrado.");
         return false;
     }
+
+	public Map<String, Estudiante> getEstudiantes() {
+		return estudiantes;
+	}
+
+	public Map<String, Profesor> getProfesores() {
+		return profesores;
+	}
 }
 
