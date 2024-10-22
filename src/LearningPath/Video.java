@@ -12,7 +12,7 @@ public class Video extends RecursoEducativo{
 		this.duracion=duracionV;
 		// TODO Auto-generated constructor stub
 	}
-	public int getDuracion() {
+	public int getDuracionV() {
 		return duracion;
 	}
 	public void setDuracion(int duracion) {
