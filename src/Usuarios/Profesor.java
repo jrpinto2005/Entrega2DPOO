@@ -1,12 +1,20 @@
 package Usuarios;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import LearningPath.LearningPath;
 import constructores.ConstructorLearningPath;
 
 public class Profesor extends Usuario{
-
+	
+	private List<LearningPath> learningPaths;
+	
+	
 	public Profesor(String id, String nombre, String email, String contraseña, String tipo) {
 		super(id, nombre, email, contraseña, tipo);
-		// TODO Auto-generated constructor stub
+		this.learningPaths = new ArrayList<LearningPath>();
 	}
 
 	public String getContrasena() {
@@ -14,25 +22,22 @@ public class Profesor extends Usuario{
 		
 	}
 	
-	public void editarLearningPath()
+	public void editarLearningPath(String atributo, Object atributoNuevo, String tituloLP)
 	{
-	//profesor entra por consola que atributo quiere cambiar, porque lo quiere cambiar y el Id del learningPath
-	//para empezar olo vamos de dejar estos valores en cosas conocidas
-	String atributo="nivelDificultad";
-	Object nuevoAtributo=4;
-	String id="IP";
+	//profesor entra por consola que atributo quiere cambiar, por que otro atributo lo quieres cambiar y el Id del learningPath
 	ConstructorLearningPath constructor=new ConstructorLearningPath();
-	constructor.editarLP(this.id, atributo, nuevoAtributo, id);
+	constructor.editarLP(this.id, atributo, atributoNuevo, tituloLP);
 
 }
-	public void crearLearningPath()
+	public void crearLearningPath(String titulo, String descripcionGeneral, int nivelDificultad, int duracion, int rating,
+			Date fechaDuracion, Date fechaModificacion, int version, String idCreador, String objetivos,
+			double promedioActividadesCompletadas)
 	{
+		
 	//profesor entra por consola atributos para crear LP
-	//para empezar solo vamos de dejar estos valores en cosas conocidas
-	Object nuevoAtributo=4;
 	ConstructorLearningPath constructor=new ConstructorLearningPath();
-	constructor.crearLP("IP", "",(int) nuevoAtributo, 0, 0, null, null, 0, this.id, "", 0);
-
+	LearningPath LP= constructor.crearLP(titulo,descripcionGeneral,nivelDificultad,duracion,rating,fechaDuracion,fechaModificacion,version,idCreador,objetivos,promedioActividadesCompletadas);
+	learningPaths.add(LP);
 }
 	
 }

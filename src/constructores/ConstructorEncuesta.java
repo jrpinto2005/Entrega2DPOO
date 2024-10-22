@@ -16,6 +16,7 @@ public class ConstructorEncuesta {
 		super();
 		this.sistema = Sistema.getInstancia();
 	}
+	
 	public Encuesta crearEncuesta(String descripcion, String objetivo, String id, Date fechaInicio, Date fechaFin, int duracion,
 		int dificultad, double rating, String tipoActividad, boolean obligatoria, String learningPath, int puntajeMaximo) {
 		Encuesta encuesta= new Encuesta(descripcion, objetivo,id,fechaInicio,fechaFin,duracion,dificultad,rating,tipoActividad,obligatoria, learningPath,puntajeMaximo);

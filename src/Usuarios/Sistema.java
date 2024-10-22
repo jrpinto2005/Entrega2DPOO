@@ -40,23 +40,4 @@ public class Sistema {
 		}
 		return instancia;
 	}
-
-	public void editarActividad(String id, Actividad nuevaActividad) throws ActivdadNoEcontradaException {
-		if (actividades.containsKey(id)) {
-			actividades.put(id, nuevaActividad);
-		} else {
-
-			throw new ActivdadNoEcontradaException(nuevaActividad.getLearningPath().getTitulo(), id);
-		}
-	}
-
-	public void editarLP(String titulo, LearningPath LP) throws LPNoEncontradaException {
-		if (learningPaths.containsKey(titulo)) {
-			learningPaths.put(titulo, LP);
-		} else {
-
-			throw new LPNoEncontradaException(titulo);
-		}
-	}
-
 }
