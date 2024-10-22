@@ -4,6 +4,7 @@ public abstract class Pregunta {
 	
 	protected String textoPregunta;
 	protected int idPregunta;
+	
 	public Pregunta(String textoPregunta, int idPregunta) {
 		super();
 		this.textoPregunta = textoPregunta;

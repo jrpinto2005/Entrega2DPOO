@@ -5,11 +5,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import Envio.PreguntaAbierta;
 import Envio.PreguntaOpcionMultiple;
 
 public class Quiz extends Actividad {
 	private int puntajeMaximo;
-	private Map<String,PreguntaOpcionMultiple> preguntas;
+	private Map<Integer,PreguntaOpcionMultiple> preguntas;
 	
 
 	public Quiz(String descripcion, String objetivo, String id, Date fechaInicio, Date fechaFin, int duracion,
@@ -17,7 +18,7 @@ public class Quiz extends Actividad {
 		super(descripcion, objetivo, id, fechaInicio, fechaFin, duracion, dificultad, rating, tipoActividad, obligatoria,
 				idlearningPath);
 		this.puntajeMaximo=puntajeMaximo;
-		this.preguntas= new HashMap<String,PreguntaOpcionMultiple> ();
+		this.preguntas= new HashMap<Integer,PreguntaOpcionMultiple> ();
 		// TODO Auto-generated constructor stub
 	}
 
@@ -34,5 +35,16 @@ public class Quiz extends Actividad {
 	{
 		return preguntas.values();
 	}
+	
+	public void addPregunta(PreguntaOpcionMultiple p) {
+			
+			preguntas.put(p.getIdPregunta(), p);
+		}
+	
+	public void removePregunta(PreguntaOpcionMultiple p) {
+			
+			preguntas.remove(p.getIdPregunta(), p);
+		}
+		
 	
 }

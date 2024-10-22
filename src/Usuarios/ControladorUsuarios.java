@@ -8,6 +8,7 @@ public class ControladorUsuarios {
     private Map<String, Estudiante> estudiantes;  
     private Map<String, Profesor> profesores;   
 	private static ControladorUsuarios instancia;
+	
     public ControladorUsuarios() {
         estudiantes = new HashMap<>();
         profesores = new HashMap<>();
@@ -19,6 +20,32 @@ public class ControladorUsuarios {
 		}
 		return instancia;
 	}
+    public boolean registrarEstudiante(String id, String nombre, String email, String contraseña, String tipo) {
+    	if(!estudiantes.containsKey(id)) {
+    	Estudiante e=new Estudiante(id, nombre,  email,  contraseña,tipo);
+		instancia.agregarEstudiante(e);
+		System.out.print("Este id ha sido registrado con exito");
+		return true; 
+		}
+    	else {
+    		System.out.print("Este id ya ha sido utilizado");
+    		return false;
+    	}
+	}
+    
+    public boolean registrarProfesor(String id, String nombre, String email, String contraseña, String tipo) {
+    	if(!profesores.containsKey(id)) {
+    	Profesor p=new Profesor(id, nombre,  email,  contraseña,tipo);
+		instancia.agregarProfesor(p);
+		System.out.print("Este id ha sido registrado con exito");
+		return true; 
+		}
+    	else {
+    		System.out.print("Este id ya ha sido utilizado");
+    		return false;
+    	}
+	}
+    
     
     public void agregarEstudiante(Estudiante estudiante) {
         estudiantes.put(estudiante.getId(), estudiante);
