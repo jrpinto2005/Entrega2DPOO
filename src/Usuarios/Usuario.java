@@ -50,6 +50,7 @@ public abstract class Usuario {
     public String verPerfil() {
         return "ID: " + id + "\nNombre: " + nombre + "\nEmail: " + email + "\nTipo: " + getTipoUsuario();
     }
+    
     public void hacerReseña(String idActividad) {
         // el usuario ingresa el comentario y rating por la consola mientras tanto le pondremos valores conocidos
         Reseña nuevaReseña = new Reseña(this.id+idActividad, "", 0, null, idActividad);

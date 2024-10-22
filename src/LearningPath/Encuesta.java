@@ -11,7 +11,7 @@ import Envio.PreguntaOpcionMultiple;
 public class Encuesta extends Actividad
 {
 	private int puntajeMaximo;
-	private Map<String,PreguntaEncuesta> preguntas;
+	private Map<Integer,PreguntaEncuesta> preguntas;
 	
 
 	public Encuesta(String descripcion, String objetivo, String nombre, Date fechaInicio, Date fechaFin, int duracion,
@@ -19,7 +19,7 @@ public class Encuesta extends Actividad
 		super(descripcion, objetivo, nombre, fechaInicio, fechaFin, duracion, dificultad, rating, tipoActividad, obligatoria,
 				learningPath);
 		this.puntajeMaximo=puntajeMaximo;
-		this.preguntas= new HashMap<String,PreguntaEncuesta> ();
+		this.preguntas= new HashMap<Integer,PreguntaEncuesta> ();
 		// TODO Auto-generated constructor stub
 	}
 	public void setPuntajeMaximo(int puntajeMaximo) {
@@ -31,4 +31,14 @@ public class Encuesta extends Actividad
 	public Collection<PreguntaEncuesta> getPreguntas() {
 		return preguntas.values();
 	}
+	
+	public void addPregunta(PreguntaEncuesta p) {
+		
+		preguntas.put(p.getIdPregunta(), p);
+	}
+
+	public void removePregunta(PreguntaEncuesta p) {
+			
+			preguntas.remove(p.getIdPregunta(), p);
+		}
 }

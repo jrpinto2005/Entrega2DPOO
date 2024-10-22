@@ -21,6 +21,7 @@ private int dificultad;
 private double rating;
 private String tipoActividad;
 private boolean obligatoria;
+
 private LearningPath learningPath;
 private String nombre;
 private Sistema sistema;

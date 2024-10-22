@@ -15,8 +15,8 @@ public class Video extends RecursoEducativo{
 	public int getDuracionV() {
 		return duracion;
 	}
-	public void setUrl(int duracionV) {
-		this.duracion = duracionV;
+	public void setDuracion(int duracion) {
+		this.duracion = duracion;
 	}
 
 }

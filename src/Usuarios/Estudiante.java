@@ -40,12 +40,17 @@ public class Estudiante extends Usuario {
 		return this.contraseña;
 
 	}
+	
+	public List<Envio> getEnvios() {
+		return envios;
+	}
+
 
 	public void inscribirseEnLearningPath(LearningPath learningPath) {
 		learningPaths.add(learningPath);
 	}
 
-	public List<LearningPath> consultarLearningPaths() {
+	public List<LearningPath> getLearningPaths() {
 		return learningPaths;
 	}
 
@@ -88,7 +93,7 @@ public class Estudiante extends Usuario {
 			//se muestran las opciones al usuario
 			}
 			//estudiante digita respuesta 
-			int x=1; // esto va a ser lo que digite elk estudiante lo vamos a poner en 1 mientras hacemos la consola
+			int x=1; // esto va a ser lo que digite el estudiante lo vamos a poner en 1 mientras hacemos la consola
 			RespuestaMultiple respuesta=new RespuestaMultiple(0,x, pregunta);
 			respuestas.add(respuesta);
 		}
@@ -125,8 +130,4 @@ public class Estudiante extends Usuario {
 		return envio;
 	}
 
-	public List<Envio> getEnvios() {
-		return envios;
-	}
-	
 }

@@ -15,7 +15,7 @@ import Usuarios.Sistema;
 public class LearningPath {
 		private String titulo;
 		private String descripcionGeneral;
-		private int nivelDificutad;
+		private int nivelDificultad;
 		private int duracion;
 		private int rating;
 		private Date fechaDuracion;
@@ -24,20 +24,17 @@ public class LearningPath {
 		private String idCreador;
 		private String objetivos;
 		private double promedioActividadesCompletadas;
-		private LinkedList<Integer> estudiante;
-		private List<EnvioExamen>enviosPorCalificar;
-		private List<EnvioExamen>examenesCalificados;
 		private ArrayList<Actividad>actividadesOrdenadas;
 		private Sistema sistema;
 		
 		
-		public LearningPath(String titulo, String descripcionGeneral, int nivelDificutad, int duracion, int rating,
+		public LearningPath(String titulo, String descripcionGeneral, int nivelDificultad, int duracion, int rating,
 				Date fechaDuracion, Date fechaModificacion, int version, String idCreador, String objetivos,
 				double promedioActividadesCompletadas) {
 			super();
 			this.titulo = titulo;
 			this.descripcionGeneral = descripcionGeneral;
-			this.nivelDificutad = nivelDificutad;
+			this.nivelDificultad = nivelDificultad;
 			this.duracion = duracion;
 			this.rating = rating;
 			this.fechaDuracion = fechaDuracion;
@@ -46,9 +43,6 @@ public class LearningPath {
 			this.idCreador = idCreador;
 			this.objetivos = objetivos;
 			this.promedioActividadesCompletadas = promedioActividadesCompletadas;
-			this.estudiante = new LinkedList<Integer>();
-			this.enviosPorCalificar = new LinkedList<EnvioExamen>();
-			this.examenesCalificados = new LinkedList<EnvioExamen>();
 			this.actividadesOrdenadas = new ArrayList<Actividad>();
 			this.sistema = Sistema.getInstancia();
 		}
@@ -75,12 +69,12 @@ public class LearningPath {
 
 
 		public int getNivelDificutad() {
-			return nivelDificutad;
+			return nivelDificultad;
 		}
 
 
 		public void setNivelDificutad(int nivelDificutad) {
-			this.nivelDificutad = nivelDificutad;
+			this.nivelDificultad = nivelDificutad;
 		}
 
 
@@ -161,36 +155,6 @@ public class LearningPath {
 
 		public void setPromedioActividadesCompletadas(double promedioActividadesCompletadas) {
 			this.promedioActividadesCompletadas = promedioActividadesCompletadas;
-		}
-
-
-		public LinkedList<Integer> getEstudiante() {
-			return estudiante;
-		}
-
-
-		public void setEstudiante(LinkedList<Integer> estudiante) {
-			this.estudiante = estudiante;
-		}
-
-
-		public List<EnvioExamen> getEnviosPorCalificar() {
-			return enviosPorCalificar;
-		}
-
-
-		public void setEnviosPorCalificar(List<EnvioExamen> enviosPorCalificar) {
-			this.enviosPorCalificar = enviosPorCalificar;
-		}
-
-
-		public List<EnvioExamen> getExamenesCalificados() {
-			return examenesCalificados;
-		}
-
-
-		public void setExamenesCalificados(List<EnvioExamen> examenesCalificados) {
-			this.examenesCalificados = examenesCalificados;
 		}
 
 
