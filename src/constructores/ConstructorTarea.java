@@ -10,9 +10,7 @@ public class ConstructorTarea
 {
 private Sistema sistema;
 	
-	
-	
-	public ConstructorTarea(Sistema sistema) {
+	public ConstructorTarea() {
 		super();
 		this.sistema = Sistema.getInstancia();
 	}

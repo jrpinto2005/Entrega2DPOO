@@ -19,7 +19,7 @@ public class ConstructorLearningPath {
 			double promedioActividadesCompletadas) {
 		LearningPath LP= new LearningPath(titulo,descripcionGeneral, nivelDificultad,duracion,rating,fechaDuracion,fechaModificacion,
 				version,idCreador,objetivos, promedioActividadesCompletadas);
-		sistema.addLP(LP);;
+		sistema.addLP(LP);
 		return LP;
 	}
 	public void editarLP(String idprofesor, String atributo, Object atributoNuevo, String Id) {

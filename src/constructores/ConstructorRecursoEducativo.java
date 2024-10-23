@@ -12,7 +12,7 @@ private Sistema sistema;
 	
 	
 	
-	public ConstructorRecursoEducativo(Sistema sistema) {
+	public ConstructorRecursoEducativo() {
 		super();
 		this.sistema = Sistema.getInstancia();
 	}

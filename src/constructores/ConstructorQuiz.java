@@ -7,13 +7,13 @@ import LearningPath.Quiz;
 import Usuarios.Sistema;
 
 
-public class constructorQuiz {
+public class ConstructorQuiz {
 	
 	private Sistema sistema;
 	
 	
 	
-	public constructorQuiz(Sistema sistema) {
+	public ConstructorQuiz() {
 		super();
 		this.sistema = Sistema.getInstancia();
 	}

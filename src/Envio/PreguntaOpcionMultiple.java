@@ -22,5 +22,11 @@ public class PreguntaOpcionMultiple extends Pregunta{
 	{ 
 		return opciones;
 	}
+	
+	public void agregarOpcion(Opcion opcion) 
+	{
+		
+		this.opciones.add(opcion);
+	}
 
 }

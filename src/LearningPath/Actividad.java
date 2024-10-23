@@ -29,9 +29,12 @@ private ControladorUsuarios cu;
 private List<Reseña> reseñas;
 private List<Actividad> actividadesRecomendadas;
 
+
+
 public Actividad(String descripcion, String objetivo, String nombre, Date fechaInicio, Date fechaFin, int duracion,
 		int dificultad, double rating, String tipoActividad, boolean obligatoria, String idLearningPath) {
 	super();
+	this.sistema=Sistema.getInstancia();
 	LearningPath LP=sistema.encontrarLP(idLearningPath);
 	this.descripcion = descripcion;
 	this.objetivo = objetivo;
@@ -44,13 +47,11 @@ public Actividad(String descripcion, String objetivo, String nombre, Date fechaI
 	this.tipoActividad = tipoActividad;
 	this.obligatoria = obligatoria;
 	this.learningPath = LP;
-	this.sistema=Sistema.getInstancia();
 	this.cu=ControladorUsuarios.getInstancia();
 	this.reseñas=new ArrayList<Reseña>();
 	this.actividadesRecomendadas=new ArrayList<Actividad>();
 	
 }
-
 
 public String getDescripcion() {
 	return descripcion;

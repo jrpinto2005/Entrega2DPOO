@@ -12,7 +12,7 @@ public class ConstructorEncuesta {
 	
 	
 	
-	public ConstructorEncuesta(Sistema sistema) {
+	public ConstructorEncuesta() {
 		super();
 		this.sistema = Sistema.getInstancia();
 	}
