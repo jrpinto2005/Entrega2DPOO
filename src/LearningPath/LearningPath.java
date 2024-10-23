@@ -188,6 +188,7 @@ public class LearningPath {
 				if(elemento.getId().equals(id)) { 
 					actividad= elemento;
 				}
+			}
 			if (actividad == null) {
 				throw new ActivdadNoEcontradaException(id,this.titulo);
 			}
@@ -198,7 +199,7 @@ public class LearningPath {
 				destino.agregarActividad(actividad);
 				sistema.addActividad(actividad);
 				System.out.println("Actividad clonada y añadida con exito");
-			}
+
 				
 			}
 			
