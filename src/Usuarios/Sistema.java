@@ -40,4 +40,17 @@ public class Sistema {
 		}
 		return instancia;
 	}
+
+
+
+	public Map<String, LearningPath> getLearningPaths() {
+		return learningPaths;
+	}
+
+	public Map<String, Actividad> getActividades() {
+		return actividades;
+	}
+	
+
+
 }
