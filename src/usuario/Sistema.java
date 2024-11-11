@@ -2,7 +2,6 @@
 
 import java.util.HashMap;
 import java.util.Map;
-
 import exceptions.ActivdadNoEcontradaException;
 import exceptions.LPNoEncontradaException;
 import learningPaths.Actividad;
