@@ -21,7 +21,6 @@ public class Actividad {
 	private double rating;
 	private String tipoActividad;
 	private boolean obligatoria;
-
 	private LearningPath learningPath;
 	private String nombre;
 	private Sistema sistema;
@@ -50,6 +49,19 @@ public class Actividad {
 		this.actividadesRecomendadas = new ArrayList<Actividad>();
 
 	}
+	
+	
+
+	public List<Actividad> getActividadesRecomendadas() {
+		return this.actividadesRecomendadas;
+	}
+
+
+
+	public void setActividadesRecomendadas(List<Actividad> actividadesRecomendadas) {
+		this.actividadesRecomendadas = actividadesRecomendadas;
+	}
+
 
 	public String getDescripcion() {
 		return descripcion;
@@ -147,27 +159,5 @@ public class Actividad {
 		this.actividadesRecomendadas.add(a);
 	}
 
-	public boolean esBuenaIdeaHacerActividad(String idEstudiante) {
-		Estudiante estudiante = this.cu.encontrarEstudiante(idEstudiante);
-		List<Envio> envios = estudiante.getEnvios();
-		int contador = this.actividadesRecomendadas.size();
-		int cantidad = 0;
-		for (Actividad actividad : this.actividadesRecomendadas) {
-			for (Envio envio : envios) {
-				Actividad act = envio.getActividad();
-				if (actividad.getId().equals(act.getId()) && envio.isCompletado()) {
-					cantidad += 1;
-				}
-			}
-		}
-		if (cantidad != contador) {
-			System.out.println(
-					"No es recomendasble hacer la actividad debido a que hay catividades previas recomendadas que no has hecho");
-			return false;
-		} else {
-			return true;
-		}
-
-	}
 
 }

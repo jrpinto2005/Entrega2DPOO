@@ -49,6 +49,15 @@ public class LearningPath {
 	public String getTitulo() {
 		return titulo;
 	}
+	
+
+	public int getNivelDificultad() {
+		return nivelDificultad;
+	}
+
+	public void setNivelDificultad(int nivelDificultad) {
+		this.nivelDificultad = nivelDificultad;
+	}
 
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
@@ -170,7 +179,7 @@ public class LearningPath {
 			actividad.setId(destino.getTitulo() + actividad.getId());
 			destino.agregarActividad(actividad);
 			sistema.addActividad(actividad);
-			System.out.println("Actividad clonada y añadida con exito");
+		
 
 		}
 

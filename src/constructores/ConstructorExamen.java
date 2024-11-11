@@ -1,5 +1,7 @@
 package constructores;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Date;
 
 import learningPaths.Examen;
@@ -24,41 +26,26 @@ public class ConstructorExamen {
 		return examen;
 	}
 
-	public void editarExamen(String atributo, Object atributoNuevo, String Idexamen) {
-
-		Examen examen = (Examen) sistema.encontrarActividad(Idexamen);
-		if (examen != null) {
-			if (atributo.equals("descripcion")) {
-				examen.setDescripcion((String) atributoNuevo);
-			} else if (atributo.equals("objetivo")) {
-				examen.setObjetivo((String) atributoNuevo);
-			} else if (atributo.equals("id")) {
-				examen.setId((String) atributoNuevo);
-			} else if (atributo.equals("fechaInicio")) {
-				examen.setFechaInicio((Date) atributoNuevo);
-			} else if (atributo.equals("fechaFin")) {
-				examen.setFechaFin((Date) atributoNuevo);
-			} else if (atributo.equals("duracion")) {
-				examen.setDuracion((Integer) atributoNuevo);
-			} else if (atributo.equals("dificultad")) {
-				examen.setDificultad((Integer) atributoNuevo);
-			} else if (atributo.equals("rating")) {
-				examen.setRating((Double) atributoNuevo);
-			} else if (atributo.equals("tipoActividad")) {
-				examen.setTipoActividad((String) atributoNuevo);
-			} else if (atributo.equals("obligatoria")) {
-				examen.setObligatoria((Boolean) atributoNuevo);
-			} else if (atributo.equals("learningPath")) {
-				examen.setLearningPath((LearningPath) atributoNuevo);
-			} else if (atributo.equals("puntajeMaximo")) {
-				examen.setPuntajeMaximo((int) atributoNuevo);
-			} else {
-				System.out.println("Atributo no reconocido.");
-			}
-		} else {
-			System.out.println("Examen no encontrado.");
-		}
-		sistema.addActividad(examen);
+	public void editarExamen(String id, String atributo, Object valorNuevo) {
+	    try {
+	    	Examen examen = (Examen) sistema.encontrarActividad(id);
+	        String setter = "set" + atributo.substring(0, 1).toUpperCase() + atributo.substring(1);
+	        Class<?> valorClase = valorNuevo.getClass();
+	        Method metodoSetter = examen.getClass().getMethod(setter, valorClase);
+	        metodoSetter.invoke(examen, valorNuevo);
+	    } catch (NoSuchMethodException e) {
+	        System.out.println("Error: El método no existe. Revisa el nombre del atributo.");
+	        e.printStackTrace();
+	    } catch (SecurityException e) {
+	        System.out.println("Error de seguridad al acceder al método.");
+	        e.printStackTrace();
+	    } catch (IllegalAccessException e) {
+	        System.out.println("Error: No se tiene acceso al método.");
+	        e.printStackTrace();
+	    } catch (InvocationTargetException e) {
+	        System.out.println("Error: Fallo al invocar el método.");
+	        e.printStackTrace();
+	    }
 	}
 
 }

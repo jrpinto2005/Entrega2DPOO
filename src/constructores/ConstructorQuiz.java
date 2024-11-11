@@ -1,7 +1,10 @@
 package constructores;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Date;
 
+import learningPaths.Encuesta;
 import learningPaths.LearningPath;
 import learningPaths.Quiz;
 import usuario.Sistema;
@@ -24,41 +27,26 @@ public class ConstructorQuiz {
 		return quiz;
 	}
 
-	public void editarQuiz(String atributo, Object atributoNuevo, String Idquiz) {
-
-		Quiz quiz = (Quiz) sistema.encontrarActividad(Idquiz);
-		if (quiz != null) {
-			if (atributo.equals("descripcion")) {
-				quiz.setDescripcion((String) atributoNuevo);
-			} else if (atributo.equals("objetivo")) {
-				quiz.setObjetivo((String) atributoNuevo);
-			} else if (atributo.equals("id")) {
-				quiz.setId((String) atributoNuevo);
-			} else if (atributo.equals("fechaInicio")) {
-				quiz.setFechaInicio((Date) atributoNuevo);
-			} else if (atributo.equals("fechaFin")) {
-				quiz.setFechaFin((Date) atributoNuevo);
-			} else if (atributo.equals("duracion")) {
-				quiz.setDuracion((Integer) atributoNuevo);
-			} else if (atributo.equals("dificultad")) {
-				quiz.setDificultad((Integer) atributoNuevo);
-			} else if (atributo.equals("rating")) {
-				quiz.setRating((Double) atributoNuevo);
-			} else if (atributo.equals("tipoActividad")) {
-				quiz.setTipoActividad((String) atributoNuevo);
-			} else if (atributo.equals("obligatoria")) {
-				quiz.setObligatoria((Boolean) atributoNuevo);
-			} else if (atributo.equals("learningPath")) {
-				quiz.setLearningPath((LearningPath) atributoNuevo);
-			} else if (atributo.equals("puntajeMaximo")) {
-				quiz.setPuntajeMaximo((int) atributoNuevo);
-			} else {
-				System.out.println("Atributo no reconocido.");
-			}
-		} else {
-			System.out.println("Quiz no encontrado.");
-		}
-		sistema.addActividad(quiz);
+	public void editarQuiz(String id, String atributo, Object valorNuevo) {
+	    try {
+	    	Quiz quiz = (Quiz) sistema.encontrarActividad(id);
+	        String setter = "set" + atributo.substring(0, 1).toUpperCase() + atributo.substring(1);
+	        Class<?> valorClase = valorNuevo.getClass();
+	        Method metodoSetter = quiz.getClass().getMethod(setter, valorClase);
+	        metodoSetter.invoke(quiz, valorNuevo);
+	    } catch (NoSuchMethodException e) {
+	        System.out.println("Error: El método no existe. Revisa el nombre del atributo.");
+	        e.printStackTrace();
+	    } catch (SecurityException e) {
+	        System.out.println("Error de seguridad al acceder al método.");
+	        e.printStackTrace();
+	    } catch (IllegalAccessException e) {
+	        System.out.println("Error: No se tiene acceso al método.");
+	        e.printStackTrace();
+	    } catch (InvocationTargetException e) {
+	        System.out.println("Error: Fallo al invocar el método.");
+	        e.printStackTrace();
+	    }
 	}
 
 }

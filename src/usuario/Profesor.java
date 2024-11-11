@@ -21,25 +21,4 @@ public class Profesor extends Usuario {
 
 	}
 
-	public void editarLearningPath(String atributo, Object atributoNuevo, String tituloLP) {
-		// profesor entra por consola que atributo quiere cambiar, por que otro atributo
-		// lo quieres cambiar y el Id del learningPath
-		ConstructorLearningPath constructor = new ConstructorLearningPath();
-		constructor.editarLP(this.id, atributo, atributoNuevo, tituloLP);
-
-	}
-
-	public LearningPath crearLearningPath(String titulo, String descripcionGeneral, int nivelDificultad, int duracion,
-			int rating, Date fechaDuracion, Date fechaModificacion, int version, String idCreador, String objetivos,
-			double promedioActividadesCompletadas) {
-
-		// profesor entra por consola atributos para crear LP
-		ConstructorLearningPath constructor = new ConstructorLearningPath();
-		LearningPath LP = constructor.crearLP(titulo, descripcionGeneral, nivelDificultad, duracion, rating,
-				fechaDuracion, fechaModificacion, version, idCreador, objetivos, promedioActividadesCompletadas);
-		learningPaths.add(LP);
-
-		return LP;
-	}
-
 }

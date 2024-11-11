@@ -43,4 +43,8 @@ public class Encuesta extends Actividad {
 
 		preguntas.remove(p.getIdPregunta(), p);
 	}
+
+	public void setPreguntas(Map<Integer, PreguntaEncuesta> preguntas) {
+		this.preguntas = preguntas;
+	}
 }
