@@ -83,6 +83,7 @@ class ConstructorReseñaTest {
 	    assertEquals(comentario, reseña.getComentario(), "El comentario debería coincidir.");
 	    assertEquals(rating, reseña.getRating(), "El rating debería coincidir.");
 	    assertEquals(fecha, reseña.getFecha(), "La fecha de la reseña debería coincidir.");
+	    assertEquals(idActividad, sistema.encontrarActividad(idActividad).getId(), "El ID de la actividad debería coincidir.");
 	    
 	}
 
