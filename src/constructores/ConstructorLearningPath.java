@@ -56,7 +56,7 @@ public class ConstructorLearningPath {
 			}
 		}
 		if (actividad == null) {
-			throw new ActivdadNoEcontradaException(id, origen.getTitulo());
+			throw new ActivdadNoEcontradaException(id);
 		} else {
 			actividad.setLearningPath(destino);
 			actividad.setId(destino.getTitulo() + actividad.getId());
