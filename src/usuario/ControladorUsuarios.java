@@ -3,6 +3,7 @@ package usuario;
 import java.util.HashMap;
 import java.util.Map;
 
+import exceptions.IdUsuarioYaExisteException;
 import exceptions.UsuarioContraseñaIncorrectoException;
 
 public class ControladorUsuarios {
@@ -22,27 +23,26 @@ public class ControladorUsuarios {
 		return instancia;
 	}
 
-	public boolean registrarEstudiante(String id, String nombre, String email, String contraseña, String tipo) {
+	public boolean registrarEstudiante(String id, String nombre, String email, String contraseña, String tipo) throws IdUsuarioYaExisteException {
 		if (!estudiantes.containsKey(id)) {
 			Estudiante e = new Estudiante(id, nombre, email, contraseña, tipo);
 			instancia.agregarEstudiante(e);
 			
 			return true;
 		} else {
-			
-			return false;
+			throw new IdUsuarioYaExisteException("id");
 		}
 	}
 
-	public boolean registrarProfesor(String id, String nombre, String email, String contraseña, String tipo) {
+	public boolean registrarProfesor(String id, String nombre, String email, String contraseña, String tipo) throws IdUsuarioYaExisteException  {
 		if (!profesores.containsKey(id)) {
 			Profesor p = new Profesor(id, nombre, email, contraseña, tipo);
 			instancia.agregarProfesor(p);
 			 
 			return true;
-		} else {
-			 
-			return false;
+		} else 
+		{
+			 throw new IdUsuarioYaExisteException("id");
 		}
 	}
 
