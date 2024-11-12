@@ -5,9 +5,9 @@ import java.util.Date;
 public class Reseña {
 	private String idReseña;
 	private String comentario;
-	private int rating; // Puntuación del 1 al 5
+	private Integer rating; // Puntuación del 1 al 5
 	private Date fecha;
-	private String idActidad;
+	private String idActividad;
 
 	public Reseña(String idReseña, String comentario, int rating, Date fecha, String idActividad) {
 		this.idReseña = idReseña;
@@ -32,11 +32,19 @@ public class Reseña {
 		this.comentario = comentario;
 	}
 
-	public int getRating() {
+	public String getIdActividad() {
+		return idActividad;
+	}
+
+	public void setIdActividad(String idActidad) {
+		this.idActividad = idActidad;
+	}
+
+	public Integer getRating() {
 		return rating;
 	}
 
-	public void setRating(int rating) {
+	public void setRating(Integer rating) {
 		this.rating = rating;
 	}
 

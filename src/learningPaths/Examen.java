@@ -22,11 +22,11 @@ public class Examen extends Actividad {
 		this.preguntas = new HashMap<Integer, PreguntaAbierta>();
 	}
 
-	public void setPuntajeMaximo(int puntajeMaximo) {
+	public void setPuntajeMaximo(Integer puntajeMaximo) {
 		this.puntajeMaximo = puntajeMaximo;
 	}
 
-	public int getPuntajeMaximo() {
+	public Integer getPuntajeMaximo() {
 		return puntajeMaximo;
 	}
 
