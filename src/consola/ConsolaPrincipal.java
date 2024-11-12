@@ -82,7 +82,6 @@ public class ConsolaPrincipal extends ConsolaBasica{
 			} catch (UsuarioContraseñaIncorrectoException e) {
 				// TODO Auto-generated catch block
 				System.out.println("Este es su intento numero" + String.valueOf(intentos) );
-				intentos=0;
 				if (intentos<3) 
 					mostrarLogin();
 				else {
@@ -90,6 +89,7 @@ public class ConsolaPrincipal extends ConsolaBasica{
 		        System.exit( 0 );
 				}
 			}
+            
             if (usuario.getTipoUsuario().equals("estudiante"))
             		{
             	// ir a consola de estudiante
