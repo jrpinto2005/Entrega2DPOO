@@ -3,6 +3,8 @@ package usuario;
 import java.util.HashMap;
 import java.util.Map;
 
+import exceptions.UsuarioContraseñaIncorrectoException;
+
 public class ControladorUsuarios {
 	private Map<String, Estudiante> estudiantes;
 	private Map<String, Profesor> profesores;
@@ -82,29 +84,29 @@ public class ControladorUsuarios {
 		}
 	}
 
-	public boolean iniciarSesion(String id, String contrasena) {
+	public Usuario iniciarSesion(String id, String contrasena) throws UsuarioContraseñaIncorrectoException {
 		if (estudiantes.containsKey(id)) {
 			Estudiante estudiante = estudiantes.get(id);
 			if (estudiante.getContrasena().equals(contrasena)) {
-				return true;
+				return estudiante;
 			} else {
 				 
-				return false;
+				throw new UsuarioContraseñaIncorrectoException (id) ;
 			}
 		}
 
 		else if (profesores.containsKey(id)) {
 			Profesor profesor = profesores.get(id);
 			if (profesor.getContrasena().equals(contrasena)) {
-				return true;
+				return profesor;
 			} else {
 				 
-				return false;
+				throw new UsuarioContraseñaIncorrectoException (id) ;
 			}
 		}
 
 		
-		return false;
+		throw new UsuarioContraseñaIncorrectoException (id) ;
 	}
 
 	public Map<String, Estudiante> getEstudiantes() {

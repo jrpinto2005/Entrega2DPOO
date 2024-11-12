@@ -50,7 +50,7 @@ public class CentralPersistencia {
 				LearningPath lptemp = new LearningPath(partes[1], partes[2], Integer.parseInt(partes[3]),
 						Integer.parseInt(partes[4]), Integer.parseInt(partes[5]), formato.parse(partes[6]),
 						formato.parse(partes[7]), Integer.parseInt(partes[8]), partes[9], partes[10],
-						Integer.parseInt(partes[11]));
+						Double.parseDouble(partes[11]));
 				sistema.addLP(lptemp);
 				// creamos un learning path y lo agregamos al sistema
 			} else if (partes[0].equals("quiz")) {
