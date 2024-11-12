@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import constructores.ConstructorLearningPath;
 import constructores.ConstructorQuiz;
 import constructores.ConstructorTarea;
+import envios.Reseña;
 import learningPaths.Actividad;
 import learningPaths.LearningPath;
 import learningPaths.RecursoEducativo;
@@ -23,6 +24,7 @@ class ActividadTest {
     private Tarea tarea3;
     private Date fechaInicio;
     private Date fechaFin;
+    private Reseña reseña1;
 
     @BeforeEach
     void setUp() {
@@ -45,6 +47,17 @@ class ActividadTest {
          
         actividad1.agregarActividadRecomendada(actividad2);
         
+        String idReseña = "Reseña1";
+        String comentario = "Muy útil y bien estructurada.";
+        int rating = 5;
+        Date fecha = new Date();
+        String idActividad = "Java101";
+
+       
+        reseña1 = new Reseña(idReseña, comentario, rating, fecha, idActividad);
+        
+        actividad1.agregarReseña(reseña1);
+        
     }
 
     @Test
@@ -61,6 +74,8 @@ class ActividadTest {
         assertTrue(actividad1.isObligatoria());
         assertEquals(1,actividad1.getActividadesRecomendadas().size());
         assertEquals(3, actividad1.getActividadesRecomendadas().get(0).getDificultad());
+        assertEquals("Reseña1", actividad1.getReseñas().getFirst().getIdReseña());
+        assertEquals(1, actividad1.getReseñas().size());
 
     }
 

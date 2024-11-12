@@ -30,7 +30,6 @@ public class Actividad {
 
 	public Actividad(String descripcion, String objetivo, String nombre, Date fechaInicio, Date fechaFin, int duracion,
 			int dificultad, double rating, String tipoActividad, boolean obligatoria, String idLearningPath) {
-		super();
 		this.sistema = Sistema.getInstancia();
 		LearningPath LP = sistema.encontrarLP(idLearningPath);
 		this.descripcion = descripcion;
@@ -103,27 +102,27 @@ public class Actividad {
 		this.fechaFin = fechaFin;
 	}
 
-	public int getDuracion() {
+	public Integer getDuracion() {
 		return duracion;
 	}
 
-	public void setDuracion(int duracion) {
+	public void setDuracion(Integer duracion) {
 		this.duracion = duracion;
 	}
 
-	public int getDificultad() {
+	public Integer getDificultad() {
 		return dificultad;
 	}
 
-	public void setDificultad(int dificultad) {
+	public void setDificultad(Integer dificultad) {
 		this.dificultad = dificultad;
 	}
 
-	public double getRating() {
+	public Double getRating() {
 		return rating;
 	}
 
-	public void setRating(double rating) {
+	public void setRating(Double rating) {
 		this.rating = rating;
 	}
 
@@ -157,6 +156,18 @@ public class Actividad {
 
 	public void agregarActividadRecomendada(Actividad a) {
 		this.actividadesRecomendadas.add(a);
+	}
+
+
+
+	public List<Reseña> getReseñas() {
+		return reseñas;
+	}
+
+
+
+	public void setReseñas(List<Reseña> reseñas) {
+		this.reseñas = reseñas;
 	}
 
 

@@ -4,11 +4,14 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Date;
 
+import exceptions.ActivdadNoEcontradaException;
+import learningPaths.Actividad;
 import learningPaths.LearningPath;
 import usuario.Sistema;
 
 public class ConstructorLearningPath {
 	private Sistema sistema;
+	
 
 	public ConstructorLearningPath() {
 		super();
@@ -43,6 +46,26 @@ public class ConstructorLearningPath {
 	        System.out.println("Error: Fallo al invocar el método.");
 	        e.printStackTrace();
 	    }
+	}
+	
+	public void clonarActividad(LearningPath origen, LearningPath destino, String id) throws ActivdadNoEcontradaException {
+		Actividad actividad = null;
+		for (Actividad elemento : origen.getActividadesOrdenadas()) {
+			if (elemento.getId().equals(id)) {
+				actividad = elemento;
+			}
+		}
+		if (actividad == null) {
+			throw new ActivdadNoEcontradaException(id, origen.getTitulo());
+		} else {
+			actividad.setLearningPath(destino);
+			actividad.setId(destino.getTitulo() + actividad.getId());
+			destino.agregarActividad(actividad);
+			sistema.addActividad(actividad);
+		
+
+		}
+
 	}
 
 }

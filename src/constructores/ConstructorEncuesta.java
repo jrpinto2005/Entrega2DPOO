@@ -26,7 +26,7 @@ public class ConstructorEncuesta {
 		return encuesta;
 	}
 
-	public void editarEncuesta(String id, String atributo, Object valorNuevo) {
+	public void editarEncuesta(String id, String atributo, Object valorNuevo) throws NoSuchMethodException,SecurityException,IllegalAccessException,InvocationTargetException{
 	    try {
 	    	Encuesta encuesta = (Encuesta) sistema.encontrarActividad(id);
 	        String setter = "set" + atributo.substring(0, 1).toUpperCase() + atributo.substring(1);

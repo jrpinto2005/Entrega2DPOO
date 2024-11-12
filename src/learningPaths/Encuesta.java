@@ -19,14 +19,14 @@ public class Encuesta extends Actividad {
 				obligatoria, learningPath);
 		this.puntajeMaximo = puntajeMaximo;
 		this.preguntas = new HashMap<Integer, PreguntaEncuesta>();
-		// TODO Auto-generated constructor stub
+		 
 	}
 
-	public void setPuntajeMaximo(int puntajeMaximo) {
+	public void setPuntajeMaximo(Integer puntajeMaximo) {
 		this.puntajeMaximo = puntajeMaximo;
 	}
 
-	public int getPuntajeMaximo() {
+	public Integer getPuntajeMaximo() {
 		return puntajeMaximo;
 	}
 

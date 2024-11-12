@@ -2,15 +2,15 @@ package envios;
 
 public class PreguntaAbierta extends Pregunta {
 
-	public int valorPregunta;
+	public double valorPregunta;
 
-	public PreguntaAbierta(String textoPregunta, int idPregunta, int valorPregunta) {
+	public PreguntaAbierta(String textoPregunta, int idPregunta, double d) {
 		super(textoPregunta, idPregunta);
-		this.valorPregunta = valorPregunta;
+		this.valorPregunta = d;
 		 
 	}
 
-	public int getValorPregunta() {
+	public double getValorPregunta() {
 		return valorPregunta;
 	}
 
