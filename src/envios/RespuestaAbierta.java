@@ -3,14 +3,14 @@ package envios;
 public class RespuestaAbierta {
 	private int puntaje;
 	private String contenido;
-	private int valor;
+	private double valor;
 	private PreguntaAbierta pregunta;
 
-	public RespuestaAbierta(int puntaje, String contenido, int valor, PreguntaAbierta pregunta) {
+	public RespuestaAbierta(int puntaje, String contenido, double d, PreguntaAbierta pregunta) {
 		super();
 		this.puntaje = puntaje;
 		this.contenido = contenido;
-		this.valor = valor;
+		this.valor = d;
 	}
 
 	public int getPuntaje() {
@@ -21,7 +21,7 @@ public class RespuestaAbierta {
 		return contenido;
 	}
 
-	public int getValor() {
+	public double getValor() {
 		return valor;
 	}
 
