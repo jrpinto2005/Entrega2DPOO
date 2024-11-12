@@ -24,10 +24,10 @@ public class ControladorUsuarios {
 		if (!estudiantes.containsKey(id)) {
 			Estudiante e = new Estudiante(id, nombre, email, contraseña, tipo);
 			instancia.agregarEstudiante(e);
-			System.out.print("Este id ha sido registrado con exito");
+			
 			return true;
 		} else {
-			System.out.print("Este id ya ha sido utilizado");
+			
 			return false;
 		}
 	}
@@ -36,10 +36,10 @@ public class ControladorUsuarios {
 		if (!profesores.containsKey(id)) {
 			Profesor p = new Profesor(id, nombre, email, contraseña, tipo);
 			instancia.agregarProfesor(p);
-			System.out.print("Este id ha sido registrado con exito");
+			 
 			return true;
 		} else {
-			System.out.print("Este id ya ha sido utilizado");
+			 
 			return false;
 		}
 	}
@@ -88,7 +88,7 @@ public class ControladorUsuarios {
 			if (estudiante.getContrasena().equals(contrasena)) {
 				return true;
 			} else {
-				System.out.println("Contraseña incorrecta para estudiante.");
+				 
 				return false;
 			}
 		}
@@ -98,12 +98,12 @@ public class ControladorUsuarios {
 			if (profesor.getContrasena().equals(contrasena)) {
 				return true;
 			} else {
-				System.out.println("Contraseña incorrecta para profesor.");
+				 
 				return false;
 			}
 		}
 
-		System.out.println("Usuario no encontrado.");
+		
 		return false;
 	}
 

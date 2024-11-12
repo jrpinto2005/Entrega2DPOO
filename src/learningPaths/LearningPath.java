@@ -26,6 +26,7 @@ public class LearningPath {
 	private double promedioActividadesCompletadas;
 	private ArrayList<Actividad> actividadesOrdenadas;
 	private Sistema sistema;
+	
 
 	public LearningPath(String titulo, String descripcionGeneral, int nivelDificultad, int duracion, int rating,
 			Date fechaDuracion, Date fechaModificacion, int version, String idCreador, String objetivos,
@@ -48,6 +49,15 @@ public class LearningPath {
 
 	public String getTitulo() {
 		return titulo;
+	}
+	
+
+	public int getNivelDificultad() {
+		return nivelDificultad;
+	}
+
+	public void setNivelDificultad(int nivelDificultad) {
+		this.nivelDificultad = nivelDificultad;
 	}
 
 	public void setTitulo(String titulo) {
@@ -156,24 +166,5 @@ public class LearningPath {
 
 	}
 
-	public void clonarActividad(LearningPath destino, String id) throws ActivdadNoEcontradaException {
-		Actividad actividad = null;
-		for (Actividad elemento : actividadesOrdenadas) {
-			if (elemento.getId().equals(id)) {
-				actividad = elemento;
-			}
-		}
-		if (actividad == null) {
-			throw new ActivdadNoEcontradaException(id, this.titulo);
-		} else {
-			actividad.setLearningPath(destino);
-			actividad.setId(destino.getTitulo() + actividad.getId());
-			destino.agregarActividad(actividad);
-			sistema.addActividad(actividad);
-			System.out.println("Actividad clonada y añadida con exito");
-
-		}
-
-	}
 
 }

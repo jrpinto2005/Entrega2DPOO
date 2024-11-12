@@ -1,5 +1,7 @@
 package constructores;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Date;
 
 import learningPaths.Encuesta;
@@ -24,41 +26,26 @@ public class ConstructorEncuesta {
 		return encuesta;
 	}
 
-	public void editarEncuesta(String atributo, Object atributoNuevo, String Idencuesta) {
-
-		Encuesta encuesta = (Encuesta) sistema.encontrarActividad(Idencuesta);
-		if (encuesta != null) {
-			if (atributo.equals("descripcion")) {
-				encuesta.setDescripcion((String) atributoNuevo);
-			} else if (atributo.equals("objetivo")) {
-				encuesta.setObjetivo((String) atributoNuevo);
-			} else if (atributo.equals("id")) {
-				encuesta.setId((String) atributoNuevo);
-			} else if (atributo.equals("fechaInicio")) {
-				encuesta.setFechaInicio((Date) atributoNuevo);
-			} else if (atributo.equals("fechaFin")) {
-				encuesta.setFechaFin((Date) atributoNuevo);
-			} else if (atributo.equals("duracion")) {
-				encuesta.setDuracion((Integer) atributoNuevo);
-			} else if (atributo.equals("dificultad")) {
-				encuesta.setDificultad((Integer) atributoNuevo);
-			} else if (atributo.equals("rating")) {
-				encuesta.setRating((Double) atributoNuevo);
-			} else if (atributo.equals("tipoActividad")) {
-				encuesta.setTipoActividad((String) atributoNuevo);
-			} else if (atributo.equals("obligatoria")) {
-				encuesta.setObligatoria((Boolean) atributoNuevo);
-			} else if (atributo.equals("learningPath")) {
-				encuesta.setLearningPath((LearningPath) atributoNuevo);
-			} else if (atributo.equals("puntajeMaximo")) {
-				encuesta.setPuntajeMaximo((int) atributoNuevo);
-			} else {
-				System.out.println("Atributo no reconocido.");
-			}
-		} else {
-			System.out.println("Encuesta no encontrado.");
-		}
-		sistema.addActividad(encuesta);
+	public void editarEncuesta(String id, String atributo, Object valorNuevo) throws NoSuchMethodException,SecurityException,IllegalAccessException,InvocationTargetException{
+	    try {
+	    	Encuesta encuesta = (Encuesta) sistema.encontrarActividad(id);
+	        String setter = "set" + atributo.substring(0, 1).toUpperCase() + atributo.substring(1);
+	        Class<?> valorClase = valorNuevo.getClass();
+	        Method metodoSetter = encuesta.getClass().getMethod(setter, valorClase);
+	        metodoSetter.invoke(encuesta, valorNuevo);
+	    } catch (NoSuchMethodException e) {
+	        System.out.println("Error: El método no existe. Revisa el nombre del atributo.");
+	        e.printStackTrace();
+	    } catch (SecurityException e) {
+	        System.out.println("Error de seguridad al acceder al método.");
+	        e.printStackTrace();
+	    } catch (IllegalAccessException e) {
+	        System.out.println("Error: No se tiene acceso al método.");
+	        e.printStackTrace();
+	    } catch (InvocationTargetException e) {
+	        System.out.println("Error: Fallo al invocar el método.");
+	        e.printStackTrace();
+	    }
 	}
 
 }

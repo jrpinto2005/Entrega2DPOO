@@ -21,7 +21,6 @@ public class Actividad {
 	private double rating;
 	private String tipoActividad;
 	private boolean obligatoria;
-
 	private LearningPath learningPath;
 	private String nombre;
 	private Sistema sistema;
@@ -31,7 +30,6 @@ public class Actividad {
 
 	public Actividad(String descripcion, String objetivo, String nombre, Date fechaInicio, Date fechaFin, int duracion,
 			int dificultad, double rating, String tipoActividad, boolean obligatoria, String idLearningPath) {
-		super();
 		this.sistema = Sistema.getInstancia();
 		LearningPath LP = sistema.encontrarLP(idLearningPath);
 		this.descripcion = descripcion;
@@ -50,6 +48,19 @@ public class Actividad {
 		this.actividadesRecomendadas = new ArrayList<Actividad>();
 
 	}
+	
+	
+
+	public List<Actividad> getActividadesRecomendadas() {
+		return this.actividadesRecomendadas;
+	}
+
+
+
+	public void setActividadesRecomendadas(List<Actividad> actividadesRecomendadas) {
+		this.actividadesRecomendadas = actividadesRecomendadas;
+	}
+
 
 	public String getDescripcion() {
 		return descripcion;
@@ -91,27 +102,27 @@ public class Actividad {
 		this.fechaFin = fechaFin;
 	}
 
-	public int getDuracion() {
+	public Integer getDuracion() {
 		return duracion;
 	}
 
-	public void setDuracion(int duracion) {
+	public void setDuracion(Integer duracion) {
 		this.duracion = duracion;
 	}
 
-	public int getDificultad() {
+	public Integer getDificultad() {
 		return dificultad;
 	}
 
-	public void setDificultad(int dificultad) {
+	public void setDificultad(Integer dificultad) {
 		this.dificultad = dificultad;
 	}
 
-	public double getRating() {
+	public Double getRating() {
 		return rating;
 	}
 
-	public void setRating(double rating) {
+	public void setRating(Double rating) {
 		this.rating = rating;
 	}
 
@@ -147,27 +158,17 @@ public class Actividad {
 		this.actividadesRecomendadas.add(a);
 	}
 
-	public boolean esBuenaIdeaHacerActividad(String idEstudiante) {
-		Estudiante estudiante = this.cu.encontrarEstudiante(idEstudiante);
-		List<Envio> envios = estudiante.getEnvios();
-		int contador = this.actividadesRecomendadas.size();
-		int cantidad = 0;
-		for (Actividad actividad : this.actividadesRecomendadas) {
-			for (Envio envio : envios) {
-				Actividad act = envio.getActividad();
-				if (actividad.getId().equals(act.getId()) && envio.isCompletado()) {
-					cantidad += 1;
-				}
-			}
-		}
-		if (cantidad != contador) {
-			System.out.println(
-					"No es recomendasble hacer la actividad debido a que hay catividades previas recomendadas que no has hecho");
-			return false;
-		} else {
-			return true;
-		}
 
+
+	public List<Reseña> getReseñas() {
+		return reseñas;
 	}
+
+
+
+	public void setReseñas(List<Reseña> reseñas) {
+		this.reseñas = reseñas;
+	}
+
 
 }

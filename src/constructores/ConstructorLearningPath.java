@@ -1,12 +1,17 @@
 package constructores;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Date;
 
+import exceptions.ActivdadNoEcontradaException;
+import learningPaths.Actividad;
 import learningPaths.LearningPath;
 import usuario.Sistema;
 
 public class ConstructorLearningPath {
 	private Sistema sistema;
+	
 
 	public ConstructorLearningPath() {
 		super();
@@ -22,52 +27,44 @@ public class ConstructorLearningPath {
 		return LP;
 	}
 
-	public void editarLP(String idprofesor, String atributo, Object atributoNuevo, String Id) {
-
-		LearningPath LP = sistema.encontrarLP(Id);
-		if (LP != null) {
-			if (idprofesor.equals(LP.getIdCreador())) {
-				if (atributo.equals("titulo")) {
-					LP.setTitulo((String) atributoNuevo);
-					System.out.println("Título actualizado a: " + (String) atributoNuevo);
-				} else if (atributo.equals("descripcionGeneral")) {
-					LP.setDescripcionGeneral((String) atributoNuevo);
-					System.out.println("Descripción general actualizada a: " + (String) atributoNuevo);
-				} else if (atributo.equals("nivelDificultad")) {
-					LP.setNivelDificutad((int) atributoNuevo);
-					System.out.println("Nivel de dificultad actualizado a: " + (int) atributoNuevo);
-				} else if (atributo.equals("duracion")) {
-					LP.setDuracion((int) atributoNuevo);
-					System.out.println("Duración actualizada a: " + (int) atributoNuevo);
-				} else if (atributo.equals("rating")) {
-					LP.setRating((int) atributoNuevo);
-					System.out.println("Rating actualizado a: " + (int) atributoNuevo);
-				} else if (atributo.equals("fechaDuracion")) {
-					LP.setFechaDuracion((Date) atributoNuevo);
-					System.out.println("Fecha de duración actualizada a: " + (Date) atributoNuevo);
-				} else if (atributo.equals("fechaModificacion")) {
-					LP.setFechaModificacion((Date) atributoNuevo);
-					System.out.println("Fecha de modificación actualizada a: " + (Date) atributoNuevo);
-				} else if (atributo.equals("version")) {
-					LP.setVersion((int) atributoNuevo);
-					System.out.println("Versión actualizada a: " + (int) atributoNuevo);
-				} else if (atributo.equals("idCreador")) {
-					LP.setIdCreador((String) atributoNuevo);
-					System.out.println("ID del creador actualizado a: " + (String) atributoNuevo);
-				} else if (atributo.equals("objetivos")) {
-					LP.setObjetivos((String) atributoNuevo);
-					System.out.println("Objetivos actualizados a: " + (String) atributoNuevo);
-				} else if (atributo.equals("promedioActividadesCompletadas")) {
-					LP.setPromedioActividadesCompletadas((double) atributoNuevo);
-					System.out.println("Promedio de actividades completadas actualizado a: " + (double) atributoNuevo);
-				} else {
-					System.out.println("Atributo no reconocido.");
-				}
-			} else {
-				System.out.println("ID no válido. No se pueden hacer cambios.");
+	public void editarLP(LearningPath lp, String atributo, Object valorNuevo) {
+	    try {
+	        String setter = "set" + atributo.substring(0, 1).toUpperCase() + atributo.substring(1);
+	        Class<?> valorClase = valorNuevo.getClass();
+	        Method metodoSetter = lp.getClass().getMethod(setter, valorClase);
+	        metodoSetter.invoke(lp, valorNuevo);
+	    } catch (NoSuchMethodException e) {
+	        System.out.println("Error: El método no existe. Revisa el nombre del atributo.");
+	        e.printStackTrace();
+	    } catch (SecurityException e) {
+	        System.out.println("Error de seguridad al acceder al método.");
+	        e.printStackTrace();
+	    } catch (IllegalAccessException e) {
+	        System.out.println("Error: No se tiene acceso al método.");
+	        e.printStackTrace();
+	    } catch (InvocationTargetException e) {
+	        System.out.println("Error: Fallo al invocar el método.");
+	        e.printStackTrace();
+	    }
+	}
+	
+	public void clonarActividad(LearningPath origen, LearningPath destino, String id) throws ActivdadNoEcontradaException {
+		Actividad actividad = null;
+		for (Actividad elemento : origen.getActividadesOrdenadas()) {
+			if (elemento.getId().equals(id)) {
+				actividad = elemento;
 			}
 		}
-		sistema.addLP(LP);
+		if (actividad == null) {
+			throw new ActivdadNoEcontradaException(id, origen.getTitulo());
+		} else {
+			actividad.setLearningPath(destino);
+			actividad.setId(destino.getTitulo() + actividad.getId());
+			destino.agregarActividad(actividad);
+			sistema.addActividad(actividad);
+		
+
+		}
 
 	}
 
