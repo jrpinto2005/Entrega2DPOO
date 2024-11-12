@@ -24,6 +24,26 @@ public class EnvioQuiz extends Envio {
 		this.puntaje = puntaje;
 	}
 
+	public List<RespuestaMultiple> getRespuestas() {
+		return respuestas;
+	}
+
+	public void setRespuestas(List<RespuestaMultiple> respuestas) {
+		this.respuestas = respuestas;
+	}
+
+	public double getPuntaje() {
+		return puntaje;
+	}
+
+	public int getPuntajeMaximo() {
+		return puntajeMaximo;
+	}
+
+	public double getNotaPorcentaje() {
+		return notaPorcentaje;
+	}
+
 	public void setPuntajeMaximo(int puntajeMax) {
 		this.puntajeMaximo = puntajeMax;
 	}
