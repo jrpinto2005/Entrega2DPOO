@@ -26,7 +26,7 @@ public class CentralPersistencia {
 
 	public CentralPersistencia() {
 		super();
-		sistema = new Sistema();
+		sistema = Sistema.getInstancia();
 		// creamos el sistema
 	}
 
@@ -60,6 +60,8 @@ public class CentralPersistencia {
 						Double.parseDouble(partes[8]), "Quiz", Boolean.parseBoolean(partes[9]), partes[10],
 						Integer.parseInt(partes[11]));
 				sistema.addActividad(quiztemp);
+				sistema.getLearningPaths().get(partes[10]).agregarActividad(quiztemp);
+				
 				// creamos un quisz y lo agregamos al sistema
 				// lo mismo se hara con todas las actividades invocando a su constructor
 			} else if (partes[0].equals("examen")) {
@@ -68,12 +70,14 @@ public class CentralPersistencia {
 						Double.parseDouble(partes[8]), "Examen", Boolean.parseBoolean(partes[9]), partes[10],
 						Integer.parseInt(partes[11]));
 				sistema.addActividad(examentemp);
+				sistema.getLearningPaths().get(partes[10]).agregarActividad(examentemp);
 			} else if (partes[0].equals("encuesta")) {
 				Encuesta encuestatemp = new Encuesta(partes[1], partes[2], partes[3], formato.parse(partes[4]),
 						formato.parse(partes[5]), Integer.parseInt(partes[6]), Integer.parseInt(partes[7]),
 						Double.parseDouble(partes[8]), "Encuesta", Boolean.parseBoolean(partes[9]), partes[10],
 						Integer.parseInt(partes[11]));
 				sistema.addActividad(encuestatemp);
+				sistema.getLearningPaths().get(partes[10]).agregarActividad(encuestatemp);
 
 			} else if (partes[0].equals("web")) {
 				SitioWeb webtemp = new SitioWeb(partes[1], partes[2], partes[3], formato.parse(partes[4]),
@@ -81,6 +85,7 @@ public class CentralPersistencia {
 						Double.parseDouble(partes[8]), "SitioWeb", Boolean.parseBoolean(partes[9]), partes[10],
 						partes[11]);
 				sistema.addActividad(webtemp);
+				sistema.getLearningPaths().get(partes[10]).agregarActividad(webtemp);
 
 			} else if (partes[0].equals("video")) {
 				Video vidtemp = new Video(partes[1], partes[2], partes[3], formato.parse(partes[4]),
@@ -88,12 +93,14 @@ public class CentralPersistencia {
 						Double.parseDouble(partes[8]), "Video", Boolean.parseBoolean(partes[9]), partes[10],
 						Integer.parseInt(partes[11]));
 				sistema.addActividad(vidtemp);
+				sistema.getLearningPaths().get(partes[10]).agregarActividad(vidtemp);
 
 			} else if (partes[0].equals("lectura")) {
 				Lectura lecttemp = new Lectura(partes[1], partes[2], partes[3], formato.parse(partes[4]),
 						formato.parse(partes[5]), Integer.parseInt(partes[6]), Integer.parseInt(partes[7]),
 						Double.parseDouble(partes[8]), "Lectura", Boolean.parseBoolean(partes[9]), partes[10]);
 				sistema.addActividad(lecttemp);
+				sistema.getLearningPaths().get(partes[10]).agregarActividad(lecttemp);
 
 			}
 			line = br.readLine();
