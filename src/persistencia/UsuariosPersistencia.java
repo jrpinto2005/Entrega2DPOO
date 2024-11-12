@@ -19,7 +19,7 @@ public class UsuariosPersistencia {
 
 	public UsuariosPersistencia() {
 		super();
-		controlador = new ControladorUsuarios();
+		controlador = ControladorUsuarios.getInstancia();
 	}
 
 	public static void cargarSistema(File archivo)
