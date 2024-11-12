@@ -59,7 +59,7 @@ public class ConstructorLearningPath {
 			throw new ActivdadNoEcontradaException(id);
 		} else {
 			actividad.setLearningPath(destino);
-			actividad.setId(destino.getTitulo() + actividad.getId());
+			actividad.setId(destino.getTitulo() + "." + actividad.getId());
 			destino.agregarActividad(actividad);
 			sistema.addActividad(actividad);
 		

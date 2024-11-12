@@ -64,22 +64,19 @@ class ConstructorLearningPathTest {
         LearningPath lp2 = constructorLP.crearLP("Python Avanzado", "Curso de Python para expertos", 5, 60, 4, new Date(), new Date(),
                 1, "profesor02", "Objetivos del curso", 0.0);
 
-        Actividad actividad1 = sistema.encontrarActividad("1");
+        Actividad actividad1 = sistema.encontrarActividad("Java Básico.1");
         assertNotNull(actividad1, "La actividad debería existir en el LP original.");
 
         try {
-            constructorLP.clonarActividad(lp1, lp2, "1");  
+            constructorLP.clonarActividad(lp1, lp2, "Java Básico.1");  
         } catch (ActivdadNoEcontradaException e) {
             fail("La actividad debería haberse clonado correctamente.");
         }
 
         
-        Actividad actividadClonada = lp2.getActividadesOrdenadas().stream()
-            .filter(a -> a.getId().equals("Python Avanzado1"))  
-            .findFirst()
-            .orElse(null);
+        Actividad actividadClonada = lp2.getActividadesOrdenadas().getFirst();
 
         assertNotNull(actividadClonada, "La actividad clonada debería existir en el LearningPath destino.");
-        assertEquals("Python Avanzado1", actividadClonada.getId(), "El ID de la actividad clonada debería coincidir.");
+        assertEquals("Python Avanzado.Java Básico.1", actividadClonada.getId(), "El ID de la actividad clonada debería coincidir.");
     }
 }

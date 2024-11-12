@@ -7,6 +7,7 @@ import usuario.Sistema;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 public class ControladorEnvios {
@@ -38,33 +39,38 @@ public class ControladorEnvios {
 
 	}
 
-    public EnvioExamen hacerExamen(Estudiante estudiante, String idExamen) {
-    	
+    public EnvioExamen hacerExamen(Estudiante estudiante, String idExamen, List<String> respuestasUsuario) {
         Examen examen = (Examen) sistema.encontrarActividad(idExamen);
-        boolean recomendado= esBuenaIdeaHacerActividad(estudiante,examen);
-        if(recomendado==false) {System.out.println("Te recomendamos hacer las actividades recomendadas antes de hacer este examen");	
-        }
+        
+        
+
         Collection<PreguntaAbierta> preguntas = examen.getPreguntas();
         List<RespuestaAbierta> respuestas = new ArrayList<>();
-        for (PreguntaAbierta pregunta : preguntas) {
-            
-            RespuestaAbierta respuesta = new RespuestaAbierta(0, "", pregunta.getValorPregunta(), pregunta);
+        
+        Iterator<PreguntaAbierta> iterador = preguntas.iterator();
+        for (int i = 0; i < preguntas.size(); i++) {
+        	PreguntaAbierta pregunta = iterador.next();
+            String respuestaTexto = respuestasUsuario.get(i);
+            RespuestaAbierta respuesta = new RespuestaAbierta(0, respuestaTexto, pregunta.getValorPregunta(), pregunta);
             respuestas.add(respuesta);
         }
-        EnvioExamen envio = new EnvioExamen(examen, estudiante.getId(), examen.getLearningPath().getTitulo(), false, 0, examen.getPuntajeMaximo(), 0, respuestas);
+        
+        EnvioExamen envio = new EnvioExamen(examen, estudiante.getId(), examen.getLearningPath().getTitulo(), 
+                                            false, 0, examen.getPuntajeMaximo(), 0, respuestas);
         estudiante.getEnvios().add(envio);
+        
         return envio;
     }
 
-    public EnvioQuiz hacerQuiz(Estudiante estudiante, String idQuiz) {
+
+    public EnvioQuiz hacerQuiz(Estudiante estudiante, String idQuiz, List<Integer> respuestasIngresadas) {
         Quiz quiz = (Quiz) sistema.encontrarActividad(idQuiz);
-        boolean recomendado= esBuenaIdeaHacerActividad(estudiante,quiz);
-        if(recomendado==false) {System.out.println("Te recomendamos hacer las actividades recomendadas antes de hacer este quiz");	
-        }
         Collection<PreguntaOpcionMultiple> preguntas = quiz.getPreguntas();
         List<RespuestaMultiple> respuestas = new ArrayList<>();
-        for (PreguntaOpcionMultiple pregunta : preguntas) {
-            int respuestaSeleccionada = 1;  
+        Iterator<PreguntaOpcionMultiple> iterador = preguntas.iterator();
+        for (int i = 0; i < preguntas.size(); i++) {
+        	PreguntaOpcionMultiple pregunta = iterador.next();
+            int respuestaSeleccionada = respuestasIngresadas.get(i);  
             RespuestaMultiple respuesta = new RespuestaMultiple(0, respuestaSeleccionada, pregunta);
             respuestas.add(respuesta);
         }
@@ -73,15 +79,15 @@ public class ControladorEnvios {
         return envio;
     }
 
-    public EnvioEncuesta hacerEncuesta(Estudiante estudiante, String idEncuesta) {
+
+    public EnvioEncuesta hacerEncuesta(Estudiante estudiante, String idEncuesta, List<Integer> respuestasIngresadas) {
         Encuesta encuesta = (Encuesta) sistema.encontrarActividad(idEncuesta);
-        boolean recomendado= esBuenaIdeaHacerActividad(estudiante,encuesta);
-        if(recomendado==false) {System.out.println("Te recomendamos hacer las actividades recomendadas antes de hacer esta encuesta");	
-        }
         Collection<PreguntaEncuesta> preguntas = encuesta.getPreguntas();
         List<RespuestaEncuesta> respuestas = new ArrayList<>();
-        for (PreguntaEncuesta pregunta : preguntas) {
-            int respuestaSeleccionada = 1; 
+        Iterator<PreguntaEncuesta> iterador = preguntas.iterator();
+        for (int i = 0; i < preguntas.size(); i++) {
+        	PreguntaEncuesta pregunta = iterador.next();
+            int respuestaSeleccionada = respuestasIngresadas.get(i); 
             RespuestaEncuesta respuesta = new RespuestaEncuesta(respuestaSeleccionada, pregunta);
             respuestas.add(respuesta);
         }
@@ -92,9 +98,6 @@ public class ControladorEnvios {
 
     public EnvioTarea hacerTarea(Estudiante estudiante, String idTarea) {
         Tarea tarea = (Tarea) sistema.encontrarActividad(idTarea);
-        boolean recomendado= esBuenaIdeaHacerActividad(estudiante,tarea);
-        if(recomendado==false) {System.out.println("Te recomendamos hacer las actividades recomendadas antes de hacer esta tarea");	
-        }
         EnvioTarea envio = new EnvioTarea(tarea, estudiante.getId(), tarea.getLearningPath().getTitulo(), true);
         estudiante.getEnvios().add(envio);
         return envio;
@@ -102,9 +105,6 @@ public class ControladorEnvios {
 
     public EnvioRecurso hacerRecurso(Estudiante estudiante, String idRecurso) {
         RecursoEducativo recurso = (RecursoEducativo) sistema.encontrarActividad(idRecurso);
-        boolean recomendado= esBuenaIdeaHacerActividad(estudiante,recurso);
-        if(recomendado==false) {System.out.println("Te recomendamos hacer las actividades recomendadas antes de hacer este recurso");	
-        }
         EnvioRecurso envio = new EnvioRecurso(recurso, estudiante.getId(), recurso.getLearningPath().getTitulo(), true);
         estudiante.getEnvios().add(envio);
         return envio;
