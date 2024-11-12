@@ -4,5 +4,5 @@
 /**
  * 
  */
-module Entrega2DPOO {
+module Entrega_2_DPOO {
 }
