@@ -54,39 +54,41 @@ class ConstructorReseñaTest {
 	    constructorReseña = new ConstructorReseña();
 	}
 
+	    
+	    @Test
+	    void testHacerReseña() {
+	        String idReseña = "Reseña1";
+	        String comentario = "Excelente contenido para aprender Java.";
+	        int rating = 5;
+	        Date fecha = new Date();
+	        String idActividad = "Java Básico.Tarea1";   
 
+	        try {
+	            constructorReseña.hacerReseña(idReseña, comentario, rating, fecha, idActividad);
+	        } catch (ActivdadNoEcontradaException e) {
+	            fail("La actividad no fue encontrada: " + e.getMessage());
+	        }
 
-	@Test
-	void testHacerReseña() {
-	    String idReseña = "Reseña1";
-	    String comentario = "Excelente contenido para aprender Java.";
-	    int rating = 5;
-	    Date fecha = new Date();
-	    String idActividad = "Java Básico.Tarea1";   
+	        Actividad actividad = sistema.encontrarActividad(idActividad);
+	        assertNotNull(actividad, "La actividad debería existir.");
 
-	    try {
-	        constructorReseña.hacerReseña(idReseña, comentario, rating, fecha, idActividad);
-	    } catch (ActivdadNoEcontradaException e) {
-	        fail("La actividad no fue encontrada: " + e.getMessage());
+	        Reseña reseñaEncontrada = null;
+	        for (Reseña reseña : actividad.getReseñas()) {
+	            if (reseña.getIdReseña().equals(idReseña)) {
+	                reseñaEncontrada = reseña;
+	            }
+	        }
+
+	        assertNotNull(reseñaEncontrada, "La reseña debería haberse agregado a la actividad.");
+	        assertEquals(idReseña, reseñaEncontrada.getIdReseña(), "El ID de la reseña debería coincidir.");
+	        assertEquals(comentario, reseñaEncontrada.getComentario(), "El comentario debería coincidir.");
+	        assertEquals(rating, reseñaEncontrada.getRating(), "El rating debería coincidir.");
+	        assertEquals(fecha, reseñaEncontrada.getFecha(), "La fecha de la reseña debería coincidir.");
+	        assertEquals(idActividad, sistema.encontrarActividad(idActividad).getId(), "El ID de la actividad debería coincidir.");
 	    }
 
-	    Actividad actividad = sistema.encontrarActividad(idActividad);
-	    assertNotNull(actividad, "La actividad debería existir.");
-
-	    Reseña reseña = actividad.getReseñas().stream()
-	        .filter(r -> r.getIdReseña().equals(idReseña))
-	        .findFirst()
-	        .orElse(null);
-
-	    assertNotNull(reseña, "La reseña debería haberse agregado a la actividad.");
-	    assertEquals(idReseña, reseña.getIdReseña(), "El ID de la reseña debería coincidir.");
-	    assertEquals(comentario, reseña.getComentario(), "El comentario debería coincidir.");
-	    assertEquals(rating, reseña.getRating(), "El rating debería coincidir.");
-	    assertEquals(fecha, reseña.getFecha(), "La fecha de la reseña debería coincidir.");
-	    assertEquals(idActividad, sistema.encontrarActividad(idActividad).getId(), "El ID de la actividad debería coincidir.");
 	    
 	}
 
 
 
-}

@@ -45,8 +45,14 @@ public class Estudiante extends Usuario {
 		return envios;
 	}
 
-	public void inscribirseEnLearningPath(LearningPath learningPath) {
-		learningPaths.add(learningPath);
+	public boolean inscribirseEnLearningPath(LearningPath learningPath) {
+		for (LearningPath lp : learningPaths) {
+			if (lp.getTitulo().equals(learningPath.getTitulo())) {
+				return false;
+			}
+		}
+		this.learningPaths.add(learningPath);
+		return true;
 	}
 
 	public List<LearningPath> getLearningPaths() {
@@ -54,13 +60,20 @@ public class Estudiante extends Usuario {
 	}
 
 	public double verProgreso() {
-		int cantidadTotal = envios.size();
-		int cantidad = 0;
-		for (Envio envio : this.envios) {
-			if (envio.isCompletado() == true) {
-				cantidad += 1;
-			}
-		}
-		return cantidad / cantidadTotal;
+	    int totalActividades = envios.size();
+	    int actividadesCompletadas = 0;
+
+	    
+	    for (Envio envio : envios) {
+	        if (envio.isCompletado()) {  
+	            actividadesCompletadas++;
+	        }
+	    }
+
+	     
+	    if (totalActividades == 0) return 0.0;
+
+	    
+	    return (double) actividadesCompletadas / totalActividades;
 	}
 }

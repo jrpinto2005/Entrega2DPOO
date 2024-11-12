@@ -25,6 +25,26 @@ public class EnvioEncuesta extends Envio {
 		this.puntaje = puntaje;
 	}
 
+	public List<RespuestaEncuesta> getRespuestas() {
+		return respuestas;
+	}
+
+	public void setRespuestas(List<RespuestaEncuesta> respuestas) {
+		this.respuestas = respuestas;
+	}
+
+	public double getPuntaje() {
+		return puntaje;
+	}
+
+	public int getPuntajeMaximo() {
+		return puntajeMaximo;
+	}
+
+	public double getRating() {
+		return rating;
+	}
+
 	public void setPuntajeMaximo(int puntajeMaximo) {
 		this.puntajeMaximo = puntajeMaximo;
 	}
