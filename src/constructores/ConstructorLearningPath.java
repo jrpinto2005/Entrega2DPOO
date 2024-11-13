@@ -11,7 +11,7 @@ import usuario.Sistema;
 
 public class ConstructorLearningPath {
 	private Sistema sistema;
-
+	
 
 	public ConstructorLearningPath() {
 		super();
@@ -47,7 +47,7 @@ public class ConstructorLearningPath {
 	        e.printStackTrace();
 	    }
 	}
-
+	
 	public void clonarActividad(LearningPath origen, LearningPath destino, String id) throws ActivdadNoEcontradaException {
 		Actividad actividad = null;
 		for (Actividad elemento : origen.getActividadesOrdenadas()) {
@@ -62,7 +62,7 @@ public class ConstructorLearningPath {
 			actividad.setId(destino.getTitulo() + "." + actividad.getId());
 			destino.agregarActividad(actividad);
 			sistema.addActividad(actividad);
-
+		
 
 		}
 

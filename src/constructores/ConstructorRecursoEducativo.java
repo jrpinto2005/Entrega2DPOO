@@ -4,6 +4,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Date;
 
+import learningPaths.Examen;
+import learningPaths.LearningPath;
 import learningPaths.RecursoEducativo;
 import usuario.Sistema;
 

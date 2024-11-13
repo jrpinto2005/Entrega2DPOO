@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import envios.PreguntaAbierta;
 import envios.PreguntaOpcionMultiple;
 
 public class Quiz extends Actividad {
@@ -17,7 +18,7 @@ public class Quiz extends Actividad {
 		super(descripcion, objetivo, id, fechaInicio, fechaFin, duracion, dificultad, rating, tipoActividad,
 				obligatoria, idlearningPath);
 		this.puntajeMaximo = puntajeMaximo;
-		this.preguntas = new HashMap<>();
+		this.preguntas = new HashMap<Integer, PreguntaOpcionMultiple>();
 		// TODO Auto-generated constructor stub
 	}
 

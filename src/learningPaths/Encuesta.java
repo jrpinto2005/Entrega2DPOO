@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import envios.PreguntaEncuesta;
+import envios.PreguntaOpcionMultiple;
 
 public class Encuesta extends Actividad {
 	private int puntajeMaximo;
@@ -17,8 +18,8 @@ public class Encuesta extends Actividad {
 		super(descripcion, objetivo, nombre, fechaInicio, fechaFin, duracion, dificultad, rating, tipoActividad,
 				obligatoria, learningPath);
 		this.puntajeMaximo = puntajeMaximo;
-		this.preguntas = new HashMap<>();
-
+		this.preguntas = new HashMap<Integer, PreguntaEncuesta>();
+		 
 	}
 
 	public void setPuntajeMaximo(Integer puntajeMaximo) {
