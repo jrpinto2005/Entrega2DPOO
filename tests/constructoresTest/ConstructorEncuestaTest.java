@@ -1,7 +1,6 @@
 package constructoresTest;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
@@ -24,15 +23,15 @@ class ConstructorEncuestaTest {
     	LearningPath lp1 = new LearningPath("Java Básico", "Aprende los fundamentos de Java", 1, 40, 5, new Date(), new Date(),
  				1, "profesor01", "Entender lo básico de Java", 0.0);
     	sistema.addLP(lp1);
-
+    	
         constructorEncuesta = new ConstructorEncuesta();
 
     }
 
     @Test
     void testCrearEncuesta() {
-
-
+        
+ 
         String descripcion = "Encuesta de Java Básico";
         String objetivo = "Evaluar conocimientos básicos de Java";
         String id = "Encuesta1";
@@ -46,11 +45,11 @@ class ConstructorEncuestaTest {
         String learningPath = "Java Básico";
         int puntajeMaximo = 100;
 
-
+         
         Encuesta encuesta = constructorEncuesta.crearEncuesta(descripcion, objetivo, id, fechaInicio, fechaFin,
                 duracion, dificultad, rating, tipoActividad, obligatoria, learningPath, puntajeMaximo);
-
-
+        
+  
         assertNotNull(encuesta, "La encuesta debería haberse creado y no ser nula.");
         assertEquals(descripcion, encuesta.getDescripcion());
         assertEquals(objetivo, encuesta.getObjetivo());
@@ -67,27 +66,27 @@ class ConstructorEncuestaTest {
 
     @Test
     void testEditarEncuesta() throws NoSuchMethodException, SecurityException, IllegalAccessException, InvocationTargetException {
-
+         
         String id = "Encuesta2";
         String learningPath = "Java Básico";
-        Encuesta encuesta = constructorEncuesta.crearEncuesta("Encuesta de Prueba", "Prueba de edición", id,
+        Encuesta encuesta = constructorEncuesta.crearEncuesta("Encuesta de Prueba", "Prueba de edición", id, 
                 new Date(), new Date(), 20, 1, 3.0, "Encuesta", true, "Java Básico", 50);
-
-
+        
+   
         String nuevoDescripcion = "Nueva Descripción";
         constructorEncuesta.editarEncuesta(learningPath + "." + id, "descripcion", nuevoDescripcion);
         assertEquals(nuevoDescripcion, encuesta.getDescripcion(), "La descripción debería haber sido actualizada.");
-
-
+        
+         
         Integer nuevaDificultad = 3;
         constructorEncuesta.editarEncuesta(learningPath + "." + id, "dificultad", nuevaDificultad);
         assertEquals(nuevaDificultad, encuesta.getDificultad(), "La dificultad debería haber sido actualizada.");
-
-
+        
+       
         Integer nuevoPuntajeMaximo = 75;
         constructorEncuesta.editarEncuesta(learningPath + "." + id, "puntajeMaximo", nuevoPuntajeMaximo);
         assertEquals(nuevoPuntajeMaximo, encuesta.getPuntajeMaximo(), "El puntaje máximo debería haber sido actualizado.");
-
+        
     }
 
 }

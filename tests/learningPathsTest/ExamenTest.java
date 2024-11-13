@@ -1,10 +1,8 @@
 package learningPathsTest;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import static org.junit.jupiter.api.Assertions.*;
 import java.util.Date;
+
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,14 +30,14 @@ class ExamenTest {
 
         pregunta1 = new PreguntaAbierta("¿Que es una variable en Java?", 1, 0.5);
         pregunta2 = new PreguntaAbierta("¿Como se implementa una clase en Java?", 2, 0.5);
-
+        
         examen.addPregunta(pregunta1);
         examen.addPregunta(pregunta2);
     }
 
     @Test
     void testGetPreguntas() {
-
+         
         assertEquals(2, examen.getPreguntas().size(), "Debería haber 2 preguntas en la encuesta.");
         assertTrue(examen.getPreguntas().contains(pregunta1), "El examen debería contener pregunta1.");
         assertTrue(examen.getPreguntas().contains(pregunta2), "El examen debería contener pregunta2.");
@@ -47,7 +45,7 @@ class ExamenTest {
 
     @Test
     void testRemovePregunta() {
-
+    
         examen.removePregunta(pregunta1);
         assertEquals(1, examen.getPreguntas().size(), "Debería quedar solo 1 pregunta después de eliminar una.");
         assertFalse(examen.getPreguntas().contains(pregunta1), "El examen no debería contener pregunta1.");

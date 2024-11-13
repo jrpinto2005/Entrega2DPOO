@@ -61,7 +61,7 @@ public class CentralPersistencia {
 						Integer.parseInt(partes[12]));
 				sistema.addActividad(quiztemp);
 				sistema.getLearningPaths().get(partes[11]).agregarActividad(quiztemp);
-
+				
 				// creamos un quisz y lo agregamos al sistema
 				// lo mismo se hara con todas las actividades invocando a su constructor
 			} else if (partes[0].equals("examen")) {

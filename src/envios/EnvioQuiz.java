@@ -2,6 +2,7 @@ package envios;
 
 import java.util.List;
 
+import envios.CalificadorRespuestaMultiple;
 import learningPaths.Actividad;
 
 public class EnvioQuiz extends Envio {

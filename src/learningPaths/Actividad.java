@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import envios.Envio;
 import envios.Reseña;
 import usuario.ControladorUsuarios;
+import usuario.Estudiante;
 import usuario.Sistema;
 
 public class Actividad {
@@ -42,12 +44,12 @@ public class Actividad {
 		this.obligatoria = obligatoria;
 		this.learningPath = LP;
 		this.cu = ControladorUsuarios.getInstancia();
-		this.reseñas = new ArrayList<>();
-		this.actividadesRecomendadas = new ArrayList<>();
+		this.reseñas = new ArrayList<Reseña>();
+		this.actividadesRecomendadas = new ArrayList<Actividad>();
 
 	}
-
-
+	
+	
 
 	public List<Actividad> getActividadesRecomendadas() {
 		return this.actividadesRecomendadas;
