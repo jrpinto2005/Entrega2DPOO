@@ -1,40 +1,24 @@
 package constructores;
 
+import envios.*;
+import learningPaths.*;
+import usuario.Estudiante;
+import usuario.Sistema;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import envios.Envio;
-import envios.EnvioEncuesta;
-import envios.EnvioExamen;
-import envios.EnvioQuiz;
-import envios.EnvioRecurso;
-import envios.EnvioTarea;
-import envios.PreguntaAbierta;
-import envios.PreguntaEncuesta;
-import envios.PreguntaOpcionMultiple;
-import envios.RespuestaAbierta;
-import envios.RespuestaEncuesta;
-import envios.RespuestaMultiple;
-import learningPaths.Actividad;
-import learningPaths.Encuesta;
-import learningPaths.Examen;
-import learningPaths.Quiz;
-import learningPaths.RecursoEducativo;
-import learningPaths.Tarea;
-import usuario.Estudiante;
-import usuario.Sistema;
-
 public class ControladorEnvios {
 
     private Sistema sistema;
-
+    
 
     public ControladorEnvios() {
         this.sistema = Sistema.getInstancia();
     }
-
+    
     public boolean esBuenaIdeaHacerActividad(Estudiante estudiante, Actividad actividad) {
 		List<Envio> envios = estudiante.getEnvios();
 		int contador = actividad.getActividadesRecomendadas().size();
@@ -57,12 +41,12 @@ public class ControladorEnvios {
 
     public EnvioExamen hacerExamen(Estudiante estudiante, String idExamen, List<String> respuestasUsuario) {
         Examen examen = (Examen) sistema.encontrarActividad(idExamen);
-
-
+        
+        
 
         Collection<PreguntaAbierta> preguntas = examen.getPreguntas();
         List<RespuestaAbierta> respuestas = new ArrayList<>();
-
+        
         Iterator<PreguntaAbierta> iterador = preguntas.iterator();
         for (int i = 0; i < preguntas.size(); i++) {
         	PreguntaAbierta pregunta = iterador.next();
@@ -70,11 +54,11 @@ public class ControladorEnvios {
             RespuestaAbierta respuesta = new RespuestaAbierta(0, respuestaTexto, pregunta.getValorPregunta(), pregunta);
             respuestas.add(respuesta);
         }
-
-        EnvioExamen envio = new EnvioExamen(examen, estudiante.getId(), examen.getLearningPath().getTitulo(),
+        
+        EnvioExamen envio = new EnvioExamen(examen, estudiante.getId(), examen.getLearningPath().getTitulo(), 
                                             false, 0, examen.getPuntajeMaximo(), 0, respuestas);
         estudiante.getEnvios().add(envio);
-
+        
         return envio;
     }
 
@@ -86,7 +70,7 @@ public class ControladorEnvios {
         Iterator<PreguntaOpcionMultiple> iterador = preguntas.iterator();
         for (int i = 0; i < preguntas.size(); i++) {
         	PreguntaOpcionMultiple pregunta = iterador.next();
-            int respuestaSeleccionada = respuestasIngresadas.get(i);
+            int respuestaSeleccionada = respuestasIngresadas.get(i);  
             RespuestaMultiple respuesta = new RespuestaMultiple(0, respuestaSeleccionada, pregunta);
             respuestas.add(respuesta);
         }
@@ -103,7 +87,7 @@ public class ControladorEnvios {
         Iterator<PreguntaEncuesta> iterador = preguntas.iterator();
         for (int i = 0; i < preguntas.size(); i++) {
         	PreguntaEncuesta pregunta = iterador.next();
-            int respuestaSeleccionada = respuestasIngresadas.get(i);
+            int respuestaSeleccionada = respuestasIngresadas.get(i); 
             RespuestaEncuesta respuesta = new RespuestaEncuesta(respuestaSeleccionada, pregunta);
             respuestas.add(respuesta);
         }

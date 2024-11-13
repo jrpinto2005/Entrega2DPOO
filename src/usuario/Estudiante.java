@@ -1,10 +1,28 @@
 package usuario;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import envios.Envio;
+import envios.EnvioEncuesta;
+import envios.EnvioExamen;
+import envios.EnvioQuiz;
+import envios.EnvioRecurso;
+import envios.EnvioTarea;
+import envios.Opcion;
+import envios.PreguntaAbierta;
+import envios.PreguntaEncuesta;
+import envios.PreguntaOpcionMultiple;
+import envios.RespuestaAbierta;
+import envios.RespuestaEncuesta;
+import envios.RespuestaMultiple;
+import learningPaths.Encuesta;
+import learningPaths.Examen;
 import learningPaths.LearningPath;
+import learningPaths.Quiz;
+import learningPaths.RecursoEducativo;
+import learningPaths.Tarea;
 
 public class Estudiante extends Usuario {
 	private List<LearningPath> learningPaths;
@@ -13,8 +31,8 @@ public class Estudiante extends Usuario {
 
 	public Estudiante(String id, String nombre, String email, String contraseña, String tipo) {
 		super(id, nombre, email, contraseña, tipo);
-		this.learningPaths = new ArrayList<>();
-		this.envios = new ArrayList<>();
+		this.learningPaths = new ArrayList<LearningPath>();
+		this.envios = new ArrayList<Envio>();
 		this.sistema = Sistema.getInstancia();
 	}
 
@@ -45,19 +63,17 @@ public class Estudiante extends Usuario {
 	    int totalActividades = envios.size();
 	    int actividadesCompletadas = 0;
 
-
+	    
 	    for (Envio envio : envios) {
-	        if (envio.isCompletado()) {
+	        if (envio.isCompletado()) {  
 	            actividadesCompletadas++;
 	        }
 	    }
 
+	     
+	    if (totalActividades == 0) return 0.0;
 
-	    if (totalActividades == 0) {
-			return 0.0;
-		}
-
-
+	    
 	    return (double) actividadesCompletadas / totalActividades;
 	}
 }

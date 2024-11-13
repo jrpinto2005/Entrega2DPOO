@@ -1,8 +1,6 @@
 package constructoresTest;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Date;
 
@@ -13,10 +11,10 @@ import constructores.ConstructorReseña;
 import envios.PreguntaOpcionMultiple;
 import envios.Reseña;
 import exceptions.ActivdadNoEcontradaException;
-import learningPaths.Actividad;
 import learningPaths.LearningPath;
 import learningPaths.Quiz;
 import learningPaths.RecursoEducativo;
+import learningPaths.Actividad;
 import usuario.Sistema;
 
 class ConstructorReseñaTest {
@@ -29,11 +27,11 @@ class ConstructorReseñaTest {
 	private PreguntaOpcionMultiple pregunta1;
 	private PreguntaOpcionMultiple pregunta2;
 
-
+	
 	@BeforeEach
 	void setUp() {
 	    sistema = Sistema.getInstancia();
-
+	    
 	    LearningPath lp1 = new LearningPath("Java Básico", "Aprende los fundamentos de Java", 1, 40, 5, new Date(), new Date(),
 	            1, "profesor01", "Entender lo básico de Java", 0.0);
 	    sistema.addLP(lp1);
@@ -43,27 +41,27 @@ class ConstructorReseñaTest {
 
 	    pregunta1 = new PreguntaOpcionMultiple("¿Qué es una variable en Java?", 1);
 	    pregunta2 = new PreguntaOpcionMultiple("¿Cómo se implementa una clase en Java?", 2);
-
+	    
 	    quiz.addPregunta(pregunta1);
 	    quiz.addPregunta(pregunta2);
-
-	    RecursoEducativo actividad1 = new RecursoEducativo("video de variables", "Introducir variables", "Tarea1",
+	     
+	    RecursoEducativo actividad1 = new RecursoEducativo("video de variables", "Introducir variables", "Tarea1", 
 	            fechaInicio, fechaFin, 120, 3, 4.5, "Recurso Educativo", true, "Java Básico");
-
-	    lp1.agregarActividad(actividad1);
-	    sistema.addActividad(actividad1);
+	    
+	    lp1.agregarActividad(actividad1); 
+	    sistema.addActividad(actividad1); 
 
 	    constructorReseña = new ConstructorReseña();
 	}
 
-
+	    
 	    @Test
 	    void testHacerReseña() {
 	        String idReseña = "Reseña1";
 	        String comentario = "Excelente contenido para aprender Java.";
 	        int rating = 5;
 	        Date fecha = new Date();
-	        String idActividad = "Java Básico.Tarea1";
+	        String idActividad = "Java Básico.Tarea1";   
 
 	        try {
 	            constructorReseña.hacerReseña(idReseña, comentario, rating, fecha, idActividad);
@@ -89,7 +87,7 @@ class ConstructorReseñaTest {
 	        assertEquals(idActividad, sistema.encontrarActividad(idActividad).getId(), "El ID de la actividad debería coincidir.");
 	    }
 
-
+	    
 	}
 
 

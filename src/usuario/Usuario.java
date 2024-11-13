@@ -1,5 +1,8 @@
 package usuario;
 
+import envios.Reseña;
+import learningPaths.Actividad;
+
 public abstract class Usuario {
 	protected String id;
 	protected String nombre;
@@ -43,5 +46,5 @@ public abstract class Usuario {
 		return "ID: " + id + "\nNombre: " + nombre + "\nEmail: " + email + "\nTipo: " + getTipoUsuario();
 	}
 
-
+	
 }

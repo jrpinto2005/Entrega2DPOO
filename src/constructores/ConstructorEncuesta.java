@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import java.util.Date;
 
 import learningPaths.Encuesta;
+import learningPaths.LearningPath;
 import usuario.Sistema;
 
 public class ConstructorEncuesta {
