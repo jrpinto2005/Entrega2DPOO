@@ -29,9 +29,15 @@ public class CentralPersistencia {
 		sistema = Sistema.getInstancia();
 		// creamos el sistema
 	}
+	private static void cargarSystem()
+	{
+		sistema = Sistema.getInstancia();
+	}
 
 	public static void cargarSistema(File archivo)
-			throws FileNotFoundException, IOException, NumberFormatException, ParseException {
+			throws FileNotFoundException, IOException, NumberFormatException, ParseException 
+	{
+		cargarSystem();
 		BufferedReader br = new BufferedReader(new FileReader(archivo));
 		String line = br.readLine();
 		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
@@ -110,7 +116,9 @@ public class CentralPersistencia {
 		// se cierra
 	}
 
-	public static void guardarSistema(File archivo) throws IOException {
+	public static void guardarSistema(File archivo) throws IOException 
+	{
+		cargarSystem();
 		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
 
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo))) {
@@ -120,6 +128,7 @@ public class CentralPersistencia {
 			for (String lp : lps.keySet()) {
 				LearningPath temp = lps.get(lp);
 				bw.write("lp,");
+				bw.write(lp+",");
 				bw.write(temp.getDescripcionGeneral() + ",");
 				bw.write(String.valueOf(temp.getNivelDificutad()) + ",");
 				bw.write(String.valueOf(temp.getDuracion()) + ",");
@@ -147,8 +156,9 @@ public class CentralPersistencia {
 					bw.write(String.valueOf(acttemp.getDuracion()) + ",");
 					bw.write(String.valueOf(acttemp.getDificultad()) + ",");
 					bw.write(String.valueOf(acttemp.getRating()) + ",");
+					bw.write( "Quiz,");
 					bw.write(String.valueOf(acttemp.isObligatoria()) + ",");
-					bw.write(acttemp.getLearningPath().getIdCreador() + ",");
+					bw.write(acttemp.getLearningPath().getTitulo() + ",");
 					bw.write(String.valueOf(((Quiz) acttemp).getPuntajeMaximo()));
 					bw.newLine();
 				} else if (acttemp instanceof Examen) {
@@ -161,8 +171,9 @@ public class CentralPersistencia {
 					bw.write(String.valueOf(acttemp.getDuracion()) + ",");
 					bw.write(String.valueOf(acttemp.getDificultad()) + ",");
 					bw.write(String.valueOf(acttemp.getRating()) + ",");
+					bw.write("Examen,");
 					bw.write(String.valueOf(acttemp.isObligatoria()) + ",");
-					bw.write(acttemp.getLearningPath().getIdCreador() + ",");
+					bw.write(acttemp.getLearningPath().getTitulo() + ",");
 					bw.write(String.valueOf(((Examen) acttemp).getPuntajeMaximo()));
 					bw.newLine();
 				} else if (acttemp instanceof Encuesta) {
@@ -175,8 +186,9 @@ public class CentralPersistencia {
 					bw.write(String.valueOf(acttemp.getDuracion()) + ",");
 					bw.write(String.valueOf(acttemp.getDificultad()) + ",");
 					bw.write(String.valueOf(acttemp.getRating()) + ",");
+					bw.write("Encuesta,");
 					bw.write(String.valueOf(acttemp.isObligatoria()) + ",");
-					bw.write(acttemp.getLearningPath().getIdCreador() + ",");
+					bw.write(acttemp.getLearningPath().getTitulo() + ",");
 					bw.newLine();
 				} else if (acttemp instanceof SitioWeb) {
 					bw.write("web,");
@@ -188,8 +200,9 @@ public class CentralPersistencia {
 					bw.write(String.valueOf(acttemp.getDuracion()) + ",");
 					bw.write(String.valueOf(acttemp.getDificultad()) + ",");
 					bw.write(String.valueOf(acttemp.getRating()) + ",");
+					bw.write("Web,");
 					bw.write(String.valueOf(acttemp.isObligatoria()) + ",");
-					bw.write(acttemp.getLearningPath().getIdCreador() + ",");
+					bw.write(acttemp.getLearningPath().getTitulo() + ",");
 					bw.write(((SitioWeb) acttemp).getUrl());
 					bw.newLine();
 				} else if (acttemp instanceof Video) {
@@ -202,8 +215,9 @@ public class CentralPersistencia {
 					bw.write(String.valueOf(acttemp.getDuracion()) + ",");
 					bw.write(String.valueOf(acttemp.getDificultad()) + ",");
 					bw.write(String.valueOf(acttemp.getRating()) + ",");
+					bw.write("Video,");
 					bw.write(String.valueOf(acttemp.isObligatoria()) + ",");
-					bw.write(acttemp.getLearningPath().getIdCreador() + ",");
+					bw.write(acttemp.getLearningPath().getTitulo() + ",");
 					bw.write(String.valueOf(((Video) acttemp).getDuracionV()));
 					bw.newLine();
 				} else if (acttemp instanceof Lectura) {
@@ -216,8 +230,9 @@ public class CentralPersistencia {
 					bw.write(String.valueOf(acttemp.getDuracion()) + ",");
 					bw.write(String.valueOf(acttemp.getDificultad()) + ",");
 					bw.write(String.valueOf(acttemp.getRating()) + ",");
+					bw.write("Lectura,");
 					bw.write(String.valueOf(acttemp.isObligatoria()) + ",");
-					bw.write(acttemp.getLearningPath().getIdCreador() + ",");
+					bw.write(acttemp.getLearningPath().getTitulo() + ",");
 					bw.newLine();
 				}
 				bw.close();

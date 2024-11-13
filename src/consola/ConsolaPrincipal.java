@@ -22,11 +22,10 @@ import usuario.Usuario;
 public class ConsolaPrincipal extends ConsolaBasica{
 	
 	private final String[] opcionesCarga = new String[] {"Cargar informacion", "Continuar", "Salir"};
-	private final String[] opcionesAutenticacion = new String[]{ "Ingresar","Crear Usuario","Salir" };
+	private final String[] opcionesAutenticacion = new String[]{ "Ingresar","Crear Usuario","Guardar informacion","Salir" };
 	private final String[] opcionesMenuPrincipalEstudiante = new String[]{ "Consultar progreso LP", "Actividades sugeridas LP",  "Inscribir LP", "Hacer actividad","Salir" };
 	private final String[] opcionesMenuPrincipalProfesor = new String[]{ "Crear LP", "Editar LP", "Clonar LP", "Salir" };
 	private final String[] crearUsuario = new String [] {"Estudiante", "Profesor"};
-	private boolean esProfesor;
 	private Usuario usuario;
 	private static int intentos;
 	
@@ -39,13 +38,11 @@ public class ConsolaPrincipal extends ConsolaBasica{
 		{
 			System.out.println("Ingrese el nombre del archivo de lp y actividades a cargar: ");
 			BufferedReader reader = new BufferedReader( new InputStreamReader( System.in));
-			CentralPersistencia centralPersitencia= new CentralPersistencia();
 			String line = reader.readLine();
 			File archivo = new File("datos/"+ line);
 			CentralPersistencia.cargarSistema(archivo);
 			System.out.println("Ingrese el nombre del archivo de usuarios a cargar: ");
 			BufferedReader reader2 = new BufferedReader( new InputStreamReader( System.in));
-			UsuariosPersistencia usuarios = new UsuariosPersistencia();
 			String line2= reader2.readLine();
 			File archivo2 = new File("datos/"+ line2);
 			UsuariosPersistencia.cargarSistema(archivo2);
@@ -65,11 +62,10 @@ public class ConsolaPrincipal extends ConsolaBasica{
         }
 		primeraConsola();		
 	}
-	private void mostrarLogin( ) throws IOException, UsuarioContraseñaIncorrectoException, IdUsuarioYaExisteException
+	private void mostrarLogin( ) throws IOException, UsuarioContraseñaIncorrectoException, IdUsuarioYaExisteException, NumberFormatException, ParseException
     {
 		intentos++;
 		usuario = null;
-		esProfesor = false;
         int opcionSeleccionada = mostrarMenu( "Menú login", opcionesAutenticacion );
         if( opcionSeleccionada == 1 )
         {
@@ -79,7 +75,6 @@ public class ConsolaPrincipal extends ConsolaBasica{
 			System.out.println("Ingrese su contraseña: ");
 			BufferedReader reader2 = new BufferedReader( new InputStreamReader( System.in));
 			String contrasena = reader2.readLine();
-			ControladorUsuarios c= new ControladorUsuarios();
             try {
 				usuario=ControladorUsuarios.getInstancia().iniciarSesion(id, contrasena);
 				} 
@@ -109,7 +104,7 @@ public class ConsolaPrincipal extends ConsolaBasica{
 
         else if (opcionSeleccionada == 2)
         {
-        	opcionSeleccionada = mostrarMenu( "Menú carga", crearUsuario );
+        	opcionSeleccionada = mostrarMenu( "Que tipo de perfil quiere crear", crearUsuario );
         	if (opcionSeleccionada==1)
         	{
         		System.out.println("ID: ");
@@ -151,7 +146,20 @@ public class ConsolaPrincipal extends ConsolaBasica{
         	
         	mostrarLogin();
         }
-        else if( opcionSeleccionada == 3 ) {
+        else if (opcionSeleccionada==3)
+        {
+        	System.out.println("Ingrese el nombre del archivo de lp y actividades a guardar: ");
+			BufferedReader reader = new BufferedReader( new InputStreamReader( System.in));
+			String line = reader.readLine();
+			File archivo = new File("datos/"+ line);
+			CentralPersistencia.guardarSistema(archivo);
+			System.out.println("Ingrese el nombre del archivo de usuarios a guardar: ");
+			BufferedReader reader2 = new BufferedReader( new InputStreamReader( System.in));
+			String line2= reader2.readLine();
+			File archivo2 = new File("datos/"+ line2);
+			UsuariosPersistencia.guardarSistema(archivo2);
+        }
+        else if( opcionSeleccionada == 4 ) {
         	System.out.println( "Saliendo ..." );
         System.exit( 0 );
         }
