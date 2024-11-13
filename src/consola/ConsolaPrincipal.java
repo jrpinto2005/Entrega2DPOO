@@ -7,18 +7,22 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.ParseException;
 
+import exceptions.IdUsuarioYaExisteException;
 import exceptions.UsuarioContraseñaIncorrectoException;
 import persistencia.CentralPersistencia;
 import persistencia.UsuariosPersistencia;
 import usuario.ControladorUsuarios;
+import usuario.Estudiante;
+import usuario.Profesor;
 import usuario.Usuario;
 
 public class ConsolaPrincipal extends ConsolaBasica{
 	
 	private final String[] opcionesCarga = new String[] {"Cargar informacion", "Continuar", "Salir"};
-	private final String[] opcionesAutenticacion = new String[]{ "Ingresar","Crear Usuario", "Editar Perfil","Salir" };
+	private final String[] opcionesAutenticacion = new String[]{ "Ingresar","Crear Usuario","Salir" };
 	private final String[] opcionesMenuPrincipalEstudiante = new String[]{ "Consultar progreso LP", "Actividades sugeridas LP",  "Inscribir LP", "Hacer actividad","Salir" };
 	private final String[] opcionesMenuPrincipalProfesor = new String[]{ "Crear LP", "Editar LP", "Clonar LP", "Salir" };
+	private final String[] crearUsuario = new String [] {"Estudiante", "Profesor"};
 	private boolean esProfesor;
 	private Usuario usuario;
 	private static int intentos;
@@ -45,7 +49,12 @@ public class ConsolaPrincipal extends ConsolaBasica{
 		}
 		else if ( opcionSeleccionada == 2)
 		{
-			mostrarLogin();
+			try {
+				mostrarLogin();
+			} catch (IOException | UsuarioContraseñaIncorrectoException | IdUsuarioYaExisteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		else if( opcionSeleccionada == 3 ) {
         	System.out.println( "Saliendo ..." );
@@ -53,7 +62,7 @@ public class ConsolaPrincipal extends ConsolaBasica{
         }
 		primeraConsola();		
 	}
-	private void mostrarLogin( ) throws IOException, UsuarioContraseñaIncorrectoException
+	private void mostrarLogin( ) throws IOException, UsuarioContraseñaIncorrectoException, IdUsuarioYaExisteException
     {
 		intentos++;
 		usuario = null;
@@ -80,6 +89,7 @@ public class ConsolaPrincipal extends ConsolaBasica{
 		        System.exit( 0 );
 				}
 			}
+            
             if (usuario.getTipoUsuario().equals("estudiante"))
             		{
             	// ir a consola de estudiante
@@ -93,13 +103,49 @@ public class ConsolaPrincipal extends ConsolaBasica{
 
         else if (opcionSeleccionada == 2)
         {
+        	opcionSeleccionada = mostrarMenu( "Menú carga", crearUsuario );
+        	if (opcionSeleccionada==1)
+        	{
+        		System.out.println("ID: ");
+        		BufferedReader reader = new BufferedReader( new InputStreamReader( System.in));
+        		String id = reader.readLine();
+        		System.out.println("Nombre: ");
+        		BufferedReader reader2 = new BufferedReader( new InputStreamReader( System.in));
+        		String nombre= reader2.readLine();
+        		System.out.println("Correo: ");
+        		BufferedReader reader3 = new BufferedReader( new InputStreamReader( System.in));
+        		String correo= reader3.readLine();
+        		System.out.println("Contraseña: ");
+        		BufferedReader reader4 = new BufferedReader( new InputStreamReader( System.in));
+        		String contrasena= reader4.readLine();
+        		usuario = new Estudiante (id,nombre,correo,contrasena,"estudiante");
+        		ControladorUsuarios.getInstancia().registrarEstudiante(id, nombre, correo, contrasena, "estudiante");
+        		System.out.println("Creado con exito");
+        		intentos--;
+        	}
+        	else if (opcionSeleccionada==2)
+        	{
+        		System.out.println("ID: ");
+        		BufferedReader reader = new BufferedReader( new InputStreamReader( System.in));
+        		String id = reader.readLine();
+        		System.out.println("Nombre: ");
+        		BufferedReader reader2 = new BufferedReader( new InputStreamReader( System.in));
+        		String nombre= reader2.readLine();
+        		System.out.println("Correo: ");
+        		BufferedReader reader3 = new BufferedReader( new InputStreamReader( System.in));
+        		String correo= reader3.readLine();
+        		System.out.println("Contraseña: ");
+        		BufferedReader reader4 = new BufferedReader( new InputStreamReader( System.in));
+        		String contrasena= reader4.readLine();
+        		usuario = new Profesor (id,nombre,correo,contrasena,"profesor");
+        		ControladorUsuarios.getInstancia().registrarProfesor(id, nombre, correo, contrasena, "profesor");
+        		System.out.println("Creado con exito");
+        		intentos--;
+        	}
         	
+        	mostrarLogin();
         }
-        else if (opcionSeleccionada == 3)
-        {
-        	
-        }
-        else if( opcionSeleccionada == 4 ) {
+        else if( opcionSeleccionada == 3 ) {
         	System.out.println( "Saliendo ..." );
         System.exit( 0 );
         }
