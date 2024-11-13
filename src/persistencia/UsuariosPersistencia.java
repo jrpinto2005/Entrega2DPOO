@@ -33,12 +33,12 @@ public class UsuariosPersistencia {
 			String[] partes = line.split(",");
 			// separa las filas por comas y cada palabra entre comas la guarda en una pos de
 			// lista
-			if (partes[0].equals("Profesor")) {
-				Profesor profe = new Profesor(partes[2], partes[1], partes[3], partes[4], "Profesor");
+			if (partes[0].equals("profesor")) {
+				Profesor profe = new Profesor(partes[2], partes[1], partes[3], partes[4], "profesor");
 				controlador.agregarProfesor(profe);
 				// agrega al profesor al controlador de usuarios
-			} else if (partes[0].equals("Estudiante")) {
-				Estudiante estu = new Estudiante(partes[2], partes[1], partes[3], partes[4], "Estudiante");
+			} else if (partes[0].equals("estudiante")) {
+				Estudiante estu = new Estudiante(partes[2], partes[1], partes[3], partes[4], "estudiante");
 				controlador.agregarEstudiante(estu);
 				// agrega el perfil del estudiante al controlador de estudiantes
 			}
