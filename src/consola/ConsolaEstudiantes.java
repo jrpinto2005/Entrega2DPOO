@@ -80,6 +80,7 @@ public class ConsolaEstudiantes extends ConsolaPrincipal
 
 	public void hacerQuiz(Actividad act, Estudiante e)
 	{
+		
 		ControladorEnvios env= new ControladorEnvios();
 		Quiz quiz=(Quiz) act;
 		boolean recomendado= env.esBuenaIdeaHacerActividad(e,quiz);
@@ -93,9 +94,11 @@ public class ConsolaEstudiantes extends ConsolaPrincipal
 		{
 			pregunta.display();
 			pregunta.displayOpciones();
-            System.out.print("Tu respuesta: ");
+			int respuesta =pedirEnteroAlUsuario("Tu respuesta");
+            
+            
             //pedir respuesta
-            respuestas.add(null);
+            respuestas.add(respuesta);
 		}
 
 		env.hacerQuiz(e, act.getId(), respuestas);
@@ -118,9 +121,8 @@ public class ConsolaEstudiantes extends ConsolaPrincipal
 		for (PreguntaAbierta pregunta: preguntas)
 		{
 			pregunta.display();
-            System.out.print("Tu respuesta: ");
-            //pedir respuesta
-            respuestas.add(null);
+            String respuesta = pedirCadenaAlUsuario("Tu respuesta");
+            respuestas.add(respuesta);
 		}
 
 		env.hacerExamen(e, act.getId(), respuestas);
@@ -143,9 +145,8 @@ public class ConsolaEstudiantes extends ConsolaPrincipal
 		for (PreguntaEncuesta pregunta: preguntas)
 		{
 			pregunta.display();
-            System.out.print("Tu respuesta: ");
-            //pedir respuesta
-            respuestas.add(null);
+            int respuesta = pedirEnteroAlUsuario("Ingresa un entero del 1 al 5");
+            respuestas.add(respuesta);
 		}
 
 		env.hacerEncuesta(e, act.getId(), respuestas);
