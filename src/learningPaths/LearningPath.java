@@ -2,15 +2,8 @@ package learningPaths;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 
-import exceptions.ActivdadNoEcontradaException;
-import learningPaths.Actividad;
-import usuario.Estudiante;
-import usuario.Profesor;
 import usuario.Sistema;
-import envios.EnvioExamen;
 
 public class LearningPath {
 	private String titulo;
@@ -26,7 +19,7 @@ public class LearningPath {
 	private double promedioActividadesCompletadas;
 	private ArrayList<Actividad> actividadesOrdenadas;
 	private Sistema sistema;
-	
+
 
 	public LearningPath(String titulo, String descripcionGeneral, int nivelDificultad, int duracion, int rating,
 			Date fechaDuracion, Date fechaModificacion, int version, String idCreador, String objetivos,
@@ -43,14 +36,14 @@ public class LearningPath {
 		this.idCreador = idCreador;
 		this.objetivos = objetivos;
 		this.promedioActividadesCompletadas = promedioActividadesCompletadas;
-		this.actividadesOrdenadas = new ArrayList<Actividad>();
+		this.actividadesOrdenadas = new ArrayList<>();
 		this.sistema = Sistema.getInstancia();
 	}
 
 	public String getTitulo() {
 		return titulo;
 	}
-	
+
 
 	public int getNivelDificultad() {
 		return nivelDificultad;

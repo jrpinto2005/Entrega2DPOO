@@ -1,22 +1,22 @@
 package learningPathsTest;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Date;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import constructores.ConstructorLearningPath;
-import constructores.ConstructorQuiz;
-import constructores.ConstructorTarea;
 import envios.Reseña;
-import learningPaths.Actividad;
 import learningPaths.LearningPath;
 import learningPaths.RecursoEducativo;
 import learningPaths.Tarea;
 import usuario.Sistema;
 
 class ActividadTest {
-	
+
 	Sistema sistema = Sistema.getInstancia();
 
     private RecursoEducativo actividad1;
@@ -35,29 +35,29 @@ class ActividadTest {
 				1, "profesor02", "Dominar conceptos avanzados de Java", 0.0);
 		sistema.addLP(lp1);
 		sistema.addLP(lp2);
-	
+
         fechaInicio = new Date();
         fechaFin = new Date();
-        actividad1 = new RecursoEducativo("video de variables", "Introducir variables", "Tarea1", 
+        actividad1 = new RecursoEducativo("video de variables", "Introducir variables", "Tarea1",
                 fechaInicio, fechaFin, 120, 3, 4.5, "Recurso Educativo", true, "Java Básico");
         actividad2 = new RecursoEducativo("Video variables 2", "Introducir variables", "Tarea2", new Date(), new Date(),
 				120, 3, 4.5, "Recurso Educativo", true, "Java Básico");
         tarea3 = new Tarea("Tarea Exceptions", "Exceptions", "Tarea3", new Date(), new Date(),
 				120, 3, 4.5, "Tarea", true, "Java Básico");
-         
+
         actividad1.agregarActividadRecomendada(actividad2);
-        
+
         String idReseña = "Reseña1";
         String comentario = "Muy útil y bien estructurada.";
         int rating = 5;
         Date fecha = new Date();
         String idActividad = "Java101";
 
-       
+
         reseña1 = new Reseña(idReseña, comentario, rating, fecha, idActividad);
-        
+
         actividad1.agregarReseña(reseña1);
-        
+
     }
 
     @Test

@@ -2,8 +2,7 @@
 
 import java.util.HashMap;
 import java.util.Map;
-import exceptions.ActivdadNoEcontradaException;
-import exceptions.LPNoEncontradaException;
+
 import learningPaths.Actividad;
 import learningPaths.LearningPath;
 
@@ -13,8 +12,8 @@ public class Sistema {
 	private static Sistema instancia;
 
 	public Sistema() {
-		this.learningPaths = new HashMap<String, LearningPath>();
-		this.actividades = new HashMap<String, Actividad>();
+		this.learningPaths = new HashMap<>();
+		this.actividades = new HashMap<>();
 	}
 
 	public LearningPath encontrarLP(String idLP) {

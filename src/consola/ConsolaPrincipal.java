@@ -17,7 +17,7 @@ import usuario.Profesor;
 import usuario.Usuario;
 
 public class ConsolaPrincipal extends ConsolaBasica{
-	
+
 	private final String[] opcionesCarga = new String[] {"Cargar informacion", "Continuar", "Salir"};
 	private final String[] opcionesAutenticacion = new String[]{ "Ingresar","Crear Usuario","Salir" };
 	private final String[] opcionesMenuPrincipalEstudiante = new String[]{ "Consultar progreso LP", "Actividades sugeridas LP",  "Inscribir LP", "Hacer actividad","Salir" };
@@ -26,9 +26,9 @@ public class ConsolaPrincipal extends ConsolaBasica{
 	private boolean esProfesor;
 	private Usuario usuario;
 	private static int intentos;
-	
-	
-	
+
+
+
 	private void primeraConsola() throws NumberFormatException, FileNotFoundException, IOException, ParseException, UsuarioContraseñaIncorrectoException
 	{
 		int opcionSeleccionada = mostrarMenu( "Menú carga", opcionesCarga );
@@ -60,7 +60,7 @@ public class ConsolaPrincipal extends ConsolaBasica{
         	System.out.println( "Saliendo ..." );
         System.exit( 0 );
         }
-		primeraConsola();		
+		primeraConsola();
 	}
 	private void mostrarLogin( ) throws IOException, UsuarioContraseñaIncorrectoException, IdUsuarioYaExisteException
     {
@@ -82,24 +82,24 @@ public class ConsolaPrincipal extends ConsolaBasica{
 			} catch (UsuarioContraseñaIncorrectoException e) {
 				// TODO Auto-generated catch block
 				System.out.println("Este es su intento numero" + String.valueOf(intentos) );
-				if (intentos<3) 
+				if (intentos<3) {
 					mostrarLogin();
-				else {
+				} else {
 					System.out.println( "Saliendo ..." );
 		        System.exit( 0 );
 				}
 			}
-            
+
             if (usuario.getTipoUsuario().equals("estudiante"))
             		{
             	// ir a consola de estudiante
             		}
-            else 
+            else
             {// ir a consola profesor
-            	
+
             }
             }
-            		
+
 
         else if (opcionSeleccionada == 2)
         {
@@ -142,7 +142,7 @@ public class ConsolaPrincipal extends ConsolaBasica{
         		System.out.println("Creado con exito");
         		intentos--;
         	}
-        	
+
         	mostrarLogin();
         }
         else if( opcionSeleccionada == 3 ) {
@@ -165,7 +165,7 @@ public class ConsolaPrincipal extends ConsolaBasica{
     	}
     	else if (opcionSeleccionada==3)
     	{
-    	//Verifica si esta inscrito en un lp, si no esta se inscribe a uno nuevo	
+    	//Verifica si esta inscrito en un lp, si no esta se inscribe a uno nuevo
     	}
     	else if (opcionSeleccionada==4)
     	{
@@ -177,9 +177,9 @@ public class ConsolaPrincipal extends ConsolaBasica{
     		System.exit(0);
     	}
     	menuEstudiantes();
-    		
+
     	}
-    	
+
     private void menuProfesores()
     {
     	int opcionSeleccionada = mostrarMenu( "Menú login", opcionesMenuPrincipalProfesor );
@@ -192,7 +192,7 @@ public class ConsolaPrincipal extends ConsolaBasica{
     	{
     		//El controlador que edita el LP
     		//Retorna True o error
-    		
+
     	}
     	else if (opcionSeleccionada == 3)
     	{
@@ -204,23 +204,23 @@ public class ConsolaPrincipal extends ConsolaBasica{
     		System.exit(0);
     	}
     	menuProfesores();
-    	
+
     }
-    //private void TipoUsuario 
+    //private void TipoUsuario
     public static void main( String[] args ) throws NumberFormatException, FileNotFoundException, IOException, ParseException, UsuarioContraseñaIncorrectoException
     {
         ConsolaPrincipal c = new ConsolaPrincipal( );
         c.primeraConsola( );
     }
-    
-    
+
+
 }
 
 
-        
-	
-	
 
 
-	
+
+
+
+
 

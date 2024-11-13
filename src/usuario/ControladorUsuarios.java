@@ -27,7 +27,7 @@ public class ControladorUsuarios {
 		if (!estudiantes.containsKey(id)) {
 			Estudiante e = new Estudiante(id, nombre, email, contraseña, tipo);
 			instancia.agregarEstudiante(e);
-			
+
 			return true;
 		} else {
 			throw new IdUsuarioYaExisteException("id");
@@ -38,9 +38,9 @@ public class ControladorUsuarios {
 		if (!profesores.containsKey(id)) {
 			Profesor p = new Profesor(id, nombre, email, contraseña, tipo);
 			instancia.agregarProfesor(p);
-			 
+
 			return true;
-		} else 
+		} else
 		{
 			 throw new IdUsuarioYaExisteException("id");
 		}
@@ -72,12 +72,12 @@ public class ControladorUsuarios {
 
 	public void editarPerfil(String id, String nuevoNombre, String nuevoEmail) {
 		if (profesores.containsKey(id)) {
-			Usuario p = (Usuario) profesores.get(id);
+			Usuario p = profesores.get(id);
 			p.setEmail(nuevoEmail);
 			p.setNombre(nuevoNombre);
 			profesores.put(id, (Profesor) p);
 		} else if (estudiantes.containsKey(id)) {
-			Usuario e = (Usuario) estudiantes.get(id);
+			Usuario e = estudiantes.get(id);
 			e.setEmail(nuevoEmail);
 			e.setNombre(nuevoNombre);
 			estudiantes.put(id, (Estudiante) e);
@@ -90,7 +90,7 @@ public class ControladorUsuarios {
 			if (estudiante.getContrasena().equals(contrasena)) {
 				return estudiante;
 			} else {
-				 
+
 				throw new UsuarioContraseñaIncorrectoException (id) ;
 			}
 		}
@@ -100,12 +100,12 @@ public class ControladorUsuarios {
 			if (profesor.getContrasena().equals(contrasena)) {
 				return profesor;
 			} else {
-				 
+
 				throw new UsuarioContraseñaIncorrectoException (id) ;
 			}
 		}
 
-		
+
 		throw new UsuarioContraseñaIncorrectoException (id) ;
 	}
 

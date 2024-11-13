@@ -7,7 +7,7 @@ public class PreguntaAbierta extends Pregunta {
 	public PreguntaAbierta(String textoPregunta, int idPregunta, double d) {
 		super(textoPregunta, idPregunta);
 		this.valorPregunta = d;
-		 
+
 	}
 
 	public double getValorPregunta() {

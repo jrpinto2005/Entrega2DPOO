@@ -30,8 +30,9 @@ public abstract class ConsolaBasica {
 	            BufferedReader reader = new BufferedReader( new InputStreamReader( System.in ) );
 	            String input = reader.readLine( ).toLowerCase( );
 	            boolean respuesta = false;
-	            if( input.equals( "si" ) || input.equals( "sí" ) || input.equals( "s" ) )
-	                respuesta = true;
+	            if( input.equals( "si" ) || input.equals( "sí" ) || input.equals( "s" ) ) {
+					respuesta = true;
+				}
 
 	            return respuesta;
 	        }
@@ -108,9 +109,9 @@ public abstract class ConsolaBasica {
 	        try
 	        {
 	            int opcionSeleccionada = Integer.parseInt( opcion );
-	            if( opcionSeleccionada > 0 && opcionSeleccionada <= opciones.length )
-	                return opciones[ opcionSeleccionada - 1 ];
-	            else
+	            if( opcionSeleccionada > 0 && opcionSeleccionada <= opciones.length ) {
+					return opciones[ opcionSeleccionada - 1 ];
+				} else
 	            {
 	                System.out.println( "Esa no es una opción válida. Digite solamente números entre 1 y " + opciones.length );
 	                return pedirOpcionAlUsuario( coleccionOpciones );
@@ -136,9 +137,9 @@ public abstract class ConsolaBasica {
 	        try
 	        {
 	            int opcionSeleccionada = Integer.parseInt( opcion );
-	            if( opcionSeleccionada > 0 && opcionSeleccionada <= opciones.length )
-	                return opcionSeleccionada;
-	            else
+	            if( opcionSeleccionada > 0 && opcionSeleccionada <= opciones.length ) {
+					return opcionSeleccionada;
+				} else
 	            {
 	                System.out.println( "Esa no es una opción válida. Digite solamente números entre 1 y " + opciones.length );
 	                return mostrarMenu( nombreMenu, opciones );
@@ -150,7 +151,7 @@ public abstract class ConsolaBasica {
 	            return mostrarMenu( nombreMenu, opciones );
 	        }
 	    }
-	 
-	 
+
+
 
 }

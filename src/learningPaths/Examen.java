@@ -3,10 +3,8 @@ package learningPaths;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import envios.Pregunta;
 import envios.PreguntaAbierta;
 
 public class Examen extends Actividad {
@@ -19,7 +17,7 @@ public class Examen extends Actividad {
 		super(descripcion, objetivo, nombre, fechaInicio, fechaFin, duracion, dificultad, rating, tipoActividad,
 				obligatoria, learningPath);
 		this.puntajeMaximo = puntajeMaximo;
-		this.preguntas = new HashMap<Integer, PreguntaAbierta>();
+		this.preguntas = new HashMap<>();
 	}
 
 	public void setPuntajeMaximo(Integer puntajeMaximo) {
