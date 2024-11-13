@@ -9,11 +9,14 @@ import java.text.ParseException;
 
 import exceptions.IdUsuarioYaExisteException;
 import exceptions.UsuarioContraseñaIncorrectoException;
+import learningPaths.Actividad;
+import learningPaths.LearningPath;
 import persistencia.CentralPersistencia;
 import persistencia.UsuariosPersistencia;
 import usuario.ControladorUsuarios;
 import usuario.Estudiante;
 import usuario.Profesor;
+import usuario.Sistema;
 import usuario.Usuario;
 
 public class ConsolaPrincipal extends ConsolaBasica{
@@ -79,7 +82,9 @@ public class ConsolaPrincipal extends ConsolaBasica{
 			ControladorUsuarios c= new ControladorUsuarios();
             try {
 				usuario=ControladorUsuarios.getInstancia().iniciarSesion(id, contrasena);
-			} catch (UsuarioContraseñaIncorrectoException e) {
+				} 
+            catch (UsuarioContraseñaIncorrectoException e) 
+            {
 				// TODO Auto-generated catch block
 				System.out.println("Este es su intento numero" + String.valueOf(intentos) );
 				if (intentos<3) 
@@ -92,10 +97,11 @@ public class ConsolaPrincipal extends ConsolaBasica{
             
             if (usuario.getTipoUsuario().equals("estudiante"))
             		{
-            	// ir a consola de estudiante
+            			menuEstudiantes((Estudiante) usuario);
             		}
             else 
-            {// ir a consola profesor
+            {
+            	System.out.println(":(");
             	
             }
             }
@@ -151,32 +157,43 @@ public class ConsolaPrincipal extends ConsolaBasica{
         }
         mostrarLogin();
     }
-    private void menuEstudiantes()
+    private void menuEstudiantes(Estudiante estudiante) throws IOException
     {
-    	int opcionSeleccionada = mostrarMenu ("Menu estudiantes", opcionesMenuPrincipalEstudiante);
+    	ConsolaEstudiantes c = new ConsolaEstudiantes();
+    	int opcionSeleccionada = mostrarMenu ("Menu de estudiantes", opcionesMenuPrincipalEstudiante);
     	if (opcionSeleccionada == 1)
     	{
-    		//El controlador que consulta el progreso
+			c.consultarProgrespLP(estudiante);
     	}
     	else if (opcionSeleccionada == 2)
     	{
-    		//get las actividades sugeridas y tabularlas
-    		// System.out.println(tabulador)
+    		System.out.println("Que actividad desea consultar: ");
+    		BufferedReader reader = new BufferedReader( new InputStreamReader( System.in));
+    		String actividad = reader.readLine();
+    		Actividad acti = Sistema.getInstancia().encontrarActividad(actividad);
+    		c.actividadesSugeridasLP(acti);
     	}
     	else if (opcionSeleccionada==3)
     	{
-    	//Verifica si esta inscrito en un lp, si no esta se inscribe a uno nuevo	
+    		System.out.println("Que LP desea inscribir?: ");
+    		BufferedReader reader = new BufferedReader( new InputStreamReader( System.in));
+    		String lp = reader.readLine();
+    		LearningPath lepa = Sistema.getInstancia().encontrarLP(lp);	
+    		c.inscribirLP(estudiante, lepa);
     	}
     	else if (opcionSeleccionada==4)
     	{
-    		//Verifica tipo de actividad y lo redirge a donde deba
+    		System.out.println("Que actividad desea empezar: ");
+    		BufferedReader reader = new BufferedReader( new InputStreamReader( System.in));
+    		String actividad = reader.readLine();
+    		c.hacerActividad(actividad, estudiante);
     	}
     	else if (opcionSeleccionada== 5)
     	{
     		System.out.println( "Saliendo ..." );
     		System.exit(0);
     	}
-    	menuEstudiantes();
+    	menuEstudiantes(estudiante);
     		
     	}
     	
