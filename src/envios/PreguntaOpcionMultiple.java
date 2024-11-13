@@ -9,7 +9,7 @@ public class PreguntaOpcionMultiple extends Pregunta {
 
 	public PreguntaOpcionMultiple(String textoPregunta, int idPregunta) {
 		super(textoPregunta, idPregunta);
-		opciones = new ArrayList<Opcion>();
+		opciones = new ArrayList<>();
 		// TODO Auto-generated constructor stub
 	}
 

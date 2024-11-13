@@ -1,20 +1,21 @@
 package enviosTest;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import envios.EnvioEncuesta;
-import envios.RespuestaEncuesta;
 import envios.PreguntaEncuesta;
+import envios.RespuestaEncuesta;
 import learningPaths.Actividad;
 import learningPaths.LearningPath;
 import usuario.Sistema;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 class EnvioEncuestaTest {
 	Sistema sistema = Sistema.getInstancia();
@@ -25,22 +26,22 @@ class EnvioEncuestaTest {
 
     @BeforeEach
     void setUp() {
-    	
+
     	LearningPath lp1 = new LearningPath("Java Básico", "Aprende los fundamentos de Java", 1, 40, 5, new Date(), new Date(),
 				1, "profesor01", "Entender lo básico de Java", 0.0);
     	sistema.addLP(lp1);
-        actividad = new Actividad("Encuesta1", "Descripción de la encuesta", "Encuesta", 
+        actividad = new Actividad("Encuesta1", "Descripción de la encuesta", "Encuesta",
                 new Date(), new Date(), 20, 1, 3.5, "Encuesta", true, "Java Básico");
-        
+
         respuestas = new ArrayList<>();
-        
+
         PreguntaEncuesta pregunta1 = new PreguntaEncuesta("Pregunta 1",1);
         PreguntaEncuesta pregunta2 = new PreguntaEncuesta("Pregunta 2",2);
 
         respuestas.add(new RespuestaEncuesta(4, pregunta1));
         respuestas.add(new RespuestaEncuesta(5, pregunta2));
 
-        envioEncuesta = new EnvioEncuesta(actividad, "estudiante01", "Java Básico", true, 
+        envioEncuesta = new EnvioEncuesta(actividad, "estudiante01", "Java Básico", true,
                 80.0, 100, 4.5, respuestas);
     }
 

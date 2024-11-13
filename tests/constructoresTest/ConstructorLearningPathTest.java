@@ -1,6 +1,8 @@
 package constructoresTest;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Date;
 
@@ -20,22 +22,22 @@ class ConstructorLearningPathTest {
     private Sistema sistema;
     private Date fechaInicio;
     private Date fechaFin;
-    private LearningPath lp1;  
+    private LearningPath lp1;
     @BeforeEach
     void setUp() {
         sistema = Sistema.getInstancia();
-        
+
         constructorLP = new ConstructorLearningPath();
         lp1 = constructorLP.crearLP("Java Básico", "Aprende los fundamentos de Java", 1, 40, 5, new Date(), new Date(),
                 1, "profesor01", "Objetivos del curso", 0.0);
-        
-        sistema.addLP(lp1); 
 
-        RecursoEducativo actividad1 = new RecursoEducativo("video de variables", "Introducir variables", "1", 
+        sistema.addLP(lp1);
+
+        RecursoEducativo actividad1 = new RecursoEducativo("video de variables", "Introducir variables", "1",
                 fechaInicio, fechaFin, 120, 3, 4.5, "Recurso Educativo", true, "Java Básico");
-        
-        lp1.agregarActividad(actividad1);  
-        sistema.addActividad(actividad1);  
+
+        lp1.agregarActividad(actividad1);
+        sistema.addActividad(actividad1);
     }
 
     @Test
@@ -68,12 +70,12 @@ class ConstructorLearningPathTest {
         assertNotNull(actividad1, "La actividad debería existir en el LP original.");
 
         try {
-            constructorLP.clonarActividad(lp1, lp2, "Java Básico.1");  
+            constructorLP.clonarActividad(lp1, lp2, "Java Básico.1");
         } catch (ActivdadNoEcontradaException e) {
             fail("La actividad debería haberse clonado correctamente.");
         }
 
-        
+
         Actividad actividadClonada = lp2.getActividadesOrdenadas().getFirst();
 
         assertNotNull(actividadClonada, "La actividad clonada debería existir en el LearningPath destino.");

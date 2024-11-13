@@ -28,7 +28,7 @@ public class ConsolaEstudiantes extends ConsolaPrincipal
 		System.out.println("De los "+ e.getEnvios().size() + " que ha hecho el estudiante, han sido completados el "
 				+ progreso + "porciento");
 	}
-	
+
 	public void actividadesSugeridasLP(Actividad a)
 	{
 		System.out.println("Consultando actividades sugeridas ");
@@ -38,11 +38,11 @@ public class ConsolaEstudiantes extends ConsolaPrincipal
 			System.out.println("Id actividad: " + actividad.getId() + " con el objetivo de:" + actividad.getObjetivo());
 		}
 	}
-	
+
 	public void inscribirLP(Estudiante e, LearningPath lp)
 	{
 		System.out.println("Revisando que el estudiante no este inscrito en el LP " + lp.getTitulo());
-		if (e.inscribirseEnLearningPath(lp)==false)
+		if (!e.inscribirseEnLearningPath(lp))
 		{
 			System.out.println("El estudiante ya está inscrito al LearningPath"+ lp.getTitulo());
 		}
@@ -51,7 +51,7 @@ public class ConsolaEstudiantes extends ConsolaPrincipal
 			System.out.println("Ha sido inscrito con exito al LearningPath "+ lp.getTitulo());
 		}
 	}
-	
+
 	public void hacerActividad(String idActividad, Estudiante e)
 	{
 		Actividad act=sistema.encontrarActividad(idActividad);
@@ -77,19 +77,19 @@ public class ConsolaEstudiantes extends ConsolaPrincipal
 			hacerRecurso(act,e);
 		}
 	}
-	
+
 	public void hacerQuiz(Actividad act, Estudiante e)
 	{
 		
 		ControladorEnvios env= new ControladorEnvios();
 		Quiz quiz=(Quiz) act;
 		boolean recomendado= env.esBuenaIdeaHacerActividad(e,quiz);
-        if(recomendado==false) 
+        if(!recomendado)
         {
-        	System.out.println("Te recomendamos hacer las actividades recomendadas antes de hacer este quiz");	
+        	System.out.println("Te recomendamos hacer las actividades recomendadas antes de hacer este quiz");
         }
 		Collection<PreguntaOpcionMultiple> preguntas= quiz.getPreguntas();
-		List<Integer> respuestas=new ArrayList<Integer>();
+		List<Integer> respuestas=new ArrayList<>();
 		for (PreguntaOpcionMultiple pregunta: preguntas)
 		{
 			pregunta.display();
@@ -100,87 +100,87 @@ public class ConsolaEstudiantes extends ConsolaPrincipal
             //pedir respuesta
             respuestas.add(respuesta);
 		}
-		
+
 		env.hacerQuiz(e, act.getId(), respuestas);
 		System.out.println("Envío realizado con exito");
 		//Hacer que se califique?
-		
+
 	}
-	
+
 	public void hacerExamen(Actividad act, Estudiante e)
 	{
 		ControladorEnvios env= new ControladorEnvios();
 		Examen examen=(Examen) act;
 		boolean recomendado= env.esBuenaIdeaHacerActividad(e,examen);
-        if(recomendado==false) 
+        if(!recomendado)
         {
-        	System.out.println("Te recomendamos hacer las actividades recomendadas antes de hacer este examen");	
+        	System.out.println("Te recomendamos hacer las actividades recomendadas antes de hacer este examen");
         }
 		Collection<PreguntaAbierta> preguntas= examen.getPreguntas();
-		List<String> respuestas=new ArrayList<String>();
+		List<String> respuestas=new ArrayList<>();
 		for (PreguntaAbierta pregunta: preguntas)
 		{
 			pregunta.display();
             String respuesta = pedirCadenaAlUsuario("Tu respuesta");
             respuestas.add(respuesta);
 		}
-		
+
 		env.hacerExamen(e, act.getId(), respuestas);
 		System.out.println("Envío realizado con exito");
 		//Hacer que se califique?
-		
+
 	}
-	
+
 	public void hacerEncuesta(Actividad act, Estudiante e)
 	{
 		ControladorEnvios env= new ControladorEnvios();
 		Encuesta encuesta=(Encuesta) act;
 		boolean recomendado= env.esBuenaIdeaHacerActividad(e,encuesta);
-        if(recomendado==false) 
+        if(!recomendado)
         {
-        	System.out.println("Te recomendamos hacer las actividades recomendadas antes de hacer esta encuesta");	
+        	System.out.println("Te recomendamos hacer las actividades recomendadas antes de hacer esta encuesta");
         }
 		Collection<PreguntaEncuesta> preguntas= encuesta.getPreguntas();
-		List<Integer> respuestas=new ArrayList<Integer>();
+		List<Integer> respuestas=new ArrayList<>();
 		for (PreguntaEncuesta pregunta: preguntas)
 		{
 			pregunta.display();
             int respuesta = pedirEnteroAlUsuario("Ingresa un entero del 1 al 5");
             respuestas.add(respuesta);
 		}
-		
+
 		env.hacerEncuesta(e, act.getId(), respuestas);
 		System.out.println("Envío realizado con exito");
-		
+
 	}
-	
+
 	public void hacerTarea(Actividad act, Estudiante e)
 	{
 		ControladorEnvios env= new ControladorEnvios();
 		Tarea tarea=(Tarea) act;
 		boolean recomendado= env.esBuenaIdeaHacerActividad(e,tarea);
-        if(recomendado==false) 
+        if(!recomendado)
         {
-        	System.out.println("Te recomendamos hacer las actividades recomendadas antes de hacer esta tarea");	
+        	System.out.println("Te recomendamos hacer las actividades recomendadas antes de hacer esta tarea");
         }
 		env.hacerTarea(e, act.getId());
 		System.out.println("Envío realizado con exito");
-		
-		
+
+
 	}
-	
+
 	public void hacerRecurso(Actividad act, Estudiante e)
 	{
 		ControladorEnvios env= new ControladorEnvios();
 		RecursoEducativo recurso=(RecursoEducativo) act;
 		boolean recomendado= env.esBuenaIdeaHacerActividad(e,recurso);
-        if(recomendado==false) 
+        if(!recomendado)
         {
-        	System.out.println("Te recomendamos hacer las actividades recomendadas antes de hacer esta tarea");	
+        	System.out.println("Te recomendamos hacer las actividades recomendadas antes de hacer esta tarea");
         }
 		env.hacerRecurso(e, act.getId());
 		System.out.println("Envío realizado con exito");
-		
-		
+
+
 	}
 }

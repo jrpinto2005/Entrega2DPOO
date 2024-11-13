@@ -1,6 +1,7 @@
 package constructoresTest;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
@@ -23,7 +24,7 @@ class ConstructorExamenTest {
         LearningPath lp1 = new LearningPath("Java Básico", "Aprende los fundamentos de Java", 1, 40, 5, new Date(), new Date(),
                 1, "profesor01", "Entender lo básico de Java", 0.0);
         sistema.addLP(lp1);
-        
+
         constructorExamen = new ConstructorExamen();
     }
 
@@ -61,29 +62,29 @@ class ConstructorExamenTest {
 
     @Test
     void testEditarExamen() throws NoSuchMethodException, SecurityException, IllegalAccessException, InvocationTargetException {
-        
+
         String id = "Examen2";
         String learningPath = "Java Básico";
         Examen examen = constructorExamen.crearExamen("Examen de Prueba", "Prueba de edición", id, new Date(), new Date(), 45, 2, 3.5, "Examen", true, learningPath, 80);
 
-    
+
         String nuevoDescripcion = "Nueva Descripción de Examen";
         constructorExamen.editarExamen(learningPath + "." + id, "descripcion", nuevoDescripcion);
         assertEquals(nuevoDescripcion, examen.getDescripcion(), "La descripción debería haber sido actualizada.");
-        
- 
+
+
         Integer nuevaDificultad = 4;
         constructorExamen.editarExamen(learningPath + "." + id, "dificultad", nuevaDificultad);
         assertEquals(nuevaDificultad, examen.getDificultad(), "La dificultad debería haber sido actualizada.");
 
-  
+
         Integer nuevoPuntajeMaximo = 90;
         constructorExamen.editarExamen(learningPath + "." + id, "puntajeMaximo", nuevoPuntajeMaximo);
         assertEquals(nuevoPuntajeMaximo, examen.getPuntajeMaximo(), "El puntaje máximo debería haber sido actualizado.");
-        
-        
+
+
     }
-    
-    
-    
+
+
+
 }
