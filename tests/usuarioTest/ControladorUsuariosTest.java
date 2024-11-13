@@ -28,14 +28,27 @@ public class ControladorUsuariosTest {
     public void testRegistrarEstudiante() throws IdUsuarioYaExisteException {
         assertTrue(controlador.registrarEstudiante("E1", "Juan", "juan@example.com", "pass123", "Estudiante"));
         assertNotNull(controlador.encontrarEstudiante("E1"));
-        assertFalse(controlador.registrarEstudiante("E1", "Juan", "juan@example.com", "pass123", "Estudiante"));
+        try {
+        	 controlador.registrarEstudiante("E1", "Juan", "juan@example.com", "pass123", "Estudiante");
+        	 fail("Deberia haber retornado un id ya existente exception");
+        }
+        catch (IdUsuarioYaExisteException e) {
+        	
+        } 
+      
     }
 
     @Test
     public void testRegistrarProfesor() throws IdUsuarioYaExisteException {
         assertTrue(controlador.registrarProfesor("P1", "Ana", "ana@example.com", "prof456", "Profesor"));
         assertNotNull(controlador.encontrarProfesor("P1"));
-        assertFalse(controlador.registrarProfesor("P1", "Ana", "ana@example.com", "prof456", "Profesor"));
+        try {
+        	controlador.registrarProfesor("P1", "Ana", "ana@example.com", "prof456", "Profesor");
+       	 fail("Deberia haber retornado un id ya existente exception");
+       }
+       catch (IdUsuarioYaExisteException e) {
+       	
+       }
     }
 
     @Test

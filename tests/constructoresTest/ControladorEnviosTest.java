@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 
 import envios.EnvioExamen;
@@ -57,11 +57,11 @@ class ControladorEnviosTest {
         estudiante = new Estudiante("001", "Juan Perez", "juan@example.com", "password123", "estudiante");
 
          
-        examen = new Examen("ex01", "Examen de Java","Primer Examen", fechaInicio, fechaFin,1, 100, 5, "Examen", true,"Java Básico", 1);
-        quiz = new Quiz("quiz01", "Examen de Java","Primer Examen", fechaInicio, fechaFin,1, 100, 5, "Examen", true,"Java Básico", 1);
-        encuesta = new Encuesta("enc01", "Examen de Java","Primer Examen", fechaInicio, fechaFin,1, 100, 5, "Examen", true,"Java Básico", 1);
-        tarea = new Tarea("tarea01", "Examen de Java","Primer Examen", fechaInicio, fechaFin,1, 100, 5, "Examen", true,"Java Básico");
-        recurso = new RecursoEducativo("recurso01", "Examen de Java","Primer Examen", fechaInicio, fechaFin,1, 100, 5, "Examen", true,"Java Básico");
+        examen = new Examen("ex01", "Examen de Java","Examen1", fechaInicio, fechaFin,1, 100, 5, "Examen", true,"Java Básico", 1);
+        quiz = new Quiz("quiz01", "Quiz de Java","Quiz1", fechaInicio, fechaFin,1, 100, 5, "Quiz", true,"Java Básico", 1);
+        encuesta = new Encuesta("enc01", "Encuesta de Java","Encuesta1", fechaInicio, fechaFin,1, 100, 5, "Encuesta", true,"Java Básico", 1);
+        tarea = new Tarea("tarea01", "Tarea de Java","Tarea1", fechaInicio, fechaFin,1, 100, 5, "Tarea", true,"Java Básico");
+        recurso = new RecursoEducativo("recurso01", "Recurso de Java ","Recurso1", fechaInicio, fechaFin,1, 100, 5, "RecursoEducativo", true,"Java Básico");
         
         // Agregar actividades al sistema
         sistema.addActividad(examen);
@@ -88,7 +88,7 @@ class ControladorEnviosTest {
         respuestas.add("respuesta 3");
         
          
-        EnvioExamen envioExamen = controlador.hacerExamen(estudiante, "ex01", respuestas);
+        EnvioExamen envioExamen = controlador.hacerExamen(estudiante, "Java Básico.Examen1", respuestas);
 
         // Verificar que el envío de examen esté completo
         assertNotNull(envioExamen);
@@ -104,7 +104,7 @@ class ControladorEnviosTest {
         respuestas.add(2);
         
         // Realizar el quiz
-        EnvioQuiz envioQuiz = controlador.hacerQuiz(estudiante, "quiz01", respuestas);
+        EnvioQuiz envioQuiz = controlador.hacerQuiz(estudiante, "Java Básico.Quiz1", respuestas);
 
         // Verificar que el envío de quiz esté completo
         assertNotNull(envioQuiz);
@@ -120,7 +120,7 @@ class ControladorEnviosTest {
         respuestas.add(2);
         
         // Realizar la encuesta
-        EnvioEncuesta envioEncuesta = controlador.hacerEncuesta(estudiante, "enc01", respuestas);
+        EnvioEncuesta envioEncuesta = controlador.hacerEncuesta(estudiante, "Java Básico.Encuesta1", respuestas);
 
         // Verificar que el envío de encuesta esté completo
         assertNotNull(envioEncuesta);
@@ -131,7 +131,7 @@ class ControladorEnviosTest {
     @Test
     void testHacerTarea() {
         // Realizar la tarea
-        EnvioTarea envioTarea = controlador.hacerTarea(estudiante, "tarea01");
+        EnvioTarea envioTarea = controlador.hacerTarea(estudiante, "Java Básico.Tarea1");
 
         // Verificar que el envío de tarea esté completo
         assertNotNull(envioTarea);
@@ -142,7 +142,7 @@ class ControladorEnviosTest {
     @Test
     void testHacerRecurso() {
         // Realizar el recurso
-        EnvioRecurso envioRecurso = controlador.hacerRecurso(estudiante, "recurso01");
+        EnvioRecurso envioRecurso = controlador.hacerRecurso(estudiante, "Java Básico.Recurso1");
 
         // Verificar que el envío de recurso esté completo
         assertNotNull(envioRecurso);
