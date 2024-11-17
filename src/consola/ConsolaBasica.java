@@ -178,6 +178,15 @@ public abstract class ConsolaBasica {
 			return null;
 	        
 	    }
-	 
+	 protected Object pedirObjetoAlUsuario( String mensaje ) throws IOException
+	    {
+	      
+	        
+	            System.out.print( mensaje + ": " );
+	            BufferedReader reader = new BufferedReader( new InputStreamReader( System.in ) );
+	            Object input = reader.readLine( );
+	            return input;
+	        
+	    }
 
 }
