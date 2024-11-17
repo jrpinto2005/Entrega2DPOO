@@ -220,7 +220,7 @@ public class ConsolaPrincipal extends ConsolaBasica{
     	{
     		String lp = pedirCadenaAlUsuario("Ingrese le nombre del lp a editar");
     		LearningPath lepa = Sistema.getInstancia().encontrarLP(lp);
-    		c.editarLP(lepa);
+    		c.editarLP(lepa,id);
     		
     	}
     	else if (opcionSeleccionada == 3)

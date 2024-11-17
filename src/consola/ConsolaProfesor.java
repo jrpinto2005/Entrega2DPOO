@@ -16,6 +16,7 @@ import envios.PreguntaAbierta;
 import envios.PreguntaEncuesta;
 import envios.PreguntaOpcionMultiple;
 import exceptions.ActivdadNoEcontradaException;
+import exceptions.ProfesorNoCreadorException;
 import learningPaths.Actividad;
 import learningPaths.Encuesta;
 import learningPaths.Examen;
@@ -183,16 +184,37 @@ public class ConsolaProfesor extends ConsolaPrincipal
 		recurso.setContenido(contenido);
 	}
 	
-	public void editarLP(LearningPath lp) throws IOException
+	public void editarLP(LearningPath lp, String idProfesor) throws IOException
 	{
+		try
+		{
 		System.out.println("Has decidido editar un LearningPath ");
 		System.out.println("Por favor para el siguiente campo escriba el campo que quiere editar de la forma exacta en la que sale");
-		String atributo =pedirCadenaAlUsuario("Ingresa el atributo que quieres cambiar: (Titulo, DescripcionGeneral, Niveldificultad, Duración, FechaDuracion, FechaModificacion, Objetivos) ");
-		Object valorNuevo=pedirObjetoAlUsuario("Ingresa el valor por el cual lo quieres reemplazar: "); //hacer método
+		String atributo =pedirCadenaAlUsuario("Ingresa el atributo que quieres cambiar: (Titulo, DescripcionGeneral, Niveldificultad, FechaDuracion, FechaModificacion, Objetivos) ");
+		Object valorNuevo=pedirObjetoAlUsuario("Ingresa el valor por el cual lo quieres reemplazar: "); 
+		if (atributo.equals("Titulo") || atributo.equals("DescripcionGeneral") || atributo.equals("Objetivos"))
+		{
+			valorNuevo= (String) valorNuevo;
+		}
+		else if (atributo.equals("NivelDificultad"))
+		{
+			valorNuevo= (int) valorNuevo;
+		}
+		else if (atributo.equals("FechaDuracion") || atributo.equals("FechaModificacion"))
+		{
+			valorNuevo= (Date) valorNuevo;
+		}
 		ConstructorLearningPath  constructor=new ConstructorLearningPath();
-		constructor.editarLP(lp, atributo, valorNuevo); 
+		constructor.editarLP(lp, atributo, valorNuevo, idProfesor); 
+		}
+		catch (ProfesorNoCreadorException e)
+		{
+			System.out.println(e.getMessage());
+		}
 		
 	}
+		
+	
 	
 	public void clonarActividad() throws ActivdadNoEcontradaException
 	{
