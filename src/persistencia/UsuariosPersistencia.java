@@ -21,9 +21,16 @@ public class UsuariosPersistencia {
 		super();
 		controlador = ControladorUsuarios.getInstancia();
 	}
+	private static void cargarSystem()
+	{
+		controlador = ControladorUsuarios.getInstancia();
+	}
+	
 
 	public static void cargarSistema(File archivo)
-			throws FileNotFoundException, IOException, NumberFormatException, ParseException {
+			throws FileNotFoundException, IOException, NumberFormatException, ParseException
+	{
+		cargarSystem();
 		BufferedReader br = new BufferedReader(new FileReader(archivo));
 		String line = br.readLine();
 		// se prepara todo para empezar a leer el archivo
@@ -49,15 +56,16 @@ public class UsuariosPersistencia {
 		// se cierra
 	}
 
-	public static void guardarSistema(File archivo) throws IOException {
-
+	public static void guardarSistema(File archivo) throws IOException 
+	{
+		cargarSystem();
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo))) {
 
 			// Escribir LearningPaths
 			Map<String, Profesor> profesores = controlador.getProfesores();
 			for (String profe : profesores.keySet()) {
 				Profesor temp = profesores.get(profe);
-				bw.write("Profesor,");
+				bw.write("profesor,");
 				bw.write(temp.getNombre() + ",");
 				bw.write(temp.getId() + ",");
 				bw.write(temp.getEmail() + ",");
@@ -66,8 +74,8 @@ public class UsuariosPersistencia {
 			}
 			Map<String, Estudiante> estudiantes = controlador.getEstudiantes();
 			for (String estu : estudiantes.keySet()) {
-				Profesor temp = profesores.get(estu);
-				bw.write("Estudiante,");
+				Estudiante temp = estudiantes.get(estu);
+				bw.write("estudiante,");
 				bw.write(temp.getNombre() + ",");
 				bw.write(temp.getId() + ",");
 				bw.write(temp.getEmail() + ",");

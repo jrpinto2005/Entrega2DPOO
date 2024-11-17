@@ -3,7 +3,10 @@ package consola;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Iterator;
 
 public abstract class ConsolaBasica {
@@ -151,6 +154,39 @@ public abstract class ConsolaBasica {
 	        }
 	    }
 	 
-	 
+	 protected Date pedirFechaAlUsuario( String mensaje )
+	    {
+	        try
+	        {
+	            System.out.print( mensaje + ": " );
+	            BufferedReader reader = new BufferedReader( new InputStreamReader( System.in ) );
+	            String input = reader.readLine( );
+	            SimpleDateFormat formato= new SimpleDateFormat("yyyy-MM-dd");
+	            try {
+					Date fecha = formato.parse(input);
+					return fecha;
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	            
+	        }
+	        catch( IOException e )
+	        {
+	            System.out.println( "Error leyendo de la consola" );
+	        }
+			return null;
+	        
+	    }
+	 protected Object pedirObjetoAlUsuario( String mensaje ) throws IOException
+	    {
+	      
+	        
+	            System.out.print( mensaje + ": " );
+	            BufferedReader reader = new BufferedReader( new InputStreamReader( System.in ) );
+	            Object input = reader.readLine( );
+	            return input;
+	        
+	    }
 
 }
