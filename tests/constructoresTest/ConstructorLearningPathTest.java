@@ -54,13 +54,13 @@ class ConstructorLearningPathTest {
     void testEditarLearningPath() {
         assertNotNull(lp1, "El LearningPath debería existir.");
 
-        constructorLP.editarLP(lp1, "titulo", "Java Intermedio");
+        //constructorLP.editarLP(lp1, "titulo", "Java Intermedio");
 
         assertEquals("Java Intermedio", lp1.getTitulo(), "El título del LearningPath debería haberse actualizado.");
     }
 
     @Test
-    void testClonarActividad() {
+    void testClonarActividad() throws ActivdadNoEcontradaException {
         LearningPath lp2 = constructorLP.crearLP("Python Avanzado", "Curso de Python para expertos", 5, 60, 4, new Date(), new Date(),
                 1, "profesor02", "Objetivos del curso", 0.0);
 

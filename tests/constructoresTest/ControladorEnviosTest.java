@@ -13,6 +13,7 @@ import envios.EnvioQuiz;
 import envios.EnvioEncuesta;
 import envios.EnvioTarea;
 import envios.Reseña;
+import exceptions.ActivdadNoEcontradaException;
 import envios.EnvioRecurso;
 import learningPaths.Examen;
 import learningPaths.LearningPath;
@@ -81,7 +82,7 @@ class ControladorEnviosTest {
     }
 
     @Test
-    void testHacerExamen() {
+    void testHacerExamen() throws ActivdadNoEcontradaException {
         List<String> respuestas = new ArrayList<>();
         respuestas.add("respuesta 1");
         respuestas.add("respuesta 2");
@@ -97,7 +98,7 @@ class ControladorEnviosTest {
     }
 
     @Test
-    void testHacerQuiz() {
+    void testHacerQuiz() throws ActivdadNoEcontradaException {
         List<Integer> respuestas = new ArrayList<>();
         respuestas.add(1);
         respuestas.add(0);
@@ -113,7 +114,7 @@ class ControladorEnviosTest {
     }
 
     @Test
-    void testHacerEncuesta() {
+    void testHacerEncuesta() throws ActivdadNoEcontradaException {
         List<Integer> respuestas = new ArrayList<>();
         respuestas.add(1);
         respuestas.add(0);
@@ -129,7 +130,7 @@ class ControladorEnviosTest {
     }
 
     @Test
-    void testHacerTarea() {
+    void testHacerTarea() throws ActivdadNoEcontradaException {
         // Realizar la tarea
         EnvioTarea envioTarea = controlador.hacerTarea(estudiante, "Java Básico.Tarea1");
 
@@ -140,7 +141,7 @@ class ControladorEnviosTest {
     }
 
     @Test
-    void testHacerRecurso() {
+    void testHacerRecurso() throws ActivdadNoEcontradaException {
         // Realizar el recurso
         EnvioRecurso envioRecurso = controlador.hacerRecurso(estudiante, "Java Básico.Recurso1");
 

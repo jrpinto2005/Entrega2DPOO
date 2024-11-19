@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import constructores.ConstructorRecursoEducativo;
+import exceptions.ActivdadNoEcontradaException;
 import learningPaths.RecursoEducativo;
 import learningPaths.LearningPath;
 import usuario.Sistema;
@@ -28,7 +29,7 @@ class ConstructorRecursoEducativoTest {
     }
 
     @Test
-    void testCrearRecursoEducativo() {
+    void testCrearRecursoEducativo() throws ActivdadNoEcontradaException {
         
         String descripcion = "Recurso Educativo de Java Básico";
         String objetivo = "Aprender lo básico de Java";
@@ -59,7 +60,7 @@ class ConstructorRecursoEducativoTest {
     }
 
     @Test
-    void testEditarRecursoEducativo() throws NoSuchMethodException, SecurityException, IllegalAccessException, InvocationTargetException {
+    void testEditarRecursoEducativo() throws NoSuchMethodException, SecurityException, IllegalAccessException, InvocationTargetException, ActivdadNoEcontradaException {
          
         String id = "Recurso2";
         String learningPath = "Java Básico";
