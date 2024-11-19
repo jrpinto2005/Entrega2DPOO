@@ -8,7 +8,6 @@ import constructores.ControladorEnvios;
 import envios.PreguntaAbierta;
 import envios.PreguntaEncuesta;
 import envios.PreguntaOpcionMultiple;
-import exceptions.ActivdadNoEcontradaException;
 import learningPaths.Actividad;
 import learningPaths.Encuesta;
 import learningPaths.Examen;
@@ -53,7 +52,7 @@ public class ConsolaEstudiantes extends ConsolaPrincipal
 		}
 	}
 	
-	public void hacerActividad(String idActividad, Estudiante e) throws ActivdadNoEcontradaException
+	public void hacerActividad(String idActividad, Estudiante e)
 	{
 		Actividad act=sistema.encontrarActividad(idActividad);
 		String tipo=act.getTipoActividad();
@@ -77,10 +76,9 @@ public class ConsolaEstudiantes extends ConsolaPrincipal
 		{
 			hacerRecurso(act,e);
 		}
-		
 	}
 	
-	public void hacerQuiz(Actividad act, Estudiante e) throws ActivdadNoEcontradaException
+	public void hacerQuiz(Actividad act, Estudiante e)
 	{
 		
 		ControladorEnvios env= new ControladorEnvios();
@@ -109,7 +107,7 @@ public class ConsolaEstudiantes extends ConsolaPrincipal
 		
 	}
 	
-	public void hacerExamen(Actividad act, Estudiante e) throws ActivdadNoEcontradaException
+	public void hacerExamen(Actividad act, Estudiante e)
 	{
 		ControladorEnvios env= new ControladorEnvios();
 		Examen examen=(Examen) act;
@@ -133,7 +131,7 @@ public class ConsolaEstudiantes extends ConsolaPrincipal
 		
 	}
 	
-	public void hacerEncuesta(Actividad act, Estudiante e) throws ActivdadNoEcontradaException
+	public void hacerEncuesta(Actividad act, Estudiante e)
 	{
 		ControladorEnvios env= new ControladorEnvios();
 		Encuesta encuesta=(Encuesta) act;
@@ -156,7 +154,7 @@ public class ConsolaEstudiantes extends ConsolaPrincipal
 		
 	}
 	
-	public void hacerTarea(Actividad act, Estudiante e) throws ActivdadNoEcontradaException
+	public void hacerTarea(Actividad act, Estudiante e)
 	{
 		ControladorEnvios env= new ControladorEnvios();
 		Tarea tarea=(Tarea) act;
@@ -171,7 +169,7 @@ public class ConsolaEstudiantes extends ConsolaPrincipal
 		
 	}
 	
-	public void hacerRecurso(Actividad act, Estudiante e) throws ActivdadNoEcontradaException
+	public void hacerRecurso(Actividad act, Estudiante e)
 	{
 		ControladorEnvios env= new ControladorEnvios();
 		RecursoEducativo recurso=(RecursoEducativo) act;

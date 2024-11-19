@@ -31,12 +31,4 @@ public class EnvioExamen extends Envio {
 		this.notaPorcentaje = nota;
 	}
 
-	public List<RespuestaAbierta> getRespuestas() {
-		return respuestas;
-	}
-
-	
-	
-	
-
 }

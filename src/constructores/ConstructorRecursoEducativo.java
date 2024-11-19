@@ -4,7 +4,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Date;
 
-import exceptions.ActivdadNoEcontradaException;
 import learningPaths.Examen;
 import learningPaths.LearningPath;
 import learningPaths.RecursoEducativo;
@@ -27,7 +26,7 @@ public class ConstructorRecursoEducativo {
 		return recurso;
 	}
 
-	public void editarRecursoEducativo(String id, String atributo, Object valorNuevo) throws ActivdadNoEcontradaException {
+	public void editarRecursoEducativo(String id, String atributo, Object valorNuevo) {
 	    try {
 	    	RecursoEducativo recurso = (RecursoEducativo) sistema.encontrarActividad(id);
 	        String setter = "set" + atributo.substring(0, 1).toUpperCase() + atributo.substring(1);
