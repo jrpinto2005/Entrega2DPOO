@@ -2,7 +2,9 @@ package constructores;
 
 import envios.*;
 import learningPaths.*;
+import usuario.ControladorUsuarios;
 import usuario.Estudiante;
+import usuario.Profesor;
 import usuario.Sistema;
 
 import java.util.ArrayList;
@@ -57,6 +59,9 @@ public class ControladorEnvios {
         
         EnvioExamen envio = new EnvioExamen(examen, estudiante.getId(), examen.getLearningPath().getTitulo(), 
                                             false, 0, examen.getPuntajeMaximo(), 0, respuestas);
+        ControladorUsuarios cu= new ControladorUsuarios();
+        Profesor p=cu.encontrarProfesor(examen.getLearningPath().getIdCreador());
+        p.agregarEnvio(envio);
         estudiante.getEnvios().add(envio);
         
         return envio;
