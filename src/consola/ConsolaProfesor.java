@@ -11,14 +11,10 @@ import constructores.ConstructorLearningPath;
 import constructores.ConstructorQuiz;
 import constructores.ConstructorRecursoEducativo;
 import constructores.ConstructorTarea;
-import envios.CalificadorEnvioExamen;
-import envios.Envio;
-import envios.EnvioExamen;
 import envios.Opcion;
 import envios.PreguntaAbierta;
 import envios.PreguntaEncuesta;
 import envios.PreguntaOpcionMultiple;
-import envios.RespuestaAbierta;
 import exceptions.ActivdadNoEcontradaException;
 import exceptions.ProfesorNoCreadorException;
 import learningPaths.Actividad;
@@ -28,7 +24,6 @@ import learningPaths.LearningPath;
 import learningPaths.Quiz;
 import learningPaths.RecursoEducativo;
 import learningPaths.Tarea;
-import usuario.Profesor;
 import usuario.Sistema;
 
 public class ConsolaProfesor extends ConsolaPrincipal
@@ -183,7 +178,7 @@ public class ConsolaProfesor extends ConsolaPrincipal
 		tarea.setContenido(contenido);
 	}
 	
-	public void crearRecurso(RecursoEducativo recurso)
+	public String crearRecurso(RecursoEducativo recurso)
 	{
 		System.out.println("Has decidido hacer una Recurso educativo ");
 		String contenido= pedirCadenaAlUsuario("Ingresa el contenido del recurso, esto es lo que verá el estudiante"); //toca añadir este atributo medio la cagada
@@ -240,40 +235,5 @@ public class ConsolaProfesor extends ConsolaPrincipal
 		{
 			System.out.println("La actividad con ese id no fue encontrada ");
 		}
-	}
-	public void calificarExamen(Profesor profesor)
-	{
-		System.out.println("Has decidido calificar un examen");
-		List<EnvioExamen> envios=profesor.getEnviosPorCalificar();  
-		int contador=0;
-		for (EnvioExamen envio: envios)
-		{
-			contador+=1;
-			System.out.println("Envío " + contador);
-			System.out.println("Actividad con id: " + envio.getActividad().getId());
-			System.out.println("Hecha por el estudiante: " + envio.getIdEstudiante());
-			System.out.println("");
-			System.out.println("");
-		}
-		int numeroEnvio=pedirEnteroAlUsuario("Ingresa el número de envío que quieres calificar: ");
-		EnvioExamen envioElegido=envios.get(numeroEnvio-1);
-		corregirExamen(envioElegido);
-	}
-	public void corregirExamen(EnvioExamen envioEx)
-	{
-		
-		System.out.println("Has decidido corregir el envío del estudiante " + envioEx.getIdEstudiante() + "y de la actividad " + envioEx.getActividad().getId());
-		List<RespuestaAbierta> respuestas=envioEx.getRespuestas(); 
-		double valore=0;
-		for (RespuestaAbierta respuesta: respuestas)
-		{
-			System.out.println("Pregunta: "  + respuesta.getPregunta().getTextoPregunta());  
-			System.out.println("Respuesta: " + respuesta.getContenido());
-			double valor=pedirEnteroAlUsuario("Ingrese el puntaje de esta respuesta. Recuerde que el valor de esta pregunta es de " + respuesta.getPregunta().getValorPregunta());
-			valore+=valor;
-		}
-		CalificadorEnvioExamen c= new CalificadorEnvioExamen();
-		
-		c.calificarExamen(valore, envioEx);
 	}
 }
