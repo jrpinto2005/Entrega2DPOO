@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import constructores.ConstructorTarea;
+import exceptions.ActivdadNoEcontradaException;
 import learningPaths.Tarea;
 import learningPaths.LearningPath;
 import usuario.Sistema;
@@ -28,7 +29,7 @@ class ConstructorTareaTest {
     }
 
     @Test
-    void testCrearTarea() {
+    void testCrearTarea() throws ActivdadNoEcontradaException {
         
         String descripcion = "Tarea de Java Básico";
         String objetivo = "Evaluar los conocimientos básicos de Java";
@@ -59,7 +60,7 @@ class ConstructorTareaTest {
     }
 
     @Test
-    void testEditarTarea() throws NoSuchMethodException, SecurityException, IllegalAccessException, InvocationTargetException {
+    void testEditarTarea() throws NoSuchMethodException, SecurityException, IllegalAccessException, InvocationTargetException, ActivdadNoEcontradaException {
          
         String id = "Tarea2";
         String learningPath = "Java Básico";
