@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Date;
 
+import exceptions.ActivdadNoEcontradaException;
 import learningPaths.LearningPath;
 import learningPaths.Tarea;
 import usuario.Sistema;
@@ -25,7 +26,7 @@ public class ConstructorTarea {
 		return tarea;
 	}
 
-	public void editarTarea(String id, String atributo, Object valorNuevo) {
+	public void editarTarea(String id, String atributo, Object valorNuevo) throws ActivdadNoEcontradaException {
 	    try {
 	    	Tarea tarea = (Tarea) sistema.encontrarActividad(id);
 	        String setter = "set" + atributo.substring(0, 1).toUpperCase() + atributo.substring(1);

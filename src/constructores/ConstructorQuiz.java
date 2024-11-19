@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Date;
 
+import exceptions.ActivdadNoEcontradaException;
 import learningPaths.Encuesta;
 import learningPaths.LearningPath;
 import learningPaths.Quiz;
@@ -27,7 +28,7 @@ public class ConstructorQuiz {
 		return quiz;
 	}
 
-	public void editarQuiz(String id, String atributo, Object valorNuevo) {
+	public void editarQuiz(String id, String atributo, Object valorNuevo) throws ActivdadNoEcontradaException {
 	    try {
 	    	Quiz quiz = (Quiz) sistema.encontrarActividad(id);
 	        String setter = "set" + atributo.substring(0, 1).toUpperCase() + atributo.substring(1);
