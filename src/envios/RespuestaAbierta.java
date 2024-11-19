@@ -29,8 +29,4 @@ public class RespuestaAbierta {
 		this.puntaje = puntaje;
 	}
 
-	public PreguntaAbierta getPregunta() {
-		return this.pregunta;
-	}
-
 }

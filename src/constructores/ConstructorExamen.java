@@ -4,7 +4,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Date;
 
-import exceptions.ActivdadNoEcontradaException;
 import learningPaths.Examen;
 import learningPaths.LearningPath;
 import usuario.Sistema;
@@ -27,7 +26,7 @@ public class ConstructorExamen {
 		return examen;
 	}
 
-	public void editarExamen(String id, String atributo, Object valorNuevo) throws NoSuchMethodException, SecurityException, IllegalAccessException, InvocationTargetException, ActivdadNoEcontradaException {
+	public void editarExamen(String id, String atributo, Object valorNuevo) throws NoSuchMethodException, SecurityException, IllegalAccessException, InvocationTargetException {
 	    try {
 	    	Examen examen = (Examen) sistema.encontrarActividad(id);
 	        String setter = "set" + atributo.substring(0, 1).toUpperCase() + atributo.substring(1);
