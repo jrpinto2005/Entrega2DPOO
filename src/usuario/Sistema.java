@@ -21,7 +21,7 @@ public class Sistema {
 		return learningPaths.get(idLP);
 	}
 
-	public Actividad encontrarActividad(String idActividad) {
+	public Actividad encontrarActividad(String idActividad) throws ActivdadNoEcontradaException {
 		return actividades.get(idActividad);
 	}
 

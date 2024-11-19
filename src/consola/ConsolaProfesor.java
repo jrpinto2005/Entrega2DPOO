@@ -68,7 +68,7 @@ public class ConsolaProfesor extends ConsolaPrincipal
 		{
 			isObligatoria=true;
 		}
-		String idLearningPath=pedirCadenaAlUsuario("Ingrese el nombre de la actividad:");
+		String idLearningPath=pedirCadenaAlUsuario("Ingrese el nombre del lp:");
 		String tipoDeActividad=pedirCadenaAlUsuario("Que tipo de actividad quiere realizar: Quiz, Examen, Tarea, Recurso Educativo, Encuesta ");
 		
 		if (tipoDeActividad.equals("Quiz"))
@@ -116,7 +116,6 @@ public class ConsolaProfesor extends ConsolaPrincipal
 			crearActividad();
 			
 		}
-		System.exit(0);
 		
 	}
 	
@@ -126,12 +125,14 @@ public class ConsolaProfesor extends ConsolaPrincipal
 		
 		for (int i=0; i<cantidadPreguntas; i++)
 		{
-			String descripcion=pedirCadenaAlUsuario("Ingrese la descripción o texto de la pregunta: ");
+			int p = i+1;
+			String descripcion=pedirCadenaAlUsuario("Ingrese la descripción o texto de la pregunta " + p+  " : " );
 			PreguntaOpcionMultiple pregunta=new PreguntaOpcionMultiple(descripcion, i+1);  
 			int tipo= pedirEnteroAlUsuario("Cuantas opciones desea tener? ");
 			for (int j=0; j<tipo; j++)
 			{
-				String texto=pedirCadenaAlUsuario("Ingrese el texto de la opción" + j+1 + ": ");
+				int q = j+1;
+				String texto=pedirCadenaAlUsuario("Ingrese el texto de la opción " +  q + " : ");
 				int correcto= pedirEnteroAlUsuario("Ingrese 1 si esta opción es correcta y 0 si no: ");
 				boolean esCorrecto=false;
 				if (correcto==1)
