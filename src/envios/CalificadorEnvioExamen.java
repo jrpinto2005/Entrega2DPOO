@@ -1,16 +1,17 @@
 package envios;
 
+import java.util.List;
+
+import learningPaths.Examen;
+
 public class CalificadorEnvioExamen {
 
-	private EnvioExamen envio;
-
-	public int esCorrecta(RespuestaMultiple respuesta) {
-		for (Opcion opcion : respuesta.getPregunta().getOpciones()) {
-			if (respuesta.getIndice() == opcion.getIndice()) {
-				return 1;
-			}
-		}
-		return 0;
+	public void calificarExamen(double valor, EnvioExamen envio) {
+		Examen actividad= (Examen) envio.getActividad();
+		int puntajeMaximo=actividad.getPuntajeMaximo();
+		double nota=puntajeMaximo/valor;
+		envio.setPuntaje(valor);
+		envio.setNotaPorcentaje(nota);
 	}
 
 }

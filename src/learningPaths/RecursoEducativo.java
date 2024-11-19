@@ -4,6 +4,8 @@ import java.util.Date;
 
 public class RecursoEducativo extends Actividad {
 	
+	public String contenido;
+	
 	public RecursoEducativo(String descripcion, String objetivo, String nombre, Date fechaInicio, Date fechaFin,
 			int duracion, int dificultad, double rating, String tipoActividad, boolean obligatoria,
 			String learningPath) {
@@ -11,5 +13,14 @@ public class RecursoEducativo extends Actividad {
 				obligatoria, learningPath);
 	
 	}
+
+	public void setContenido(String contenido) {
+		{
+			this.contenido = contenido;
+		}
+
+	}
+	
+	
 
 }
