@@ -1,8 +1,11 @@
 package constructores;
 
 import envios.*;
+import exceptions.ActivdadNoEcontradaException;
 import learningPaths.*;
+import usuario.ControladorUsuarios;
 import usuario.Estudiante;
+import usuario.Profesor;
 import usuario.Sistema;
 
 import java.util.ArrayList;
@@ -39,7 +42,7 @@ public class ControladorEnvios {
 
 	}
 
-    public EnvioExamen hacerExamen(Estudiante estudiante, String idExamen, List<String> respuestasUsuario) {
+    public EnvioExamen hacerExamen(Estudiante estudiante, String idExamen, List<String> respuestasUsuario) throws ActivdadNoEcontradaException {
         Examen examen = (Examen) sistema.encontrarActividad(idExamen);
         
         
@@ -57,13 +60,16 @@ public class ControladorEnvios {
         
         EnvioExamen envio = new EnvioExamen(examen, estudiante.getId(), examen.getLearningPath().getTitulo(), 
                                             false, 0, examen.getPuntajeMaximo(), 0, respuestas);
+        ControladorUsuarios cu= new ControladorUsuarios();
+        Profesor p=cu.encontrarProfesor(examen.getLearningPath().getIdCreador());
+        p.agregarEnvio(envio);
         estudiante.getEnvios().add(envio);
         
         return envio;
     }
 
 
-    public EnvioQuiz hacerQuiz(Estudiante estudiante, String idQuiz, List<Integer> respuestasIngresadas) {
+    public EnvioQuiz hacerQuiz(Estudiante estudiante, String idQuiz, List<Integer> respuestasIngresadas) throws ActivdadNoEcontradaException {
         Quiz quiz = (Quiz) sistema.encontrarActividad(idQuiz);
         Collection<PreguntaOpcionMultiple> preguntas = quiz.getPreguntas();
         List<RespuestaMultiple> respuestas = new ArrayList<>();
@@ -80,7 +86,7 @@ public class ControladorEnvios {
     }
 
 
-    public EnvioEncuesta hacerEncuesta(Estudiante estudiante, String idEncuesta, List<Integer> respuestasIngresadas) {
+    public EnvioEncuesta hacerEncuesta(Estudiante estudiante, String idEncuesta, List<Integer> respuestasIngresadas) throws ActivdadNoEcontradaException {
         Encuesta encuesta = (Encuesta) sistema.encontrarActividad(idEncuesta);
         Collection<PreguntaEncuesta> preguntas = encuesta.getPreguntas();
         List<RespuestaEncuesta> respuestas = new ArrayList<>();
@@ -96,14 +102,14 @@ public class ControladorEnvios {
         return envio;
     }
 
-    public EnvioTarea hacerTarea(Estudiante estudiante, String idTarea) {
+    public EnvioTarea hacerTarea(Estudiante estudiante, String idTarea) throws ActivdadNoEcontradaException {
         Tarea tarea = (Tarea) sistema.encontrarActividad(idTarea);
         EnvioTarea envio = new EnvioTarea(tarea, estudiante.getId(), tarea.getLearningPath().getTitulo(), true);
         estudiante.getEnvios().add(envio);
         return envio;
     }
 
-    public EnvioRecurso hacerRecurso(Estudiante estudiante, String idRecurso) {
+    public EnvioRecurso hacerRecurso(Estudiante estudiante, String idRecurso) throws ActivdadNoEcontradaException {
         RecursoEducativo recurso = (RecursoEducativo) sistema.encontrarActividad(idRecurso);
         EnvioRecurso envio = new EnvioRecurso(recurso, estudiante.getId(), recurso.getLearningPath().getTitulo(), true);
         estudiante.getEnvios().add(envio);

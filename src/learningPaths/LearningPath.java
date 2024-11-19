@@ -20,7 +20,7 @@ public class LearningPath {
 	private int rating;
 	private Date fechaDuracion;
 	private Date fechaModificacion;
-	private int version;
+	private  int version;
 	private String idCreador;
 	private String objetivos;
 	private double promedioActividadesCompletadas;
@@ -39,7 +39,7 @@ public class LearningPath {
 		this.rating = rating;
 		this.fechaDuracion = fechaDuracion;
 		this.fechaModificacion = fechaModificacion;
-		this.version = version;
+		this.version =version;
 		this.idCreador = idCreador;
 		this.objetivos = objetivos;
 		this.promedioActividadesCompletadas = promedioActividadesCompletadas;
@@ -85,7 +85,12 @@ public class LearningPath {
 	}
 
 	public void setDuracion(int duracion) {
-		this.duracion = duracion;
+		int suma=0;
+		for (Actividad act: this.getActividadesOrdenadas())
+		{
+			suma+=act.getDuracion();
+		}
+		this.duracion=suma;
 	}
 
 	public int getRating() {
@@ -163,6 +168,8 @@ public class LearningPath {
 	public void agregarActividad(Actividad actividad) {
 
 		this.actividadesOrdenadas.add(actividad);
+		setDuracion(0);
+		version+=1;
 
 	}
 
