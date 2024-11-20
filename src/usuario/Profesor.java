@@ -13,10 +13,12 @@ public class Profesor extends Usuario {
 
 	private List<LearningPath> learningPaths;
 	private List<EnvioExamen> enviosPendientes;
+	
 
 	public Profesor(String id, String nombre, String email, String contraseña, String tipo) {
 		super(id, nombre, email, contraseña, tipo);
 		this.learningPaths = new ArrayList<LearningPath>();
+		this.enviosPendientes= new ArrayList<EnvioExamen>();
 	}
 
 	public String getContrasena() {

@@ -24,6 +24,10 @@ public abstract class Envio {
 		return tituloLp;
 	}
 
+	public void setCompletado(boolean completado) {
+		this.completado = completado;
+	}
+
 	public boolean isCompletado() {
 		return completado;
 	}

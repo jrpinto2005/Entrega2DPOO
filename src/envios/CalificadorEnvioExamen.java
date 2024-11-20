@@ -12,6 +12,12 @@ public class CalificadorEnvioExamen {
 		double nota=puntajeMaximo/valor;
 		envio.setPuntaje(valor);
 		envio.setNotaPorcentaje(nota);
+		if(nota>=0.6) {
+			envio.setCompletado(true);
+		}
+		else {
+			envio.setCompletado(false);
+		}
 	}
 
 }

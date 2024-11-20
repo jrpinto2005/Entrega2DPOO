@@ -24,11 +24,14 @@ public class ConsolaPrincipal extends ConsolaBasica{
 	
 	private final String[] opcionesCarga = new String[] {"Cargar informacion", "Continuar", "Salir"};
 	private final String[] opcionesAutenticacion = new String[]{ "Ingresar","Crear Usuario","Guardar informacion","Salir" };
-	private final String[] opcionesMenuPrincipalEstudiante = new String[]{ "Consultar progreso LP", "Actividades sugeridas LP",  "Inscribir LP", "Hacer actividad","Salir" };
-	private final String[] opcionesMenuPrincipalProfesor = new String[]{ "Crear LP", "Editar LP","Crear Actividad","Clonar Actividad", "Salir" };
+	private final String[] opcionesMenuPrincipalEstudiante = new String[]{ "Consultar progreso LP", "Actividades sugeridas LP",  "Inscribir LP", "Hacer actividad","Editar Perfil","Salir" };
+	private final String[] opcionesMenuPrincipalProfesor = new String[]{ "Crear LP", "Editar LP","Crear Actividad","Clonar Actividad","Editar Perfil", "Salir" };
 	private final String[] crearUsuario = new String [] {"Estudiante", "Profesor"};
 	private Usuario usuario;
 	private static int intentos;
+	private final String[] editar = new String [] {"Contraseña", "Correo","Salir"};
+	
+	
 	
 	
 	
@@ -96,10 +99,12 @@ public class ConsolaPrincipal extends ConsolaBasica{
             
             if (usuario.getTipoUsuario().equals("estudiante"))
             		{
+            			System.out.println( "Bienvenido "+ usuario.getNombre() + " : ");
             			menuEstudiantes((Estudiante) usuario);
             		}
             else 
             {
+            	System.out.println( "Bienvenido "+ usuario.getNombre() + " : ");
             	menuProfesores(usuario.getId());            	
             }
             }
@@ -209,6 +214,10 @@ public class ConsolaPrincipal extends ConsolaBasica{
     	}
     	else if (opcionSeleccionada== 5)
     	{
+    		 editarPerfil(usuario);
+    	}
+    	else if (opcionSeleccionada== 6)
+    	{
     		System.out.println( "Saliendo ..." );
     		mostrarLogin();
     	}
@@ -239,13 +248,40 @@ public class ConsolaPrincipal extends ConsolaBasica{
     	{
     		c.clonarActividad();
     	}
+ 
     	else if (opcionSeleccionada== 5)
+    	{
+    		 editarPerfil(usuario);
+    	}
+    	else if (opcionSeleccionada== 6)
     	{
     		System.out.println( "Saliendo ..." );
     		mostrarLogin();
     	}
     	menuProfesores(id);
     	
+    }
+    public void editarPerfil(Usuario usuario) {
+    	int opcionSeleccionada = mostrarMenu( "Menú editar", editar );
+    	if(opcionSeleccionada==1) {
+    		String contraseña = pedirCadenaAlUsuario("Ingrese la contraseña nueva");
+    		usuario.setContraseña(contraseña);
+    		System.out.println( "Su contraseña fue cambiado con exito " );
+    		
+    	}
+    	else if (opcionSeleccionada == 2)
+    	{
+    		String correo = pedirCadenaAlUsuario("Ingrese el correo nuevo");
+    		usuario.setEmail(correo);
+    		System.out.println( "Su correo fue cambiado con exito " );
+    		
+    	}
+    	else if (opcionSeleccionada == 3)
+    	{
+    		 
+    	}
+    
+  	
     }
     //private void TipoUsuario 
     public static void main( String[] args ) throws NumberFormatException, FileNotFoundException, IOException, ParseException, UsuarioContraseñaIncorrectoException

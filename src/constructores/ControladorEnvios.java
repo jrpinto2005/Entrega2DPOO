@@ -60,7 +60,7 @@ public class ControladorEnvios {
         
         EnvioExamen envio = new EnvioExamen(examen, estudiante.getId(), examen.getLearningPath().getTitulo(), 
                                             false, 0, examen.getPuntajeMaximo(), 0, respuestas);
-        ControladorUsuarios cu= new ControladorUsuarios();
+        ControladorUsuarios cu= ControladorUsuarios.getInstancia();
         Profesor p=cu.encontrarProfesor(examen.getLearningPath().getIdCreador());
         p.agregarEnvio(envio);
         estudiante.getEnvios().add(envio);

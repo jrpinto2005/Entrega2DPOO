@@ -56,7 +56,7 @@ class ConstructorReseñaTest {
 
 	    
 	    @Test
-	    void testHacerReseña() {
+	    void testHacerReseña() throws ActivdadNoEcontradaException {
 	        String idReseña = "Reseña1";
 	        String comentario = "Excelente contenido para aprender Java.";
 	        int rating = 5;

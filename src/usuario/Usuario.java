@@ -46,5 +46,13 @@ public abstract class Usuario {
 		return "ID: " + id + "\nNombre: " + nombre + "\nEmail: " + email + "\nTipo: " + getTipoUsuario();
 	}
 
+	public String getContraseña() {
+		return contraseña;
+	}
+
+	public void setContraseña(String contraseña) {
+		this.contraseña = contraseña;
+	}
+
 	
 }
