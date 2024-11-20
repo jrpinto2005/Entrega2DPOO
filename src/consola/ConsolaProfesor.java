@@ -176,7 +176,7 @@ public class ConsolaProfesor extends ConsolaPrincipal
 		tarea.setContenido(contenido);
 	}
 	
-	public String crearRecurso(RecursoEducativo recurso)
+	public void crearRecurso(RecursoEducativo recurso)
 	{
 		System.out.println("Has decidido hacer una Recurso educativo ");
 		String contenido= pedirCadenaAlUsuario("Ingresa el contenido del recurso, esto es lo que verá el estudiante"); //toca añadir este atributo medio la cagada

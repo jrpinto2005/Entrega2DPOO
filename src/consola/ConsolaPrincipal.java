@@ -32,7 +32,7 @@ public class ConsolaPrincipal extends ConsolaBasica{
 	
 	
 	
-	private void primeraConsola() throws NumberFormatException, FileNotFoundException, IOException, ParseException, UsuarioContraseñaIncorrectoException
+	private void primeraConsola() throws NumberFormatException, FileNotFoundException, IOException, ParseException, UsuarioContraseñaIncorrectoException, ActivdadNoEcontradaException
 	{
 		int opcionSeleccionada = mostrarMenu( "Menú carga", opcionesCarga );
 		if ( opcionSeleccionada == 1)
@@ -240,7 +240,7 @@ public class ConsolaPrincipal extends ConsolaBasica{
     	
     }
     //private void TipoUsuario 
-    public static void main( String[] args ) throws NumberFormatException, FileNotFoundException, IOException, ParseException, UsuarioContraseñaIncorrectoException
+    public static void main( String[] args ) throws NumberFormatException, FileNotFoundException, IOException, ParseException, UsuarioContraseñaIncorrectoException, ActivdadNoEcontradaException
     {
         ConsolaPrincipal c = new ConsolaPrincipal( );
         c.primeraConsola( );
