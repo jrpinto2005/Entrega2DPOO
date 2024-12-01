@@ -16,7 +16,6 @@ import envios.PreguntaAbierta;
 import envios.PreguntaEncuesta;
 import envios.PreguntaOpcionMultiple;
 import exceptions.ActivdadNoEcontradaException;
-import exceptions.ProfesorNoCreadorException;
 import learningPaths.Actividad;
 import learningPaths.Encuesta;
 import learningPaths.Examen;
@@ -68,7 +67,7 @@ public class ConsolaProfesor extends ConsolaPrincipal
 		{
 			isObligatoria=true;
 		}
-		String idLearningPath=pedirCadenaAlUsuario("Ingrese el nombre del lp:");
+		String idLearningPath=pedirCadenaAlUsuario("Ingrese el nombre de la actividad:");
 		String tipoDeActividad=pedirCadenaAlUsuario("Que tipo de actividad quiere realizar: Quiz, Examen, Tarea, Recurso Educativo, Encuesta ");
 		
 		if (tipoDeActividad.equals("Quiz"))
@@ -116,6 +115,7 @@ public class ConsolaProfesor extends ConsolaPrincipal
 			crearActividad();
 			
 		}
+		System.exit(0);
 		
 	}
 	
@@ -125,14 +125,12 @@ public class ConsolaProfesor extends ConsolaPrincipal
 		
 		for (int i=0; i<cantidadPreguntas; i++)
 		{
-			int p = i+1;
-			String descripcion=pedirCadenaAlUsuario("Ingrese la descripción o texto de la pregunta " + p+  " : " );
+			String descripcion=pedirCadenaAlUsuario("Ingrese la descripción o texto de la pregunta: ");
 			PreguntaOpcionMultiple pregunta=new PreguntaOpcionMultiple(descripcion, i+1);  
 			int tipo= pedirEnteroAlUsuario("Cuantas opciones desea tener? ");
 			for (int j=0; j<tipo; j++)
 			{
-				int q = j+1;
-				String texto=pedirCadenaAlUsuario("Ingrese el texto de la opción " +  q + " : ");
+				String texto=pedirCadenaAlUsuario("Ingrese el texto de la opción" + j+1 + ": ");
 				int correcto= pedirEnteroAlUsuario("Ingrese 1 si esta opción es correcta y 0 si no: ");
 				boolean esCorrecto=false;
 				if (correcto==1)
@@ -185,37 +183,16 @@ public class ConsolaProfesor extends ConsolaPrincipal
 		recurso.setContenido(contenido);
 	}
 	
-	public void editarLP(LearningPath lp, String idProfesor) throws IOException
+	public void editarLP(LearningPath lp) throws IOException
 	{
-		try
-		{
 		System.out.println("Has decidido editar un LearningPath ");
 		System.out.println("Por favor para el siguiente campo escriba el campo que quiere editar de la forma exacta en la que sale");
-		String atributo =pedirCadenaAlUsuario("Ingresa el atributo que quieres cambiar: (Titulo, DescripcionGeneral, Niveldificultad, FechaDuracion, FechaModificacion, Objetivos) ");
-		Object valorNuevo=pedirObjetoAlUsuario("Ingresa el valor por el cual lo quieres reemplazar: "); 
-		if (atributo.equals("Titulo") || atributo.equals("DescripcionGeneral") || atributo.equals("Objetivos"))
-		{
-			valorNuevo= (String) valorNuevo;
-		}
-		else if (atributo.equals("NivelDificultad"))
-		{
-			valorNuevo= (int) valorNuevo;
-		}
-		else if (atributo.equals("FechaDuracion") || atributo.equals("FechaModificacion"))
-		{
-			valorNuevo= (Date) valorNuevo;
-		}
+		String atributo =pedirCadenaAlUsuario("Ingresa el atributo que quieres cambiar: (Titulo, DescripcionGeneral, Niveldificultad, Duración, FechaDuracion, FechaModificacion, Objetivos) ");
+		Object valorNuevo=pedirObjetoAlUsuario("Ingresa el valor por el cual lo quieres reemplazar: "); //hacer método
 		ConstructorLearningPath  constructor=new ConstructorLearningPath();
-		constructor.editarLP(lp, atributo, valorNuevo, idProfesor); 
-		}
-		catch (ProfesorNoCreadorException e)
-		{
-			System.out.println(e.getMessage());
-		}
+		constructor.editarLP(lp, atributo, valorNuevo); 
 		
 	}
-		
-	
 	
 	public void clonarActividad() throws ActivdadNoEcontradaException
 	{

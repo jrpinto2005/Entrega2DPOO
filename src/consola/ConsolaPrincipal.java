@@ -32,7 +32,7 @@ public class ConsolaPrincipal extends ConsolaBasica{
 	
 	
 	
-	private void primeraConsola() throws NumberFormatException, FileNotFoundException, IOException, ParseException, UsuarioContraseñaIncorrectoException, ActivdadNoEcontradaException
+	private void primeraConsola() throws NumberFormatException, FileNotFoundException, IOException, ParseException, UsuarioContraseñaIncorrectoException
 	{
 		int opcionSeleccionada = mostrarMenu( "Menú carga", opcionesCarga );
 		if ( opcionSeleccionada == 1)
@@ -197,15 +197,7 @@ public class ConsolaPrincipal extends ConsolaBasica{
     		System.out.println("Que actividad desea empezar: ");
     		BufferedReader reader = new BufferedReader( new InputStreamReader( System.in));
     		String actividad = reader.readLine();
-    		try 
-    		{
-    			c.hacerActividad(actividad, estudiante);
-    			}
-    		catch (ActivdadNoEcontradaException e)
-    		{
-    			System.out.println("La actividad "+ actividad+ " no existe");
-    		}
-    		
+    		c.hacerActividad(actividad, estudiante);
     	}
     	else if (opcionSeleccionada== 5)
     	{
@@ -228,7 +220,7 @@ public class ConsolaPrincipal extends ConsolaBasica{
     	{
     		String lp = pedirCadenaAlUsuario("Ingrese le nombre del lp a editar");
     		LearningPath lepa = Sistema.getInstancia().encontrarLP(lp);
-    		c.editarLP(lepa,id);
+    		c.editarLP(lepa);
     		
     	}
     	else if (opcionSeleccionada == 3)
@@ -251,27 +243,7 @@ public class ConsolaPrincipal extends ConsolaBasica{
     public static void main( String[] args ) throws NumberFormatException, FileNotFoundException, IOException, ParseException, UsuarioContraseñaIncorrectoException
     {
         ConsolaPrincipal c = new ConsolaPrincipal( );
-        try {
-			c.primeraConsola( );
-		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UsuarioContraseñaIncorrectoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ActivdadNoEcontradaException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        c.primeraConsola( );
     }
     
     
